@@ -1,0 +1,2842 @@
+<iStressLess>
+
+	<Theme name="theme_default" font="Helvetica" fontSize="17" textColor="FFFFFF" bgColor="4D88B5"/>
+	<Theme name="theme_list" font="Helvetica-Bold" fontSize="20" textColor="000000" bgColor="FFFFFF"/>
+	<Theme name="theme_list_smaller" font="Helvetica-Bold" fontSize="17" textColor="000000" bgColor="FFFFFF"/>
+	<Theme name="theme_bigger" font="Helvetica" fontSize="24" textColor="FFFFFF" bgColor="000000"/>
+	<Theme name="theme_smaller" font="Helvetica" fontSize="14" textColor="FFFFFF" bgColor="000000"/>
+	<Theme name="theme_button" font="TrebuchetMS" fontSize="12" textColor="000000" bgColor="000000"/>
+	<Theme name="theme_big_button" font="TrebuchetMS" fontSize="18" textColor="000000" bgColor="000000"/>
+	<Theme name="theme_medium_button" font="TrebuchetMS" fontSize="15" textColor="000000" bgColor="000000"/>
+	<Theme name="theme_bigger_button" font="TrebuchetMS" fontSize="24" textColor="000000" bgColor="000000"/>
+	<Theme name="theme_timer" font="Helvetica-Bold" fontSize="56" textColor="FFFFFF" bgColor="000000"/>
+	<Theme name="theme_pcl" font="Helvetica" fontSize="17" textColor="FFFFFF" bgColor="000000"/>
+	<Theme name="theme_pcl_button" font="TrebuchetMS" fontSize="15" textColor="000000" bgColor="000000"/>
+
+	<Content name="EULA" displayName="License Agreement" ui="EULAController"><![CDATA[
+		<style>
+			.nobr { white-space: nowrap; }
+			body {font-size:12px;}
+			li {margin-bottom:6px;}
+		</style>
+		<h3>UNITED STATES DEPARTMENT OF VETERANS AFFAIRS ("VA")</h3>
+		<h3>SOFTWARE END USER LICENSE AGREEMENT</h3>
+		By agreeing to have any of VA’s software products installed on to your device and by subsequent use of the Licensed Software, you agree to comply with the terms of this general End User License Agreement ("EULA") where no specific agreement is in place between VA and the user of the software. If you do not agree to the terms of this EULA, do not install or use the Licensed Software but uninstall it from your device. This EULA applies to any upgrades and supplements to the original Licensed Software provided and is referred to on your opening screen.
+		<ol>
+			<li>The Licensed Software is owned by VA. The Licensed Software is licensed, not sold, only on the terms of this EULA. Acceptance and installation of the software indicates your acceptance of the terms and conditions of this EULA.</li>
+			<li>Upon installation of the Licensed Software, you will acquire the right to use the Licensed Software, directly from VA. You assume responsibility for the selection of the program to achieve your intended results, and for the installation, use and results obtained from the Licensed Software.</li>
+			<li>VA and you acknowledge that this Agreement is concluded between VA and you only, and not with Apple, Google, or the device manufacturer.  VA is solely responsible for the Licensed Software and its content.</li>
+			<li>In consideration of your acceptance of the terms and conditions contained in this EULA, VA grants you a non-exclusive license to use the Licensed Software and the associated documentation for your own needs on one device. You are not licensed to rent, lease, transfer, or distribute the Licensed Software.</li>
+			<li>Title to the Licensed Software, including media and documentation, remain with VA. You may not copy, reproduce or make data transmissions, in whole or in part, except as is necessary for back-up or archival purposes. You may not reverse engineer, translate, disassemble, decompile the Software or create similar software in whole or in part.</li>
+			<li>The license is effective upon acceptance and installation of the Licensed Software and shall continue until terminated. You may terminate it at any time by uninstalling the Licensed Software. VA has the right to terminate this Agreement if you fail to comply with any term or condition of this EULA. Upon termination you shall stop all use of the Software and uninstall the Licensed Software.</li>
+			<li>Confidentiality of the Licensed Software will survive any termination of this EULA, to include the application, design, and functionality.</li>
+			<li>This Licensed Software is distributed AS IS, in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</li>
+			<li>In no event will VA be liable for any damages, including for loss of data, loss of use, or indirect, special, incidental or consequential damages in any way related to or arising out of the use of the Licensed Software whether based upon warranty, contract, tort, or otherwise, whether or not injury was sustained by persons or property or otherwise, and whether or not loss was sustained from, or arose out of use of Licensed Software  VA's maximum liability shall in no event exceed the amounts paid to VA for the Licensed Software.  You agree to waive any and all claims against the U.S. Government, VA, its contractors, their subcontractors, and shall indemnify and hold harmless the U.S. Government, its contractors, and their subcontractors for any damage that you may incur from your use of the Licensed Software.</li>
+			<li>The prevailing party in any action or proceeding between VA and you arising out of or related to this Agreement shall be entitled to recover reasonable legal fees and costs, including lawyers' fees, which may be incurred.</li>
+			<li>VA shall be neither liable nor responsible for any maintenance or updating of the provided Licensed Software, nor for correction of any errors in the Licensed Software.</li>
+			<li>This Agreement shall be construed and enforced in accordance with the laws of the District of Columbia, United States of America and each party agrees to be subject to those relevant laws for all purposes.</li>
+			<li>It is understood and acknowledged that VA has the absolute right to obtain injunctive relief to protect VA's proprietary rights.</li>
+			<li>By using the Software, you further agree that this is the complete and exclusive statement of the Agreement which supersedes any proposal or prior agreement, oral or written, and any other communications relating to the subject matter of this EULA.</li>
+			<li>If any provision of this Agreement is held to be invalid or unenforceable the remaining provisions will not be affected.</li>
+			<li>For statistical purposes VA collects anonymous usage data and sends it to a data provider. By accepting this agreement, it is understood that this feature can be disabled through settings screen at any time.</li>
+			<li>PRIVACY NOTICE:  No individually identifiable data is transferred or transmitted to VA in any way through the use of the Licensed Software.  All individually identifiable data entered by you remains your sole property and will not be accessed by VA without further express consent.  You also acknowledge that it is your sole responsibility to protect and otherwise secure any information captured and stored by the software once installed on your device.</li>
+			<li>DISCLAIMER: The content of this application is intended for use only as an informative tool.  It is not, is not intended to be, and should not be used in any way as a substitute for professional medical advice or training.  The accuracy of the information provided is not guaranteed.  The user acknowledges in initiating this application that the information is not meant to diagnose a health condition or disease and is not meant to develop a health treatment plan.  If you are in an emergency or life-threatening medical situation, seek medical assistance immediately.  Dial emergency number (911 in the USA) for emergency medical services.</li>
+		</ol>
+	]]></Content>
+
+	<Content name="firstLaunch" displayName="Welcome to PTSD Coach!" ui="ContentViewController"><![CDATA[
+		<p>
+		Welcome to <b>PTSD Coach</b>! This app was developed for trauma survivors. Whether you have Posttraumatic Stress Disorder (PTSD), 
+		or you are concerned that you might, this app is for you. This app won’t diagnose you with PTSD or offer you treatment – only a trained 
+		professional can do that. But it can help you learn about PTSD, and it will give you tools for managing the stresses that can come with
+		life after a trauma.
+		</p>
+		<p>
+		To get the most out of this app, you should set some things up as soon as possible. You will need to select:
+		<ul>
+			<li>Friends, loved ones, and/or professionals who can help when you’re feeling stressed,</li>
+			<li>Pictures on your phone that you find comforting or funny, and</li>
+			<li>Songs on your phone that you find relaxing or that put you in a good mood.</li>
+		</ul>
+		</p>
+		<p>
+		You can change your selections at any time by visiting 'Setup' from the PTSD Coach home screen.
+		</p>
+		<p>
+		To do this now, tap "Continue" Otherwise, tap "Skip Setup."  If you skip Setup, tools in the app that use these items will 
+		not be available until you complete Setup. 
+		</p>
+	]]></Content>
+
+	<Content name="about" displayName="About PTSD Coach" ui="ContentViewController"><![CDATA[
+		<div style="width:100%;text-align:center;">
+			<img src="Content/ptsdcoach_logo@2x.png" width="216" height="210" style="text-align:center;"/>
+		</div>
+		<p>
+			<b>PTSD Coach</b> is a mobile phone application for people with Posttraumatic Stress Disorder (PTSD) and those interested in learning more about PTSD.
+		</p>
+		<p>
+			This application provides:
+			<ul>
+				<li>Education about PTSD</li>
+				<li>A self-assessment</li>
+				<li>Tools for managing distress associated with Posttraumatic Stress</li>
+				<li>A direct connection to crisis support</li>
+				<li>Information about professional treatment</li>
+			</ul>
+			</p>
+			<p>
+			It can be used as a stand-alone education and symptom management tool, or to augment face-to-face care with a healthcare professional.
+			</p>
+			<p>
+			Project Team:
+			<ul>
+				<li>Julia E. Hoffman, Psy.D.</li>
+				<li>Laura H. Wald, Ph.D.</li>
+				<li>Eric Kuhn, Ph.D.</li>
+				<li>Carolyn Greene, Ph.D.</li>
+				<li>Josef I. Ruzek, Ph.D.</li>
+				<li>Kenneth Weingardt, Ph.D.</li>
+			</ul>
+		</p>
+		<p>
+			PTSD Coach was a collaborative effort between the VA’s National Center for PTSD and the DoD’s National Center for Telehealth and Technology.		
+		</p>
+		<p>
+			<img src="Content/ncptsd_logo.png" width="109" height="111" style="border-width:1px;border-color:black;float:left;margin:10px;"/>
+			<b>The National Center for PTSD</b>, within the Department of Veterans Affairs, aims to help U.S. veterans and others through research, education, and training on trauma and PTSD. <br>
+			<i>“Advancing Science and Promoting Understanding of Traumatic Stress”</i>
+		</p>
+		<p>
+			<img src="Content/t2_logo.png" width="124" height="123" style="border-width:1px;border-color:black;float:left;margin:10px;"/>
+			<b>The National Center for Telehealth and Technology |T2|</b> researches, develops, evaluates, and deploys new and existing technologies for 
+			Psychological Health (PH) and Traumatic Brain Injury (TBI) across the Department of Defense (DoD). T2 is a component center of the 
+			Defense Centers of Excellence for Psychological Health and Traumatic Brain Injury (DCoE), which leads a collaborative global network 
+			to promote the resilience, recovery and reintegration of Warriors and their families who face psychological health and traumatic brain 
+			injury issues.  <br>
+			<i>“Technology to Make People Healthy”</i>
+		</p>
+		<p>
+			For more information, see <a href="http://ptsd.va.gov/">http://ptsd.va.gov/</a>.
+		</p>
+	]]></Content>
+
+	<Content name="setup" backButton="Setup" displayName="Setup" ui="ContentListViewController">
+		<Content displayName="Choose Images" title="Soothing Images" backButton="Images" ui="ChosenImagesViewController">
+			<Content name="@add" displayName="Choose Images" title="Choose Images" ui="ImagesPickerViewController"/>
+		</Content>
+		<Content displayName="Choose Songs or Audio" title="Soothing Audio" backButton="Audio" ui="ChosenAudioListViewController"/>
+		<Content displayName="Choose Support Contacts" title="Support Contacts" backButton="Support Contacts" ui="ChosenContactListViewController"/>
+		<Content name="@help" displayName="Setup Help" ui="ContentViewController"><![CDATA[
+			<p>
+				In order to get the most out of this app, you should select some items that you already have on your device that you find 
+				soothing or pleasant. These items will be provided to you when you are in need of tools to manage your distress.
+			</p>
+			<p>
+				You will need to select:
+				<ul>
+					<li>Friends, loved ones, or professionals from your contact list that can help you when you are feeling stressed</li>
+					<li>Pictures on your phone that you find comforting or funny</li>
+					<li>Songs on your phone that you find soothing or that remind you of happy times</li>
+				</ul>
+			</p>
+			<p>
+				You can change your selections at any time.
+			</p>
+		]]></Content>
+	</Content>
+
+	<Content name="home" displayName="PTSD Coach" backButton="Home" title="PTSD Coach" buttonTheme="theme_medium_button" ui="HomeController">
+		<Content name="learn" displayName="Learn" buttonTheme="theme_big_button" backButton="Learn" ui="ButtonGridController" 
+			buttongrid_cellsPerRow="1" buttongrid_cellMarginY="60" buttongrid_outerMarginY="60" buttongrid_outerMarginX="20" leftButton="@home" buttongrid_buttonjust="left"
+			buttongrid_image="learn_about.png">
+			<Content name="learnPTSD" displayName="Learn about PTSD" buttongrid_image="learn_PTSD.png" backButton="Topics" ui="ContentListViewController" child_ui="ContentViewController">
+				<Content displayName="What is PTSD?" audio="PE What is PTSD.mp3"><![CDATA[
+					<b>Posttraumatic Stress Disorder (PTSD)</b> is an anxiety disorder caused by experiencing traumatic events, such as combat, 
+					disasters, terrorism, serious accidents, or physical or sexual assault.  PTSD includes 3 types of symptoms. 
+					<ol>
+						<li>Reexperiencing or reliving the trauma, such as having flashbacks, nightmares, or becoming very upset when reminded of the trauma.</li>
+						<li>Avoiding or staying away from places or people because they remind you of the trauma, isolating from others, and/or feeling numb.</li>
+						<li>Increased arousal such as feeling on guard, being irritable, trouble sleeping or startling easily.</li>
+					</ol>
+					Symptoms may lead to problems in functioning in social or family life, work, and school.
+				]]></Content>
+				<Content displayName="How PTSD develops" audio="How PTSD Develops.mp3"><![CDATA[
+					After a trauma, it’s normal to have painful memories and to become upset when reminded of what happened.  Trauma also can affect how people 
+					think about themselves, others, the world, and the future.  For most, these reactions lessen over time and thinking returns to normal. For some,
+					however, reactions continue and are severe; they disrupt living, and beliefs remain negative and intense.  How people respond to these early, normal
+					reactions, in part, can determine if PTSD develops.  For example, because memories and reminders of the trauma are painful, it makes sense to want 
+					to avoid them.  However, too much avoidance can prevent a person from adequately dealing with the memories and reminders and making sense of what 
+					happened.  This may lead normal trauma reactions to become more lasting PTSD symptoms.  
+				]]></Content>
+				<Content displayName="How common is PTSD?" audio="How Common.mp3"><![CDATA[
+					Although most people recover after a trauma, it is not uncommon for people to develop PTSD.  About 7% of the general US population will have PTSD
+					in their lifetime, with women being more than twice as likely to develop it as men.  Following a trauma, it can be expected that around 20% of 
+					women and 8% of men will develop PTSD.  Certain types of trauma, such as rape and combat, can cause even higher rates.     
+				]]></Content>
+				<Content displayName="Who develops PTSD?" audio="Who Develops.mp3"><![CDATA[
+					<p>
+						Developing PTSD is not a sign of weakness.  Virtually anyone can develop PTSD.  However, there are some factors that can make it more likely.
+						These include being female, having a prior trauma, having been abused as a child, having a pre-existing mental health problem, and a family 
+						history of mental illness. 
+					</p>
+					<p>
+						Reactions <b>during</b> trauma can increase your risk. For example, believing you will die, feeling detached from yourself or your surroundings, 
+						feeling completely helpless, and having a panic attack are signs that the event was especially traumatic.  Being seriously injured also 
+						puts one at higher risk.  
+					</p>
+					<p>
+						Risk factors <b>after</b> trauma include lack of social support and experiencing additional life stressors (e.g., job loss, divorce). 
+					</p>
+				]]></Content>
+				<Content displayName="How long does PTSD last?" audio="How Long Last.mp3"><![CDATA[
+					PTSD symptoms usually appear very soon after trauma.  For about 70% of people, these symptoms go away on their own within the weeks and months 
+					after the trauma.  For some (about 30%) the symptoms can last for many years.  PTSD symptoms can stay at a fairly constant level of severity or 
+					individuals can have periods when symptoms are not very intense and other times when symptoms are severe.  PTSD symptoms can worsen during times 
+					of stress or when trauma survivors are reminded of the trauma (e.g., anniversaries).  How long PTSD lasts also depends on whether effective treatment 
+					is received.      
+				]]></Content>
+				<Content displayName="Related problems" audio="Related Problems.mp3"><![CDATA[
+					Other problems also commonly occur alongside PTSD.  These include depression, other anxiety disorders, and alcohol and substance abuse.  In fact, 
+					more than half of men with PTSD have alcohol problems and nearly half of women with PTSD have depression.  PTSD also can reduce one’s ability to
+					function in their relationships, at work and school, and in leisure activities.  In addition, people with PTSD may suffer physical symptoms and
+					may be at increased risk of medical problems.
+				]]></Content>
+				<Content displayName="PTSD treatment" audio="PTSD Treatment.mp3"><![CDATA[
+					<p>
+						PTSD is treated with talk therapy or medication, or a combination of these.  The most effective treatments for PTSD are 
+						exposure-based cognitive-behavioral therapies (CBT).  These treatments involve exploring how the trauma has negatively affected
+						one’s thinking and helping survivors think in more balanced ways about what happened and what it might mean. Treatment may also 
+						include having the trauma survivor spend time safely, and with support, with the painful trauma memories and reminders that they’ve 
+						been avoiding, seeing that they can survive them and be ok.  Individuals are also taught coping skills to more effectively deal 
+						with stress and manage PTSD symptoms, much like the skills available on this app.
+					</p>
+					<p>
+						For more information about treatment, including where to find it, see the find support section of this app or 
+						<a href="http://ptsd.va.gov">the National Center for PTSD website</a>.
+					</p>
+				]]></Content>
+				<Content displayName="Do I have PTSD?" audio="Do I Have PTSD.mp3"><![CDATA[
+					<p>
+						Only a trained mental health professional can determine if you have PTSD.  However, there are self-tests, including the one on
+						this app, which can help you decide if your symptoms require a more thorough evaluation from a professional.  If you suspect
+						that you have PTSD, talk with your doctor or schedule an evaluation with a mental health professional.  Also, it is important 
+						to remember that some people may develop other conditions, such as depression, after experiencing a trauma. 
+					</p>
+					<p>
+						If your trauma was less than 3 months ago and you are not in too much distress or having problems functioning with work, 
+						relationships or school, then you may just want to watch and wait to see if your symptoms get better on their own.  Using the 
+						tools in this app can help.  If your symptoms do not get better after 3 months, seek professional help.  
+					</p>
+					<p>
+					To take the self-assessment now, tap the "Assess" tab.
+					</p>
+				]]></Content>
+				<Content displayName="I have PTSD..." audio="I Have PTSD.mp3"><![CDATA[
+					<p>
+					If you’ve been diagnosed with PTSD, the tools on this app may help you better manage your symptoms.  However, this app is not intended or 
+					designed as a replacement for more traditional forms of psychological help.  If you are currently in treatment for PTSD, it’s important to 
+					talk with your provider about using this app. Individuals with PTSD often find that having multiple tools and sources of support is a great 
+					strategy for successfully dealing with PTSD symptoms.
+					</p>
+					<p>
+					Remember: effective treatment for PTSD is available! You don’t have to live with your symptoms forever.
+					</p>
+				]]></Content>
+			</Content>
+			<Content displayName="Learn About Professional Care" buttongrid_image="prof_care.png" backButton="Topics" title="Professional Care"
+				ui="ContentListViewController" tableTheme="theme_list_smaller" child_ui="ContentViewController"
+				cellHeight="50" cellLines="2">
+				<Content displayName="Do I need professional help?" audio="Do Need Pro Help.mp3"><![CDATA[
+					Whether or not you need help can only be determined by you and a trained healthcare professional. However, you can go and take the
+					self-assessment on this app to see if you are scoring in the high, medium, or low range of symptoms. You can also ask yourself these
+					questions. If you answer yes to any of them, then you might want to seek help.
+					<ul>
+					<li>Have you felt sad or depressed most of the time for longer than two weeks?</li>
+					<li>Have you been feeling anxious or had distressing thoughts almost all the time?</li>
+					<li>Have you had trouble working or meeting your daily responsibilities? </li>
+					<li>Have you had problems in your relationships, or trouble taking care of your family?</li>
+					<li>Have you increased your use of alcohol, street drugs, or prescription medications, or have you been using them to cope with your problems lately?</li>
+					<li>Are you very angry most of the time?</li>
+					<li>Do other people say they worry about you and think you should go talk to someone?</li>
+					<li>Are you having trouble sleeping most of the time?</li>
+					<li>Are you having trouble eating, or have you gained or lost a lot of weight without trying?</li>
+					<li>Have you had thoughts about suicide, hurting, or killing someone else?</li>
+					</li>
+					</ul>
+					<p>
+					If you said yes to this last one, please call 911 or go immediately to the nearest hospital emergency room. You may also call Veterans Crisis Line at 
+					1-800-273-TALK (1-800-273-8255). This line is also for the general public. Veterans and service members press 1 when connected.
+					</p>
+					<p>
+					If you said yes to any of the others, you would likely benefit from talking with a professional helper. You don’t have to wait for an emergency to speak to someone.				
+					</p>
+				]]></Content>
+				<Content displayName="Why do people usually seek professional help?" audio="Why Do People Seek.mp3"><![CDATA[
+					<p>
+					The first few weeks after a traumatic event can be hard. It is common to have trouble with life, avoid situations, feel very nervous, 
+					and have trouble sleeping. But if you don’t get better in the first month, then you should think about talking to a counselor.
+					</p>
+					<p>
+					People close to you mean well, but they may not be able to help you the way you need them to. Maybe you would like to talk with your 
+					friends and family, but you are away from them right now. Experiences like rape, assault, domestic violence, loss of a buddy, or a 
+					friendly-fire related incident may feel too private or sensitive. You may feel uneasy or unsafe to talk with someone you know.
+					</p>
+					<p>
+					One of the most helpful ways to feel better and get back on track is to work with a mental health provider. However, many people don’t seek 
+					counseling even though they might benefit. Professionals who specialize in working with PTSD can help you learn to manage your feelings 
+					and thoughts. They can also help you feel relaxed about talking to people in your daily life, pursuing your goals, and focusing on your 
+					future. 
+					</p>
+					<p>
+					Keep in mind that seeking counseling is a sign of strength, not weakness. Talking to a counselor can improve your ability to help yourself. 
+					</p>
+				]]></Content>
+				<Content displayName="Will it really work?" audio="Will it Really Work.mp3"><![CDATA[
+					<p>
+					Scientific evidence shows that many types of therapy and medications really do work. 
+					</p>
+					<p>
+					It may be hard to imagine now, but you can get past your stress.  Counseling may also help ease your transition back home. Like many 
+					others that have received counseling, there is a very good chance that you will thank yourself later for sitting through a few 
+					uncomfortable hours. 
+					</p>
+					<p>
+					If you are worried that counselors can’t help you or won’t understand what you have been through, you may be surprised to find out that
+					this may not be true. Counselors are well trained professionals. Some of them even specialize in working with military personnel and
+					veterans, rape victims, or other special populations. They cannot help or understand you if you don’t give them a chance. 
+					</p>
+					<p>
+					If you have a few sessions with a counselor and you don't think it's going well, you can talk to the counselor about what you want
+					changed or you can ask for a different counselor.  Counselors are interested in your recovery and will help you get the person you
+					need.  
+					</p>
+					]]></Content>
+				<Content displayName="PTSD Treatments That Work" audio="PTSD TX.mp3"><![CDATA[
+					<p>
+					The good news is that there are several types of treatment that work for PTSD.
+					</p>
+					<p>
+					The best evidence supports cognitive behavioral therapy (CBT) for PTSD. Two types of CBT that have the most research behind 
+					them are Cognitive Processing Therapy and Prolonged Exposure Therapy.
+					</p>
+					<p>
+					Research also supports the use of Eye Movement Desensitization and Reprocessing, or EMDR, and finally, medications called Selective 
+					Serotonin Reuptake Inhibitors, or SSRIs.
+					</p>
+					<p>
+					If you have PTSD, you can look for a talk therapist who uses one of these approaches. In the VA, you should have no problem finding 
+					someone to provide one of the services listed above.
+					</p>
+				]]></Content>
+				<Content displayName="How about things like scheduling, cost, and transportation?" audio="Practical Things.mp3"><![CDATA[
+					When considering professional counseling, many people worry about practical things that may keep them from getting help. Concerns 
+					about how to find a counselor, the cost of treatment, getting time off from work, and transportation to appointments are very common. 
+					Each is addressed briefly below.
+					</p>
+					<p>
+					<b>Finding a counselor:</b> A good place to start your search for a counselor is to ask your doctor for a referral.  You can also 
+					call your insurance company and ask for suggestions. If you are a veteran, you can also call your local VA hospital or medical facility 
+					and ask for recommendations. The number is 877-222-8387. You can also check out the Locate Professional Care Near Me, under the Find
+					Support tab to find web links to resources for counseling and support.
+					</p>
+					<p>
+					<b>Cost:</b> Try not to worry about how much counseling will cost, until you have details. Think of counseling as an investment in your 
+					health and well-being. It helps you live a happier fuller life. Call your insurance company and find out about your benefits. For veterans, 
+					the VA offers free care for combat-related conditions for five years after the person returns from deployment. It also offers services 
+					for other veterans as well. Call the VA to determine your benefits at 800-827-1000.
+					</p>
+					<p>
+					<b>Time off from work:</b> If you need flexible appointments so you do not miss work, look for a counselor that will work with your 
+					schedule. You want to find a good time where you won't feel rushed. Most employers will understand and help you take care of your health; 
+					whether it’s physical or emotional. Often, people work out a flexible schedule with their boss to free up time for their appointment. 
+					</p>
+					<p>
+					<b>Transportation:</b> Some people have problems getting to and from appointments. If this is a problem for you, look into public 
+					transportation. Another option is to catch a ride with someone. Maybe, you can even arrange to borrow a vehicle. Some counseling centers 
+					offer transportation services for veterans. Ask your center if this is offered. Consider all your options. You might be surprised at how 
+					many people will take the time to help you get to an appointment.
+				]]></Content>
+				<Content displayName="What does it mean about me if I go for help?" audio="Mean About Me.mp3"><![CDATA[
+					<p>
+					<b>Remember: we are not alone in this world. People are here to help.</b> Perhaps you believe that you should be able to handle your 
+					problems without help from others. But, people who use the sources of help around them are able to cope better than those who 
+					choose not to.  Trying to cope completely by yourself often makes things harder than needed. It adds loneliness and isolation to your 
+					problems.
+					</p>
+					<p>
+					You may think that needing help means that you're not normal. You may also believe that seeking help means that you are not fit to do 
+					normal things. It is common to have problems. Many people report some type of concern about their mental health after stressful experiences.
+					</p>
+					<p>
+					Don’t feel guilty about taking time to get yourself well. You will be better able to live a normal life if you are feeling better.
+					</p>
+					<p>
+					Counseling is not just for weak or broken people. Talking about your experiences helps you feel better and stronger. And getting the support
+					you need to live your life more fully shows strength, self-respect, growth, and courage.
+					</p>
+					<p>
+					The important thing is for you to feel better, even if you have to swallow your pride for a few weeks of counseling. It will all be worth 
+					it when you get your life back.
+					</p>
+				]]></Content>
+				<Content displayName="What if I am embarrassed about seeking help?" audio="Embarassed.mp3"><![CDATA[
+					<p>
+					You don’t have to tell people that you’re working with a counselor. You can just say you have an appointment and that it’s personal.  
+					</p>
+					<p>
+					Try not to be upset with people that worry about you. Their concern can come from a good place and wanting good things for you. They 
+					may be on your side even if they are treating you differently. 
+					</p>
+					<p>
+					Put yourself in their shoes. Think of a moment when a friend was having a hard time. Did you judge them for it, or were you glad that 
+					you could help? Friends, as well as family, want the best for you and are probably looking for ways to help.
+					</p>
+					<p>
+					You may think that people will make fun of you for getting help, because at one point you may have overheard someone making fun of 
+					someone in your situation.  But you will come to find out that this usually isn’t true. It's normal to have problems. Many men and women 
+					who served in the military have reported some concern about their mental health after their return. 
+					</p>
+					<p>
+					Believing that you will be embarrassed and shamed for asking for help is the biggest reason that people, including service members and 
+					veterans, don't seek help. But, take a minute to ask yourself the following questions. Is it more important for me to worry about what 
+					someone else thinks of me? Or, is it important to get the help I need to move on with my life? 
+					</p>
+				]]></Content>
+				<Content displayName="Who can help me?" audio="Who Can Help.mp3"><![CDATA[
+					<p>
+					As you think about getting care, know that there are many experts to help you.  Explore the rest of the topics to read about the roles and duties of Primary Care 
+					Physicians, Social Workers, Psychologists, Psychiatrists, and Pastoral Counselors or Chaplains.
+					</p>
+				]]></Content>
+				<Content displayName="What does a Primary Care Physician do?" audio="Primary Care Physician.mp3"><![CDATA[
+					<p>
+					A primary care physician is also called a PCP.  A primary care physician is a medical doctor (M.D.) with a degree to practice general 
+					medicine. This means that she can treat common medical problems, and may also be trained to recognize and help with common psychological
+					problems, such as depression and anxiety. A PCP may prescribe medicine to help with depression and sleep.  PCPs are a good first contact 
+					to help you find the services you need.   They can refer you to an expert like a psychologist, psychiatrist or social worker, who can 
+					help you better address your problems. Primary care physicians are very well educated and experienced. They have completed medical school,
+					which takes an extra 4 years after graduating from college. Plus, MDs must complete a 3 to 4 year specialized training after medical school.
+					You can find a physician in the military and Veterans Affairs (VA) health care systems, through recommendations from people you know,
+					or through a referral from a doctor, nurse, or your insurance company. If you need medical attention, a prescription, or a referral to a specialist,
+					then your PCP is the best place to start.
+					</p>
+					]]></Content>
+				<Content displayName="What does a Social Worker do?" audio="Social Worker.mp3"><![CDATA[
+					<p>
+					Social workers work with people who are struggling with depression, anxiety, PTSD, and substance use problems. They also help people with
+					more severe mental health issues, and family and relationship difficulties.  Social workers help clients with other challenges including
+					finding employment, housing, and government benefits. They also practice psychotherapy or “talk therapy,” which involves teaching people 
+					skills for coping and living. Social workers are not medical doctors and cannot prescribe medications. Social workers usually have a 
+					master’s degree in social work that takes 2 years after college is finished, though some social workers have a doctoral degree in social 
+					work. Social workers also must complete supervised experience and receive a license to work.  Social workers often work for local agencies 
+					and local mental health programs. There are many social workers in the military and Veterans Administration health care systems. You can 
+					find a social worker through advice from people you know or referrals from a doctor, nurse, or your insurance company.  If you need 
+					someone to help you get back on track with getting a job, housing, government benefits, or you just need someone who will listen and refer
+					you to an expert, then a social worker can help.
+					</p>
+					]]></Content>
+				<Content displayName="What does a Psychologist do?" audio="Psychologist.mp3"><![CDATA[
+					<p>
+					Psychologists work with clients who have many concerns, including depression, anxiety, PTSD, and substance use problems.  Psychologists 
+					also work with singles, couples, families and groups.  They help people deal with other life problems such as family and relationship 
+					problems.  Licensed psychologists have a Ph.D. or Psy.D. in psychology or a related field. This takes about 5 years after college to 
+					complete. They must also complete supervised professional experience. Although Psychologists are called doctors, they are not medical 
+					doctors and cannot prescribe medicine. Their role is to provide assessment and talk therapy. There are psychologists in the community 
+					and working throughout military and Veterans Affairs health care. You can find a psychologist through advice from people you know 
+					or referrals from a doctor, nurse, or your insurance company.
+					</p>
+					]]></Content>
+				<Content displayName="What does a Psychiatrist do?" audio="Psychiatrist.mp3"><![CDATA[
+					<p>
+					Psychiatrists treat a variety of mental health problems, including depression, anxiety, PTSD, substance use problems, and severe mental 
+					illnesses.  Psychiatrists primarily treat patients with a variety of medications that can ease depression and anxiety, help 
+					with sleep, and help with symptoms of mental illness.  Some psychiatrists also practice psychotherapy or “talk therapy”. Psychiatrists are 
+					medical doctors, MDs, meaning that they have completed medical school after graduating from college. After medical school, psychiatrists 
+					also complete specialized training in psychiatry, which usually takes another 3 to 4 years. Psychiatrists work in the community and 
+					throughout military and Veterans Affairs health care. You can find a psychiatrist through advice from people you know or referrals 
+					from a doctor, nurse, or your insurance company. Your primary care provider, social worker, or psychologist can help you make an appointment
+					with a psychiatrist.
+					</p>
+					]]></Content>
+				<Content displayName="What does a Pastoral Counselor or Chaplain do?" audio="Pastoral Counselor.mp3"><![CDATA[
+					<p>
+					A pastoral counselor or chaplain is a member of the clergy who provides spiritual support and guidance, conducts religious services in the
+					field, and offers support in emergency situations. Chaplains help people regardless of their faith and religious beliefs. Chaplains are
+					not trained to provide mental health counseling, but they can refer you to a specialist like a psychologist, psychiatrist or social worker, 
+					who can help you address your emotional difficulties more thoroughly.  If you are looking for spiritual guidance as part of your road to 
+					receiving professional care, then perhaps a pastoral counselor or chaplain is a great start for you.
+					</p>
+					]]></Content>
+				<Content displayName="Where can I find professional care near me?" audio="Find Care Near Me.mp3"><![CDATA[
+					<p>
+					Go to Locate Professional Care Near Me, under the Find Support tab to find web links to resources for 
+					counseling and support. Some of the resources are organizations and networks, like the VA and Military OneSource, 
+					and there are civilian options as well. For more information, you can also check out <a href="http://ptsd.va.gov">the National Center for PTSD website</a>.
+					</p>
+					]]></Content>
+			</Content>
+		</Content>
+		<Content name="assess" displayName="Self Assessment" buttonTheme="theme_big_button" title="Assess" ui="ButtonGridController" 
+			buttongrid_cellsPerRow="1" buttongrid_cellMarginY="20" buttongrid_outerMarginY="20" buttongrid_outerMarginX="20" buttongrid_buttonjust="left"
+			backButton="Assess" buttongrid_image="self_assess.png" leftButton="@home">
+			<Content name="takeAssessment" displayName="Take Assessment" buttongrid_image="assess_take.png">
+			</Content>
+			<Content name="trackHistory" displayName="Track History" buttongrid_image="assess_track.png">
+			</Content>
+			<Content name="scheduleAssessments" displayName="Schedule Assessments" ui="PCLSchedulerController" buttongrid_image="assess_reminder.png">
+				Select a schedule to retake the self-assessment and monitor your progress. Taking the assessment monthly is ideal.
+				<Content name="none" displayName="Never"/>
+				<Content name="week" displayName="Weekly"/>
+				<Content name="twoweek" displayName="Every two weeks"/>
+				<Content name="month" displayName="Monthly"/>
+				<Content name="threemonth" displayName="Every three months"/>
+			</Content>
+		</Content>
+		<Content name="manage" displayName="Manage Symptoms" buttonTheme="theme_big_button" ui="ButtonGridController" title="What's Wrong?" backButton="Symptoms"
+			buttongrid_image="manage.png" leftButton="@home">
+			<Content name="reexperiencing" displayName="Reminded of Trauma"/>
+			<Content name="avoidance" displayName="Avoiding Triggers"/>
+			<Content name="isolation" displayName="Disconnected from People"/>
+			<Content name="dissociation" displayName="Disconnected from Reality"/>
+			<Content name="hopeless" displayName="Sad / Hopeless"/>
+			<Content name="anxiety" displayName="Worried / Anxious"/>
+			<Content name="anger" displayName="Angry"/>
+			<Content name="sleep" displayName="Unable to Sleep"/>
+			<Content name="@left" displayName="Favorites" backButton="Favorites" ui="FavoritesListViewController">
+				<!-- You can put alternative text here to be displayed when the user has not selected any favorites yet -->
+				<![CDATA[
+				<p>
+					You have not yet selected any favorites. If you like a tool, select the "thumbs up" button and that tool will show up here in the future.
+				</p>
+			]]></Content>
+			<Content name="@help" displayName="Help with Symptoms" ui="ContentViewController"><![CDATA[
+				<p>
+					People who have experienced traumatic events all have different experiences as they heal, but the problems below are common 
+					following a trauma. You may experience some, all, or none of the problems listed below.
+					<ul>
+						<li><b>Reminders of trauma:</b> Frequently having upsetting thoughts or memories about the trauma, feeling as if it’s happening again, and/or feeling very distressed when reminded of it.</li> 
+						<li><b>Avoiding triggers:</b> Making an effort to avoid thoughts, feelings, conversations, places or people that remind you of the trauma.</li>
+						<li><b>Disconnected from people:</b> Feeling distant from others, trouble feeling love, and/or feeling alienated and alone.</li>
+						<li><b>Disconnected from reality:</b> Feeling disconnected from the world, other people, one’s body, or oneself—detached, “foggy,” “in a dream,” “out of body,” or as if things feel unreal. </li>
+						<li><b>Sad / Hopeless:</b> Feeling sad, down, blue or depressed, not having interest in activities that used to be enjoyed, or in life in general, feeling a sense of meaninglessness and/or hopelessness</li>
+						<li><b>Anxious / Worried:</b> Being jumpy and easily startled, being tense and “on guard” most of the time.</li>
+						<li><b>Angry:</b> Easily irritated, having angry outbursts, feeling on edge or mistrustful.</li>
+						<li><b>Trouble Sleeping:</b> Trouble falling and/or staying asleep, having nightmares, waking in a cold sweat.</li>
+					</ul>
+				</p>
+			]]></Content>
+		</Content>
+		<Content name="support" displayName="Find Support" buttonTheme="theme_big_button" ui="ButtonGridController" backButton="Support"
+			buttongrid_cellsPerRow="1" buttongrid_cellMarginY="20" buttongrid_outerMarginY="20" buttongrid_outerMarginX="20" buttongrid_buttonjust="left"
+			buttongrid_image="find_support.png" leftButton="@home">
+			<Content displayName="Get Support Right Now" buttongrid_image="support_now.png" ui="CrisisController" title="Crisis Resources" theme="theme_default" standalone="1">
+				<Content displayName="Call 911" phoneNumber="911" special="aaa"/>
+				<Content displayName="Call 1-800-273-8255" phoneNumber="1-800-273-8255" special="bbb"/>
+				<Content special="contacts"/>
+				<Content name="@aaa">For any crisis, including medical emergencies:</Content>
+				<Content name="@bbb"><![CDATA[Veterans Crisis Line (Veterans and service members press 1 after you connect):]]></Content>
+				<Content name="@contacts">Your support contacts:</Content>
+			</Content>
+			<Content displayName="Setup My Support Network" buttongrid_image="support_network.png" title="Setup Support" ui="ContentViewController" theme="theme_smaller" >
+				<![CDATA[
+				<p>
+				When dealing with life stress, support from people you know and trust can be absolutely vital. Whether you are facing a small annoyance 
+				or a serious crisis, getting help from others is one of the most effective ways to make sure that you manage the situation and yourself 
+				as well as possible.
+				</p>
+				<p>
+				Set up your support network by selecting trusted people from your contact list or adding them in manually. If you are currently in care, 
+				make sure that your provider is one of the people on your support network.
+				</p>
+				]]>
+				<Content name="@next" displayName="Next" title="Support Contacts" backButton="Support Contacts" ui="ChosenContactListViewController">
+				</Content>
+			</Content>
+			<Content displayName="Find Professional Care" buttongrid_image="prof_care.png" ui="ContentViewController" backButton="Care">
+				<![CDATA[
+				<style>
+					.nobr { white-space: nowrap; }
+					body {font-size:14px;}
+					li {margin-bottom:10px;}
+				</style>
+				<h3>If you are in crisis:</h3>
+				<p>
+					<ul>
+						<li>Call <a href="tel:911">911</a></li>
+						<li>Go to your nearest Emergency Room</li>
+						<li>Call the Veterans Crisis Line <span class="nobr"><a href="tel:1-800-273-8255">1-800-273-8255</a></span> (Veterans and service members press 1) </li>
+					</ul>
+				</p>
+				<h3>If you just want to talk:</h3>
+				<p>
+					<ul>
+						<li>Call the 24/7 Veteran Combat Call Center to talk to another combat veteran: <span class="nobr"><a href="tel:1-877-927-8387">1-877-927-8387</a></span> </li>
+					</ul>
+				</p>
+				<h3>To locate a mental health care provider:</h3>
+				<p>
+					<ul>
+						<li><a href="http://www.va.gov/directory/guide/home.asp"> VA Facility Locator</a>: Each VA medical center and many VA clinics have PTSD specialists. You can also find a <a href="http://www.va.gov/directory/guide/ptsd_flsh.asp">VA PTSD Program</a> or a <a href="http://www.vetcenter.va.gov/"> Vet Center</a> near you.</li>
+						<li><a href="http://www.dcoe.health.mil/24-7help.aspx">DoD Outreach Center for Psychological Health and Traumatic Brain Injury</a>: Service members, veterans, and families can contact via web, phone (<span class="nobr"><a href="tel:1-866-966-1020">1-866-966-1020</a></span>) or email <a href="mailto:resources@dcoeoutreach.org">resources@dcoeoutreach.org</a>.</li>
+						<li><a href="http://www.militaryonesource.com/">Military OneSource</a>: Service members, veterans, and families can call 24/7 to speak to a consultant. Toll free (in the US): <span class="nobr"><a href="tel:1-800-342-9647">1-800-342-9647</a></span>; International:  <span class="nobr"><a href="tel:1-800-464-8107">1-800-464-8107</a></span></li>
+						<li><a href="http://store.samhsa.gov/mhlocator">Mental Health Services Locator (SAMHSA)</a>: Resources and locations for the general public as well as veterans. <span class="nobr"><a href="tel:1-800-662-4357">1-800-662-4357</a></span></li>
+						<li><a href="http://dasis3.samhsa.gov/">Substance Abuse Treatment Locator (SAMHSA)</a>: Find services for the general public as well as Veterans.  <span class="nobr"><a href="tel:1-800-662-4357">1-800-662-4357</a></span></li>
+					</ul>
+				</p>
+				]]>
+			</Content>
+		</Content>
+	</Content>
+
+	<Content name="pclHistoryHelp" displayName="History Help"><![CDATA[
+		<p>
+			This graph shows how your scores on the self-assessment have changed over time. It is normal for your symptoms to go up and down a bit 
+			from day to day.  It is most important to look for a trend over time.  Lower scores mean that you have less severe symptoms. So if your 
+			line is going down, that is good news. Higher scores mean that you have more severe symptoms, so if your line is going up, you may want 
+			to check in with your provider and let him or her know (or get a provider if you don't already have one).
+		</p>
+	]]></Content>
+
+	<Content name="pclHelp" displayName="Assessment Help"><![CDATA[
+		<p>
+			The self-assessment in this app is called the PTSD Checklist or PCL. This scale has been used with people with PTSD for screening, 
+			diagnosis, and monitoring for many years and has been scientifically validated. It was originally developed in 1993 by the National 
+			Center for PTSD. It includes 17 questions, each of which has 5 possible answers. This assessment cannot tell you if you have PTSD -- 
+			only a trained mental health provider can do that. However, it can give you some valuable information about how severe your symptoms 
+			are, and if you are getting better or worse over time.
+		</p>
+		<p>
+			If you are worried that you might have PTSD but you have never been diagnosed, it’s important to talk with your doctor to get a 
+			referral to a mental health provider.
+		</p>
+	]]></Content>
+
+	<Content name="pclNoHistory" displayName="No History"><![CDATA[
+		<p>
+			Once you take the self-assessment your results will show up here as a graph. You can watch your scores change over time. Remember, 
+			no one will see your results other than you. This is an opportunity to get feedback on how severe your symptoms are, and if you are 
+			getting better or worse over time.  To take the self-assessment now, tap "Back" and then tap "Take Assessment" on the main Assess screen.
+		</p>
+	]]></Content>
+
+	<Content name="pclTooSoon" displayName="Too Early"><![CDATA[
+		<p>
+			It has been less than a week since you last took the self-assessment.  The questions are designed to assess your symptoms since the
+			last time you answered, so it is not helpful to take it more than once a week.
+		</p>
+	]]></Content>
+
+	<Content name="pclScheduled" displayName="Assessment Scheduled"><![CDATA[
+		<p>
+			A notification has been set to remind you to take the PTSD Coach assessment every ${pclScheduledWhen}.
+		</p>
+	]]></Content>
+
+	<Content name="pclSchedulePrompt" displayName="Schedule Assessment"><![CDATA[
+		<p>
+			You can track your symptoms by scheduling times to take the self-assessment in the future. It is normal for your symptoms to change a 
+			bit from day to day.  It is most important to look for a trend over time.  So, you should not take this self-assessment more than once
+			per week. In most cases we suggest one time per month. This will help you see if your symptoms are getting better, worse, or staying 
+			the same. 
+		</p>
+		<p>
+			Would you like to set up a follow-up assessment now?
+		</p>
+	]]></Content>
+
+	<Content name="pclHighFirst" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Your score puts you in the high range, which means that you have a lot of PTSD symptoms. If you already have spoken with a healthcare provider 
+			and have a diagnosis of PTSD, then this might not be new information. If you have never spoken with a provider before, now is probably the time to start. 
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the 
+			trauma. But once the problems have gone on for a while or they start to make it hard to function at home, school, or work, it’s time to ask for some help.
+		</p>
+		<p>
+			Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not identify, such as
+			depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			There are scientifically proven treatments that really work for PTSD. Don’t suffer for any longer than you have to. For information on where to find a 
+			healthcare provider, check out the Find Support section of this app. You can also learn more about professional care in the Learn About PTSD section.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	
+	]]></Content>
+	<Content name="pclHighSame" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Your score has not changed since the last time you took the assessment. This is not a big surprise. Symptoms like these may not change much without fully 
+			engaging in an active treatment with a healthcare provider. Even if you are in treatment, it can take a while for problems to decrease.
+		</p>
+		<p>
+			Your score still puts you in the high range, which means that you have a lot of PTSD symptoms. If you already have spoken with a healthcare provider and have 
+			a diagnosis of PTSD, then this might not be new information. If you have never spoken with a provider before, now is probably the time to start. 
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma.
+			But once the problems have gone on for a while or they start to make it hard to function at home, school, or work, it’s time to ask for some help.
+		</p>
+		<p>
+			Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not identify, such as depression,
+			substance abuse, or anxiety.
+		</p>
+		<p>
+			There are scientifically proven treatments that really work for PTSD. Don’t suffer for any longer than you have to. For information on where to find a healthcare 
+			provider, check out the Find Support section of this app. You can also learn more about professional care in the Learn About PTSD section.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in treatment, 
+			this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment once
+			per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclHighLower" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Good news: Your score has improved since the last time you took the self-assessment. This means that you are having fewer problems than you were before.
+		</p>
+		<p>
+			Still, your score puts you in the high range, which means that you have a lot of PTSD symptoms. If you already have spoken with a healthcare provider 
+			and have a diagnosis of PTSD, then this might not be new information. If you have never spoken with a provider before, now is probably the time to start. 
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma. 
+			But once the problems have gone on for a while or they start to make it hard to function at home, school, or work, it’s time to ask for some help.
+		</p>
+		<p>
+			Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not identify, such as 
+			depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			There are scientifically proven treatments that really work for PTSD. Don’t suffer for any longer than you have to. For information on where to find a healthcare 
+			provider, check out the Find Support section of this app. You can also learn more about professional care in the Learn About PTSD section.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclHighHigher" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Your score went up since the last time you took the assessment, which means that some things are bothering you more than they were before.
+		</p>
+		<p>
+			Your score puts you in the high range, which means that you have a lot of PTSD symptoms. If you already have spoken with a healthcare provider 
+			and have a diagnosis of PTSD, then this might not be new information. If you have never spoken with a provider before, now is probably the time to start. 
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma. 
+			But once the problems have gone on for a while or they start to make it hard to function at home, school, or work, it’s time to ask for some help.
+		</p>
+		<p>
+			Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not identify, such as 
+			depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			There are scientifically proven treatments that really work for PTSD. Don’t suffer for any longer than you have to. For information on where to find a 
+			healthcare provider, check out the Find Support section of this app. You can also learn more about professional care in the Learn About PTSD section.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+
+	<Content name="pclMidFirst" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma.
+		</p>
+		<p>
+			People who have symptoms like yours can often benefit from talking to a healthcare provider. For information on where to find one, check out the Find Support
+			section of this app. Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not 
+			identify, such as depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclMidSame" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Your score has not changed since the last time you took the assessment. This is not a big surprise. Symptoms like these may not change much without 
+			fully engaging in an active treatment with a healthcare provider. Even if you are in treatment, it can take a while for problems to decrease.
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma.
+		</p>
+		<p>
+			People who have symptoms like yours can often benefit from talking to a healthcare provider. For information on where to find one, check out the Find Support
+			section of this app. Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not 
+			identify, such as depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclMidLower" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Good news: Your score has improved since the last time you took the self-assessment. This means that you are having fewer problems than you were before.
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma.
+		</p>
+		<p>
+			People who have symptoms like yours can often benefit from talking to a healthcare provider. For information on where to find one, check out the Find Support
+			section of this app. Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not 
+			identify, such as depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclMidHigher" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+		Your score went up since the last time you took the assessment, which means that some things are bothering you more than they were before.
+		</p>
+		<p>
+			Reactions like yours are normal. Many people who experience a trauma have this kind of reaction, at least for the first few weeks or months after the trauma.
+		</p>
+		<p>
+			People who have symptoms like yours can often benefit from talking to a healthcare provider. For information on where to find one, check out the Find Support
+			section of this app. Seeking help will be especially important if you think that you may have other trauma-related problems that this assessment would not 
+			identify, such as depression, substance abuse, or anxiety.
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are in 
+			treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this assessment 
+			once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+
+	<Content name="pclLowFirst" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			You are having some difficulties related to your traumatic experience, but these problems most likely would not be given a diagnosis of 
+			Posttraumatic Stress Disorder. 
+		</p>
+		<p>
+			However, you may still be struggling. Even mild posttraumatic stress can be distressing enough to interrupt your life. Plus, problems like depression, 
+			substance abuse, and anxiety can also happen after a trauma and may not register on a PTSD scale. 
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are 
+			in treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this 
+			assessment once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclLowSame" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Your score has not changed since the last time you took the assessment. This is not a big surprise. Symptoms like these may not change much without 
+			fully engaging in an active treatment with a healthcare provider. Even if you are in treatment, it can take a while for problems to decrease.
+		</p>
+		<p>
+			You are having some difficulties related to your traumatic experience, but these problems most likely would not be given a diagnosis of 
+			Posttraumatic Stress Disorder. 
+		</p>
+		<p>
+			However, you may still be struggling. Even mild posttraumatic stress can be distressing enough to interrupt your life. Plus, problems like depression, 
+			substance abuse, and anxiety can also happen after a trauma and may not register on a PTSD scale. 
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are 
+			in treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this 
+			assessment once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclLowLower" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+		Good news: Your score has improved since the last time you took the self-assessment. This means that you are having fewer problems than you were before.
+		</p>
+		<p>
+			You are having some difficulties related to your traumatic experience, but these problems most likely would not be given a diagnosis of 
+			Posttraumatic Stress Disorder. 
+		</p>
+		<p>
+			However, you may still be struggling. Even mild posttraumatic stress can be distressing enough to interrupt your life. Plus, problems like depression, 
+			substance abuse, and anxiety can also happen after a trauma and may not register on a PTSD scale. 
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are 
+			in treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this 
+			assessment once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+	<Content name="pclLowHigher" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+		Your score went up since the last time you took the assessment, which means that some things are bothering you more than they were before.
+		</p>
+		<p>
+			You are having some difficulties related to your traumatic experience, but these problems most likely would not be given a diagnosis of 
+			Posttraumatic Stress Disorder. 
+		</p>
+		<p>
+			However, you may still be struggling. Even mild posttraumatic stress can be distressing enough to interrupt your life. Plus, problems like depression, 
+			substance abuse, and anxiety can also happen after a trauma and may not register on a PTSD scale. 
+		</p>
+		<p>
+			While there is no replacement for professional face-to-face care, this app can help you learn tools for managing your stress as it comes up. If you are 
+			in treatment, this app can be a helpful add-on to care.
+		</p>
+		<p>
+			If you ever feel like hurting yourself or someone else, tap the Find Support tab to get help right away. Otherwise, you can take this 
+			assessment once per month to see how your symptoms are changing – and hopefully getting better – over time.
+		</p>
+	]]></Content>
+
+	<Content name="pclBottomFirst" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			You do not have any symptoms of Posttraumatic Stress Disorder at this time. 
+		</p>
+		<p>
+			However, this assessment will not pick up other problems that can be related to trauma such as depression, substance abuse, and anxiety.
+		</p>
+		<p>
+			If you are stressed, go see a healthcare professional, regardless of the outcome of this assessment. A professional will be able to help you understand
+			what is going on and how you can fix it.
+		</p>
+		<p>
+			Even if you do not have PTSD, this app can help you learn tools for managing your stress as it comes up. If you are in treatment, this app can be a 
+			helpful add-on to care.
+		</p>
+	]]></Content>
+	<Content name="pclBottomSame" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+		Your score has not changed since the last time you took this assessment. You still do not have any symptoms of Posttraumatic Stress Disorder. 
+		</p>
+		<p>
+			However, this assessment will not pick up other problems that can be related to trauma such as depression, substance abuse, and anxiety.
+		</p>
+		<p>
+			If you are stressed, go see a healthcare professional, regardless of the outcome of this assessment. A professional will be able to help you understand
+			what is going on and how you can fix it.
+		</p>
+		<p>
+			Even if you do not have PTSD, this app can help you learn tools for managing your stress as it comes up. If you are in treatment, this app can be a 
+			helpful add-on to care.
+		</p>
+	]]></Content>
+	<Content name="pclBottomLower" displayName="Assessment" ui="PCLResult"><![CDATA[
+		<p>
+			Good news: Your score has improved since the last time you took the self-assessment. This means that you are having fewer problems than you were before.
+		</p>
+		<p>
+			You do not have any symptoms of Posttraumatic Stress Disorder at this time. 
+		</p>
+		<p>
+			However, this assessment will not pick up other problems that can be related to trauma such as depression, substance abuse, and anxiety.
+		</p>
+		<p>
+			If you are stressed, go see a healthcare professional, regardless of the outcome of this assessment. A professional will be able to help you understand 
+			what is going on and how you can fix it.
+		</p>
+		<p>
+			Even if you do not have PTSD, this app can help you learn tools for managing your stress as it comes up. If you are in treatment, this app can be a
+			helpful add-on to care.
+		</p>
+	]]></Content>
+
+	<Content name="sudshelp" displayName="More About Distress"><![CDATA[
+		<p>
+			You can rate your distress level – including negative feelings such as stress, anger, physical tension, and more, all rolled into one – 
+			on a scale of 0 to 10. This will help you monitor your distress levels and figure out which tools work best for you. You can also use it in 
+			your daily life to check in and see how you’re doing.
+		</p>
+		<p>
+			It may seem strange at first, but sometimes we can get caught up in an all-or-nothing way of thinking– either I’m totally uncomfortable or 
+			I’m totally fine. The distress score can help you learn to see the shades of gray, and help you see that even when things aren’t perfect, 
+			they may be improving. It can also help you learn to recognize what triggers distress for you.
+		</p>
+	]]></Content>
+
+	<Content name="sudsup" displayName="Distress Increased" ui="SUDSResult"><![CDATA[
+		<p>
+		Okay, it looks like after ${tooltype} you are actually more distressed. This might be good to remember for the future, since you shouldn’t 
+		do things that don’t work for you. But remember, some of these tools take time or practice to really work, or may only relieve certain types of problems,
+		so don’t write this one off just yet.
+		</p>
+		<p>
+		If a tool continues to not work for you, you may want to "give it a thumbs down" by tapping the thumbs down button the next time you're given this tool.
+		That way, it will be less likely to come up again.
+		</p>
+		<p>
+		Since you are still stressed, maybe you should try another tool.
+		</p>
+	]]></Content>
+
+	<Content name="sudsdown" displayName="Distress Decreased" ui="SUDSResult"><![CDATA[
+		<p>
+		Great! It looks like ${tooltype} may have brought down your distress level. Try to remember this tool. Anything that works for
+		you once can work for you again!
+		</p>
+		<p>
+		If a tool continues to work for you, you may want to "give it a thumbs up" by tapping the thumbs up button the next time you're given this tool.  
+		That way, it will be more likely to come up again. The tool will also be saved in “Favorites.”
+		</p>
+	]]></Content>
+
+	<Content name="sudssame" displayName="Distress Unchanged" ui="SUDSResult"><![CDATA[
+		<p>
+			Okay, it looks like after ${tooltype} you have the same amount of distress. It’s possible that this is good enough for you – after all, nothing 
+			got worse! – or maybe you were hoping for a bigger improvement. But remember, some of these tools take time or practice to really work, 
+			or may only relieve certain types of problems, so don’t write this one off just yet. 
+		</p>
+		<p>
+			If you feel like it, you could certainly try another tool now.
+		</p>
+	]]></Content>
+
+	<Content name="sudsprompt" ui="SUDSController" title="Distress Meter" theme="theme_smaller" buttonTheme="theme_big_button" backButton="Distress" help="sudshelp"><![CDATA[
+		<p>
+			You can rate your distress level on a scale of 0 to 10. Distress includes everything negative you are feeling, including anger, sadness, fear, 
+			and so on, all in one score. Zero means no distress at all and ten means the worst distress you could imagine.
+		</p>
+		<p>
+			This will help you monitor your distress levels and figure out which tools in this app work best for you.
+		</p>
+		]]>
+	</Content>
+
+	<Content name="sudsreprompt" ui="SUDSController" title="Distress Meter" backButton="Distress" buttonTheme="theme_big_button" help="sudshelp"><![CDATA[
+		Rate your distress again on a scale of 0 to 10. Tracking your distress will allow you to learn which tools help you the most.
+	]]></Content>
+
+	<Content name="crisis" ui="CrisisIntroController" displayName="Crisis" buttonTheme="theme_big_button">
+		That’s a very high distress level. It may be best for you to get some immediate support. Would you like to talk to someone now?
+		<Content name="@next" displayName="Get Support Right Now" ui="CrisisController" title="Crisis Resources" theme="theme_default" standalone="1">
+			<Content displayName="Call 911" phoneNumber="911" special="aaa"/>
+			<Content displayName="Call 1-800-273-8255" phoneNumber="1-800-273-8255" special="bbb"/>
+			<Content special="contacts"/>
+			<Content name="@aaa">For any crisis, including medical emergencies:</Content>
+			<Content name="@bbb"><![CDATA[Veterans Crisis Line (Veterans and service members press 1 after you connect):]]></Content>
+			<Content name="@contacts">Your support contacts:</Content>
+		</Content>
+	</Content>
+	
+	<Content name="changePerspectiveHelp" displayName="Change your Perspective"><![CDATA[
+		The Change Your Perspective tools provide reminders that can help give you hope and confidence. We all have a constant stream of thoughts 
+		running through our minds—this is called self-talk.  Negative self-talk, like believing that things are terrible or that the worst is about to
+		happen can stress your body and keep you on alert all the time. These positive self-talk reminders give you something you can hold on to; they
+		can help you think more realistically, and may even help you manage situations more effectively.
+		]]></Content>
+	
+	<Content name="GroundingHelp" displayName="Grounding"><![CDATA[
+		These exercises are simple strategies to help distract and detach from intense emotional pain, or, on the other hand, to help you reconnect 
+		to your body or self if you feel disconnected, numb, ‘foggy’ or detached.  The grounding strategies in each section are geared specifically for the 
+		symptom you selected.
+	]]></Content>
+
+	<Content name="reduceIsolationHelp" displayName="Reduce Isolation"><![CDATA[
+		These exercises are suggestions and strategies to help you reconnect with others. Often people with trauma histories will prefer to be by 
+		themselves but at the same time may wish to be close to others again. But, being social may feel stressful or irritating, making it hard 
+		to reconnect with others.  Possibly, other people complain about your being isolated even though you are not bothered by it. This may be 
+		because they care about you and would like to be closer to you. If your isolation is causing problems for your relationships or you want 
+		to feel more connected, these exercises and tips can help you begin to reconnect to the people in your life.
+		]]></Content>
+	
+	<Content name="quotesHelp" displayName="Inspiring Quotes"><![CDATA[
+		These quotes may offer inspiration and new perspectives for trauma survivors.
+		]]></Content>
+
+	<Content name="sootheHelp" displayName="Soothe Yourself"><![CDATA[
+		These are activities to help you soothe yourself in the face of very upsetting or overwhelming emotions related to PTSD. Self-soothing involves 
+		comforting and being kind to yourself. It may not make your feelings go away, but it can make handling them a little easier.
+		]]></Content>
+	
+	<Content name="timeOutHelp" displayName="Take a Time Out"><![CDATA[
+		This exercise allows you to take a break from a situation that is heating up before you (or someone else) do something you’ll regret.  A time out 
+		is a time-limited break from a conflict (often 10-15 minutes) that helps people manage their anger so that they can resolve their conflicts more 
+		effectively. The time out exercise offers more instructions and guidance on how and when to take a time out, and what to do to help you cool down 
+		during your time out.		
+		]]></Content>
+	
+	<Content name="sleepHelp" displayName="Fall Asleep"><![CDATA[
+		These strategies include tips for falling asleep right now, as well as advice for managing insomnia so that you can fall asleep more easily on a 
+		regular basis. People who have experienced a trauma often have a hard time falling or staying asleep, or struggle with nightmares.  These strategies,
+		along with some of the relaxation exercises in this app, can help you relax and sleep better.		
+		]]></Content>
+	
+	<Content name="pleasantHelp" displayName="Pleasant Events"><![CDATA[
+		This exercise will guide you in choosing and planning enjoyable activities in order to increase the amount of pleasure in your life. Especially
+		if you’re feeling down, it can be hard to get motivated to do the things that would usually be fun or give you a feeling of accomplishment. However,
+		research shows that making an effort to do these things even when you don’t feel like it can ultimately improve your mood.		
+		]]></Content>
+
+	<Content name="seekSupportHelp" displayName="Seek Support"><![CDATA[
+		This activity will guide you in reaching out for support. Reaching out for support can be difficult when you’re feeling down or upset; however, having
+		good support is a strongly related to improved mood and mental health, and may be an important part of your healing from trauma.		
+		]]></Content>
+
+	<Content name="distractHelp" displayName="Distract Yourself"><![CDATA[
+		These are suggested activities to help you distract yourself from overwhelming emotions and the situations that may be triggering them. Distracting 
+		yourself may not completely make your feelings go away, but it can make surviving them a little easier.		
+		]]></Content>
+	
+	
+	<Content displayName="General">
+		<ExerciseCategory name="relaxation" child_weight="5.0" displayName="Relaxation Exercises" child_variable_tooltype="the relaxation tool" 
+			child_helpsWithSymptoms="reexperiencing avoidance dissociation anxiety anger sleep" child_ui="SimpleExerciseController">
+			<Content weight="30.0" name="deepBreathing" displayName="Deep Breathing" ui="SimpleExerciseIntroController">
+				Slowing down and deepening your breathing can help you calm down when you feel distress. Put on your headphones or go somewhere private and quiet to be led through the exercise.
+				<Content name="@help" displayName="Deep Breathing">
+					This activity will guide you through a brief exercise in which you take slower, deeper breaths to help you relax. Taking slow, deep breaths helps 
+					you balance the carbon dioxide and oxygen in your blood. This calms your nervous system, creating a "relaxation response." Deep breathing exercises
+					can help manage stress and insomnia, focus the mind, and improve health.  
+				</Content>
+				<Content name="@next" displayName="Begin" title="Deep Breathing" audio="deep_breathing.mp3" ui="BreathingController">
+					<![CDATA[<div style="text-align:center;"/>Listen to the audio and follow along with the exercise.</div>]]>
+					<Caption start="0:00" end="0:09"><![CDATA[To prepare, get in a comfortable position - sitting would be best for now, so that you can practice as you listen and watch the demonstration.]]></Caption>
+					<Caption start="0:10" end="0:17"><![CDATA[Later, when you practice, you can do this exercise sitting, standing up, or lying down - whatever works for you.]]></Caption>
+					<Caption start="0:18" end="0:31"><![CDATA[Although this exercise should be safe for almost anyone, if you have difficulty breathing, or feel out of breath, or begin to feel dizzy, nervous, or out of control, you can adjust your breathing pace, or go back to breathing normally.]]></Caption>
+					<Caption start="0:32" end="0:36"><![CDATA[The goal is just to slow down a bit to allow your system to relax.]]></Caption>
+					<Caption start="0:38" end="0:41"><![CDATA[Place one hand on your belly, and one on your chest.]]></Caption>
+					<Caption start="0:43" end="0:50"><![CDATA[Breathe in by taking air deep into your belly - allow your belly to expand out while your shoulders and chest stay relaxed.]]></Caption>
+					<Caption start="0:51" end="0:56"><![CDATA[Now breathe out, slowly, allowing the air you exhale to deflate your belly.]]></Caption>
+					<Caption start="0:56" end="0:58"><![CDATA[Pause naturally.]]></Caption>
+					<Caption start="0:59" end="1:05"><![CDATA[Breathe in, taking air deep into your belly - allow your belly to expand; shoulders and chest stay relaxed.]]></Caption>
+					<Caption start="1:06" end="1:09"><![CDATA[Now breathe out, slowly, but naturally.]]></Caption>
+					<Caption start="1:12" end="1:14"><![CDATA[Breathe in, taking air deep into your belly.]]></Caption>
+					<Caption start="1:15" end="1:17"><![CDATA[Think the number "1"]]></Caption>
+					<Caption start="1:17" end="1:23"><![CDATA[Now exhale all of the air, and think the word "Relax".]]></Caption>
+					<Caption start="1:24" end="1:29"><![CDATA[Breathe in, taking air deep into your belly, and think the number "2".]]></Caption>
+					<Caption start="1:31" end="1:37"><![CDATA[Now exhale all of the air, and think the word "Relax".]]></Caption>
+					<Caption start="1:38" end="1:42"><![CDATA[Breathe in - think the number "3".]]></Caption>
+					<Caption start="1:45" end="1:51"><![CDATA[Now exhale - think the word "Relax"]]></Caption>
+					<Caption start="1:53" end="1:54"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="1:56" end="1:58"><![CDATA[Think the number "4".]]></Caption>
+					<Caption start="2:00" end="2:05"><![CDATA[Now breathe out, slowly - think the word "Relax".]]></Caption>
+					<Caption start="2:07" end="2:08"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="2:12" end="2:13"><![CDATA[Five.]]></Caption>
+					<Caption start="2:14" end="2:15"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="2:18" end="2:18"><![CDATA[Relax.]]></Caption>
+					<Caption start="2:20" end="2:21"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="2:25" end="2:26"><![CDATA[Six.]]></Caption>
+					<Caption start="2:28" end="2:29"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="2:31" end="2:32"><![CDATA[Relax.]]></Caption>
+					<Caption start="2:34" end="2:35"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="2:40" end="2:41"><![CDATA[Seven.]]></Caption>
+					<Caption start="2:42" end="2:43"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="2:46" end="2:47"><![CDATA[Relax.]]></Caption>
+					<Caption start="2:50" end="2:51"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="2:53" end="2:54"><![CDATA[Eight.]]></Caption>
+					<Caption start="2:56" end="2:57"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="3:00" end="3:01"><![CDATA[Relax.]]></Caption>
+					<Caption start="3:02" end="3:04"><![CDATA[Counting backwards now, breathe in.]]></Caption>
+					<Caption start="3:07" end="3:08"><![CDATA[Eight.]]></Caption>
+					<Caption start="3:10" end="3:11"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="3:14" end="3:15"><![CDATA[Relax.]]></Caption>
+					<Caption start="3:16" end="3:17"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="3:22" end="3:23"><![CDATA[Seven.]]></Caption>
+					<Caption start="3:24" end="3:25"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="3:27" end="3:28"><![CDATA[Relax.]]></Caption>
+					<Caption start="3:31" end="3:33"><![CDATA[Breathe in slowly, deeply.]]></Caption>
+					<Caption start="3:35" end="3:36"><![CDATA[Think the number Six.]]></Caption>
+					<Caption start="3:38" end="3:41"><![CDATA[Breathe out slowly, all the way.]]></Caption>
+					<Caption start="3:43" end="3:44"><![CDATA[Relax.]]></Caption>
+					<Caption start="3:45" end="3:46"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="3:50" end="3:51"><![CDATA[Five.]]></Caption>
+					<Caption start="3:52" end="3:53"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="3:56" end="3:57"><![CDATA[Relax.]]></Caption>
+					<Caption start="3:58" end="3:59"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="4:04" end="4:05"><![CDATA[Four.]]></Caption>
+					<Caption start="4:06" end="4:07"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="4:10" end="4:11"><![CDATA[Relax.]]></Caption>
+					<Caption start="4:13" end="4:14"><![CDATA[Breathe in - Focus on your breath, and the number "3".]]></Caption>
+					<Caption start="4:21" end="4:25"><![CDATA[Breathe out, all the way - Relax.]]></Caption>
+					<Caption start="4:26" end="4:27"><![CDATA[Breathe in.]]></Caption>
+					<Caption start="4:32" end="4:33"><![CDATA[Two.]]></Caption>
+					<Caption start="4:33" end="4:34"><![CDATA[Breathe out.]]></Caption>
+					<Caption start="4:38" end="4:39"><![CDATA[Relax.]]></Caption>
+					<Caption start="4:40" end="4:43"><![CDATA[Breathe in, for the last time.]]></Caption>
+					<Caption start="4:47" end="4:50"><![CDATA[Think the number "1", and breathe out.]]></Caption>
+					<Caption start="4:52" end="4:53"><![CDATA[Relax.]]></Caption>
+					<Caption start="4:54" end="4:55"><![CDATA[Good job.]]></Caption>
+					<Caption start="4:56" end="5:06"><![CDATA[Even as you end this exercise, you can continue to allow your breathing to be deeper and slower - take your time as you open your eyes, and bring your attention back to your surroundings.]]></Caption>
+				</Content>
+			</Content>
+			<Content weight="50.0" name="progressiveRelaxation" displayName="Progressive Relaxation" ui="SimpleExerciseIntroController">
+				You are about to be led through a progressive muscle relaxation exercise. You will progress through each of your major muscle groups, tensing and relaxing 
+				as you go.This exercise takes about 9 minutes. It has audio, so you will need to find a quiet place or put on your headphones now. Sit down 
+				in a comfortable chair or lay down.  Do not do this exercise while driving.
+				<Content name="@help" displayName="Progressive Relaxation"><![CDATA[
+					<p>
+						This exercise will guide you, either sitting comfortably or lying down, through tensing and relaxing a sequence of muscle 
+						groups. This allows muscles to relax more deeply than usual. This exercise can help decrease heart rate and blood pressure, 
+						slow breathing, decrease muscle tension, and clear thinking.  
+					</p>
+					<p>
+						This exercise is also great because over time you can train yourself to really know what tense muscles feel like and what 
+						relaxed muscles feel like.   Then, when you recognize that your muscles are tense or becoming tense you can immediately 
+						switch your muscles to the more relaxed state because you have trained yourself to know how relaxed muscles feel.
+					</p>
+				]]></Content>
+				<Content name="@next" displayName="Begin" title="Progressive Relaxation" audio="PMR.mp3" ui="PMRController">
+					<Caption start="0:00" end="0:09"><![CDATA[Please note that if you have injuries such as back pain or a knee injury, you should avoid tensing muscles that might affect that injury.]]></Caption>
+					<Caption start="0:10" end="0:13"><![CDATA[To begin, close  your eyes, and take a deep breath into your belly.]]></Caption>
+					<Caption start="0:14" end="0:16"><![CDATA[Then exhale with a sigh.]]></Caption>
+					<Caption start="0:17" end="0:26"><![CDATA[Again, take a deep breath, and imagine clean air going down your throat, and filling your lungs, and then exhale with a sigh.]]></Caption>
+					<Caption start="0:27" end="0:34"><![CDATA[Take another deep breath, and, as you release it, think the word "Relax", silently to yourself.]]></Caption>
+					<Caption start="0:35" end="0:41"><![CDATA[Allow your breath to be slow and rhythmic, inhaling and exhaling at a pace that is comfortable for you.]]></Caption>
+					<Caption start="0:42" end="0:51"><![CDATA[As you continue to breathe, continue to say the word "Relax" to yourself, slowly and calmly, each time you breathe out.]]></Caption>
+					<Caption start="0:52" end="0:57"><![CDATA[As you do this, imagine that the tension throughout your body begins to melt away.]]></Caption>
+					<Caption start="0:59" end="1:08"><![CDATA[To begin, clench both of your fists, and bend your elbows, drawing your forearms and hands up towards your shoulders, tightening your biceps to do so.]]></Caption>
+					<Caption start="1:09" end="1:16"><![CDATA[Hold the muscles in your hands and arms tight, and notice the sensations of pulling, discomfort, and tightness.]]></Caption>
+					<Caption start="1:17" end="1:25"><![CDATA[Hold the tension, while you take a deep breath into your belly, and then slowly exhale, as you release the muscles of your hands and arms.]]></Caption>
+					<Caption start="1:26" end="1:32"><![CDATA[Let your hands and fingers relax completely, and let your arms become limp at your side or in your lap.]]></Caption>
+					<Caption start="1:33" end="1:41"><![CDATA[Feel the sensation of relaxation, as the tension drains away from your arms and hands, and allow the muscles to become looser and looser.]]></Caption>
+					<Caption start="1:42" end="1:46"><![CDATA[You may notice that they feel lighter and warmer.]]></Caption>
+					<Caption start="1:47" end="1:53"><![CDATA[Breathing in slowly, and out, thinking the word "Relax" each time you breathe out.]]></Caption>
+					<Caption start="1:55" end="2:08"><![CDATA[Now bring your attention to your face, and tighten your forehead, the muscles around your eyes and your jaw, by squeezing your eyes tight, clenching your jaw, and wrinkling your forehead and nose.]]></Caption>
+					<Caption start="2:09" end="2:14"><![CDATA[Feel the wrinkling and pulling sensations across the forehead and the top of your head.]]></Caption>
+					<Caption start="2:15" end="2:18"><![CDATA[Feel the tightness around your eyes and cheeks, and the tension in your jaw.]]></Caption>
+					<Caption start="2:19" end="2:29"><![CDATA[Hold that tension, and take a deep breath into your belly, and then slowly exhale, as you let your face relax completely.]]></Caption>
+					<Caption start="2:30" end="2:44"><![CDATA[Feel the muscles in your forehead becoming smooth and limp, the muscles of your cheeks and eyes softening, your jaw relaxing, let your lips part slightly, and let your jaw hang loose.]]></Caption>
+					<Caption start="2:46" end="2:55"><![CDATA[Notice the tension melting away; feel your muscles becoming softer, more relaxed, and feel the warmth and lightness that replaces the tension that was there before.]]></Caption>
+					<Caption start="2:57" end="3:04"><![CDATA[Contine to breathe slowly and gently, thinking the word "relax" each time you exhale.]]></Caption>
+					<Caption start="3:08" end="3:13"><![CDATA[Tighten your shoulders by raising them up as if you were going to touch them to your ears, tensing without straining. ]]></Caption>
+					<Caption start="3:15" end="3:31"><![CDATA[Feel the tension in your shoulders radiating down into your back and up into your neck and the top of your back. Hold that. Notice those sensations and take a deep breathe into your belly, and then slowly exhale as you relax your shoulders. ]]></Caption>
+					<Caption start="3:31" end="3:37"><![CDATA[Let your shoulders droop down and let your neck relax completely, feeling very relaxed]]></Caption>
+					<Caption start="3:38" end="3:43"><![CDATA[Notice the contrast between the tightness you felt and the relaxation you feel now. ]]></Caption>
+					<Caption start="3:44" end="3:55"><![CDATA[Let your head relax, as if there's nothing holding it, except the support behind it. Feel the sense of relaxation around your neck and shoulders as you let the tension drain away]]></Caption>
+					<Caption start="3:56" end="3:59"><![CDATA[Continue to breathe slowly and deeply.]]></Caption>
+					<Caption start="4:02" end="4:05"><![CDATA[Now bring your attention to your stomach.  ]]></Caption>
+					<Caption start="4:05" end="4:11"><![CDATA[Tighten the muscles of your stomach by pulling your belly in towards your spine tightly. ]]></Caption>
+					<Caption start="4:12" end="4:13"><![CDATA[Hold that pose. ]]></Caption>
+					<Caption start="4:15" end="4:23"><![CDATA[Feel the sensation of the tension. Hold it while you are taking a deep breath, and then slowly exhale as you relax your muscles. ]]></Caption>
+					<Caption start="4:24" end="4:34"><![CDATA[Imagine a wave of relaxtion spreading through your belly. Allow the muscles of your stomach to be soft and relaxed, letting go more and more.]]></Caption>
+					<Caption start="4:35" end="4:51"><![CDATA[Notice the difference the tension you felt, and the relaxation you feel now. Let any remaining tension melt away, continuing to breathe gently in and out, feeling yourself become calmer and more relaxed.]]></Caption>
+					<Caption start="4:53" end="5:10"><![CDATA[Now tighten your buttocks by squeezing them together and at the same time, squeeze the muscles of your thighs. You can lift your feet up to help tense your leg muscles. Notice the sensations of tightness, pulling and constriction.]]></Caption>
+					<Caption start="5:12" end="5:19"><![CDATA[Hold on to that tension, and focus on it, and take a deep breath. Then slowly exhale as you relax your buttocks and thighs.]]></Caption>
+					<Caption start="5:20" end="5:27"><![CDATA[Allow your muscles to relax completely, and to let any tension drain away, melting away.]]></Caption>
+					<Caption start="5:29" end="5:34"><![CDATA[Feel how the muscles of your hips and legs feel different now than they did when you were clenching them.]]></Caption>
+					<Caption start="5:36" end="5:50"><![CDATA[Really notice the difference. Continue to let go further and further, experiencing an even deeper relaxation, breathing in and out, slowly and gently, in and out.]]></Caption>
+					<Caption start="5:53" end="5:59"><![CDATA[Now tighten the muscles of your calves and your feet as you flex your feet, pulling your toes towards you. ]]></Caption>
+					<Caption start="6:00" end="6:03"><![CDATA[Flex these muscles carefully to avoid a cramp.]]></Caption>
+					<Caption start="6:04" end="6:18"><![CDATA[Continue to flex your feet, feeling the muscles of your calves, feet and toes tighten and pull. Hold the tension for another second and take a deep breath. And now, slowly, exhale, release. ]]></Caption>
+					<Caption start="6:20" end="6:38"><![CDATA[As your muscles relax, notice how the sensations in your calves and feet change, perhaps feeling softer, or lighter. Really notice how the sensations of tension are different from the sensations your are now experiencing. ]]></Caption>
+					<Caption start="6:39" end="6:45"><![CDATA[With each breath, allow more tension to drain from your calves, relaxing more and more deeply. ]]></Caption>
+					<Caption start="6:46" end="7:01"><![CDATA[Continue to breath slowly, thinking the word "relax" each time you exhale, continuing to let any remaining tension drain away, breathing in and out, in and out.]]></Caption>
+					<Caption start="7:03" end="7:05"><![CDATA[Relax, relax.]]></Caption>
+					<Caption start="7:07" end="7:37"><![CDATA[Now that your whole body is feeling relaxed and comfortable, feel that sense of warmth and calmness spread over your whole body, continuing to breath naturally, smoothly and steadily, letting the breath in and out, slowly and regularly, thinking the word "relax", every time you breath out, breathing in and out, in and out. ]]></Caption>
+					<Caption start="7:39" end="7:45"><![CDATA[As you continue to breathe, imagine a wave of relaxation slowly spreading throughout your body. ]]></Caption>
+					<Caption start="7:46" end="7:55"><![CDATA[Starting at your head and gradually penetrating all of your muscles, all of the cells in your body, all the way down to your toes]]></Caption>
+					<Caption start="7:56" end="8:12"><![CDATA[Allow yourself to relax completely, continuing to breathe slowly and smoothly, sinking into that feeling of relaxation and noticing how it feels so that you will be able to access it and recreate it later on your own.]]></Caption>
+					<Caption start="8:13" end="8:31"><![CDATA[In a moment, I'm going to count from 5 to 1. As I do, you will gradually feel more and more alert. When I get to 3, open your eyes, and when I get to 1, you will feel alert and refreshed and ready for the rest of your day.]]></Caption>
+					<Caption start="8:32" end="8:47"><![CDATA[5, 4, beginning to shift your body, feeling a bit more awake now, 3, opening your eyes, 2, a bit more awake now, 1.]]></Caption>
+					<Caption start="8:48" end="8:55"><![CDATA[Now you are feeling refreshed and alert, relaxed and ready for whatever is next. ]]></Caption>
+				</Content>
+			</Content>
+			<Content name="positiveImagery1" displayName="Positive Imagery" ui="SimpleExerciseIntroController">
+				You are about to be led through a relaxation exercise focused on visualizing something pleasant. This exercise takes about 4 minutes. 
+				It has accompanying audio, so you will have to find a quiet place or put on your headphones now. 
+				<Content name="@help" displayName="Positive Imagery">
+					This exercise will guide you in imagining a pleasant scene in order to reduce stress and help you relax. With this guided imagery, you can 
+					relax your muscles and breathe more deeply while you focus on the relaxing scene in order to relax more deeply.
+				</Content>
+				<Content name="@next" displayName="Begin" title="Positive Imagery" audio="Imagery Beach.mp3" ui="RelaxationController" image="imagery_beach.jpg">
+					<![CDATA[Listen to the audio and follow along with the exercise.]]>
+					<Caption start="0:00" end="0:07"><![CDATA[First, remove distractions - let others know not to bother you.]]></Caption>
+					<Caption start="0:08" end="0:13"><![CDATA[Make yourself comfortable, so that your thoughts are on the image and nothing else.]]></Caption>
+					<Caption start="0:15" end="0:17"><![CDATA[Sit, or lie down, in a quiet, comfortable place]]></Caption>
+					<Caption start="0:19" end="0:22"><![CDATA[Then, mentally scan your body for tense muscles.]]></Caption>
+					<Caption start="0:23" end="0:27"><![CDATA[If you find a muscle that tense, or clenched, relax it.]]></Caption>
+					<Caption start="0:29" end="0:38"><![CDATA[During the imagery exercise, involve all of your senses in the image: sight, sound, smell, touch, and taste.]]></Caption>
+					<Caption start="0:40" end="0:41"><![CDATA[Get completely focused.]]></Caption>
+					<Caption start="0:42" end="0:44"><![CDATA[The more focused you are, the better.]]></Caption>
+					<Caption start="0:46" end="0:49"><![CDATA[Close your eyes, or lower your gaze.]]></Caption>
+					<Caption start="0:51" end="1:00"><![CDATA[In your mind's eye, you see yourself descending down a long, narrow, wooden stairway, toward a beautiful, inviting beach.]]></Caption>
+					<Caption start="1:01" end="1:04"><![CDATA[Your bare feet feel the rough, weathered step.]]></Caption>
+					<Caption start="1:05" end="1:12"><![CDATA[And with each step, you feel more and more tension gently melting away from your body.]]></Caption>
+					<Caption start="1:14" end="1:24"><![CDATA[As you continue down the stairway, you notice the ocean is a deep shade of blue, with the fine, white crests of the waves sweeping towards the shore.]]></Caption>
+					<Caption start="1:30" end="1:34"><![CDATA[You reach the end of the stairway, and step down, sinking into the warmth.]]></Caption>
+					<Caption start="1:36" end="1:44"><![CDATA[As you soak in the warmth of the sun, a soothing sensation of relaxation gently melts through your entire body.]]></Caption>
+					<Caption start="1:46" end="1:53"><![CDATA[The gentle sounds of the water lapping up onto the beach calm your mind, and allow you to feel even more relaxed.]]></Caption>
+					<Caption start="1:56" end="2:03"><![CDATA[You begin walking slowly towards the edge of the water, and feel the warm sun on your face and shoulders.]]></Caption>
+					<Caption start="2:05" end="2:11"><![CDATA[The salty smell of the ocean air invigorates you, and you take in a deep breath.]]></Caption>
+					<Caption start="2:12" end="2:17"><![CDATA[Breathe slowly out, and feel more relaxed and refreshed.]]></Caption>
+					<Caption start="2:19" end="2:28"><![CDATA[Finally, you reach the water's edge, and you gladly invite the little surges to flow over your toes and ankles.]]></Caption>
+					<Caption start="2:29" end="2:39"><![CDATA[You watch the surges glide slowly towards you, gently sweeping around your feet, and the trails of ocean water that flows slowly back out again.]]></Caption>
+					<Caption start="2:42" end="2:50"><![CDATA[The cool water feels soft and comforting, as you enjoy a few moments, allowing yourself to gaze out on the far-reaching horizon.]]></Caption>
+					<Caption start="2:53" end="2:57"><![CDATA[Overhead, you notice two birds gracefully soaring high above the ocean.]]></Caption>
+					<Caption start="2:58" end="3:03"><![CDATA[And you can hear their soft cries becoming faint as they glide away.]]></Caption>
+					<Caption start="3:07" end="3:15"><![CDATA[All of these sights, sounds, and sensations allow you to relax and let go, more and more.]]></Caption>
+					<Caption start="3:19" end="3:26"><![CDATA[After a few moments, you begin slowly strolling down the beach, at the water's edge/]]></Caption>
+					<Caption start="3:27" end="3:36"><![CDATA[You feel a warm, gentle breeze, lightly pressing against your back, and, with every step, you feel yourself relaxing, more and more.]]></Caption>
+					<Caption start="3:38" end="3:50"><![CDATA[As you walk down the beach, you notice the details of sights and sounds around you, and the soothing sensations of the sun, the gentle breeze, and the sand below your feet.]]></Caption>
+					<Caption start="3:56" end="4:08"><![CDATA[As you continue your leisurely walk down the beach, you notice a colorful beach chair, resting in a nice, peaceful spot, where the powdery, soft sand lies undisturbed.]]></Caption>
+					<Caption start="4:11" end="4:19"><![CDATA[You approach this comfortable-looking beach chair, then you sit down, lie back, and settle in.]]></Caption>
+					<Caption start="4:21" end="4:30"><![CDATA[You take in a long, deep breath, breathe slowly out, and feel even more relaxed and comfortable, resting in your chair.]]></Caption>
+					<Caption start="4:32" end="4:40"><![CDATA[For a few moments more, let yourself enjoy the sights and sounds of this beautiful day on the beach.]]></Caption>
+					<Caption start="4:48" end="4:58"><![CDATA[When you're ready, gently bring your attention back to the room, still letting yourself feel relaxed and comfortable, sitting where you are.]]></Caption>
+				</Content>
+			</Content>
+			<Content name="positiveImagery2" displayName="Positive Imagery" ui="SimpleExerciseIntroController">
+				You are about to be led through a relaxation exercise focused on visualizing something pleasant. This exercise takes about 4 minutes. 
+				It has accompanying audio, so you will have to find a quiet place or put on your headphones now. 
+				<Content name="@help" displayName="Positive Imagery">
+					This exercise will guide you in imagining a pleasant scene in order to reduce stress and help you relax. With this guided imagery, you can 
+					relax your muscles and breathe more deeply while you focus on the relaxing scene in order to relax more deeply.
+				</Content>
+				<Content name="@next" displayName="Begin" title="Positive Imagery" audio="Imagery Forest.mp3" ui="RelaxationController" image="imagery_forest.jpg">
+					<![CDATA[Listen to the audio and follow along with the exercise.]]>
+					<Caption start="0:00" end="0:06"><![CDATA[First, remove distractions - let others know not to bother you.]]></Caption>
+					<Caption start="0:07" end="0:12"><![CDATA[Make yourself comfortable, so that your thoughts are on the image and nothing else.]]></Caption>
+					<Caption start="0:14" end="0:18"><![CDATA[Sit, or lie down, in a quiet, comfortable place]]></Caption>
+					<Caption start="0:19" end="0:22"><![CDATA[Mentally scan your body for tense muscles.]]></Caption>
+					<Caption start="0:24" end="0:28"><![CDATA[If you find a muscle that tense, or clenched, relax it.]]></Caption>
+					<Caption start="0:32" end="0:41"><![CDATA[During the imagery exercise, involve all of your senses in the image: sight, sound, smell, touch, and taste.]]></Caption>
+					<Caption start="0:44" end="0:45"><![CDATA[Get completely focused.]]></Caption>
+					<Caption start="0:46" end="0:48"><![CDATA[The more focused you are, the better.]]></Caption>
+					<Caption start="0:52" end="0:55"><![CDATA[Close your eyes, or lower your gaze.]]></Caption>
+					<Caption start="0:57" end="1:10"><![CDATA[Imagine that you are walking down a path, into a lush forest ]]></Caption>
+					<Caption start="1:04" end="1:14"><![CDATA[As you walk along the path, you completely take in the sights, smells, and feel of the place.]]></Caption>
+					<Caption start="1:16" end="1:24"><![CDATA[All around you are trees, grasses, mossy ground cover and fragrant flowers. ]]></Caption>
+					<Caption start="1:26" end="1:35"><![CDATA[You hear the soothing sounds of birds chirping, and the wind as it gently blows through the treetops.]]></Caption>
+					<Caption start="1:38" end="1:47"><![CDATA[You smell the rich dampness of the forest floor. The smells of moist vegetation and new growth.]]></Caption>
+					<Caption start="1:50" end="1:54"><![CDATA[Through gaps in the treetops, you see the sun high in the cloudless blue sky.]]></Caption>
+					<Caption start="2:00" end="2:12"><![CDATA[The sun is dispersed through the canopy of the treetops and filters down onto the forest floor, creating intricate patterns of light and shadow.]]></Caption>
+					<Caption start="2:15" end="2:22"><![CDATA[With each breath you take in this place, you feel a deep sense of peace and relaxation.]]></Caption>
+					<Caption start="2:26" end="2:28"><![CDATA[You soon come to a clearing.]]></Caption>
+					<Caption start="2:31" end="2:35"><![CDATA[There are several flat rocks in the clearing surrounded by a soft moss. ]]></Caption>
+					<Caption start="2:37" end="2:40"><![CDATA[A small stream runs along the rocks. ]]></Caption>
+					<Caption start="2:43" end="2:51"><![CDATA[You lie back on one of the rocks, or on the cushiony moss, and put your feet into the cool water. ]]></Caption>
+					<Caption start="2:56" end="3:03"><![CDATA[You feel the warm sun and a gentle light breeze through your hair and across your skin. ]]></Caption>
+					<Caption start="3:05" end="3:13"><![CDATA[The sparkling clear water rushes around multi-colored rocks, making little whirlpools and eddies. ]]></Caption>
+					<Caption start="3:16" end="3:21"><![CDATA[You put your hand into the water and lift a handful to your lips. ]]></Caption>
+					<Caption start="3:23" end="3:25"><![CDATA[The water is cool and refreshing. ]]></Caption>
+					<Caption start="3:30" end="3:43"><![CDATA[You close your eyes and listen to the water trickling around the rocks. You bathe in the warm sun, and feel as though you're floating, relaxing deeper and deeper.]]></Caption>
+					<Caption start="3:46" end="3:58"><![CDATA[You let yourself sink further into relaxation while continuing to be aware of the sights, smells, and feel of the forest around you.]]></Caption>
+					<Caption start="4:01" end="4:11"><![CDATA[You allow yourself to let go of any concerns or worries, and to feel completely refreshed and rejuvenated in this place.]]></Caption>
+					<Caption start="4:16" end="4:22"><![CDATA[When you're ready, imagine that you slowly get up and leave the clearing. ]]></Caption>
+					<Caption start="4:25" end="4:36"><![CDATA[As you walk back down the path through the forest, fully take in this place, and realize that you may return whenever you wish by the same path.]]></Caption>
+					<Caption start="4:38" end="4:44"><![CDATA[Each time you enter this place, you will feel relaxed and at peace.]]></Caption>
+				</Content>
+			</Content>
+			<Content name="positiveImagery3" displayName="Positive Imagery" ui="SimpleExerciseIntroController">
+				You are about to be led through a relaxation exercise focused on visualizing something pleasant. This exercise takes about 4 minutes. 
+				It has accompanying audio, so you will have to find a quiet place or put on your headphones now. 
+				<Content name="@help" displayName="Positive Imagery">
+					This exercise will guide you in imagining a pleasant scene in order to reduce stress and help you relax. With this guided imagery, you can 
+					relax your muscles and breathe more deeply while you focus on the relaxing scene in order to relax more deeply.
+				</Content>
+				<Content name="@next" displayName="Begin" title="Positive Imagery" audio="Imagery Country Road.mp3" ui="RelaxationController" image="imagery_country_road.jpg">
+					<![CDATA[Listen to the audio and follow along with the exercise.]]>
+					<Caption start="0:00" end="0:06"><![CDATA[First, remove distractions - let others know not to bother you.]]></Caption>
+					<Caption start="0:07" end="0:11"><![CDATA[Make yourself comfortable, so that your thoughts are on the image and nothing else.]]></Caption>
+					<Caption start="0:12" end="0:21"><![CDATA[Sit, or lie down, in a quiet, comfortable place, then, mentally scan your body for tense muscles.]]></Caption>
+					<Caption start="0:21" end="0:25"><![CDATA[If you find a muscle that's tense, or clenched, relax it.]]></Caption>
+					<Caption start="0:26" end="0:35"><![CDATA[During the imagery exercise, involve all of your senses in the image: sight, sound, smell, touch, and taste.]]></Caption>
+					<Caption start="0:36" end="0:38"><![CDATA[Get completely focused.]]></Caption>
+					<Caption start="0:38" end="0:40"><![CDATA[The more focused you are, the better.]]></Caption>
+					<Caption start="0:43" end="0:53"><![CDATA[Imagine yourself walking along an old country road - the sun is warm on your back, the birds are singing, the air is calm and fragrant.]]></Caption>
+					<Caption start="0:54" end="0:58"><![CDATA[After a few steps, you come across an old gate.]]></Caption>
+					<Caption start="0:58" end="1:02"><![CDATA[The gate creaks as you open it and go through.]]></Caption>
+					<Caption start="1:02" end="1:14"><![CDATA[You find yourself in an overgrown garden, flowers growing where they have seeded themselves, vines climbing over a fallen tree, green grass, and shade trees.]]></Caption>
+					<Caption start="1:14" end="1:17"><![CDATA[Breathe deeply, smelling the flowers.]]></Caption>
+					<Caption start="1:18" end="1:20"><![CDATA[Listen to the birds and insects.]]></Caption>
+					<Caption start="1:21" end="1:25"><![CDATA[Feel the gentle breeze, warm against your skin.]]></Caption>
+					<Caption start="1:26" end="1:34"><![CDATA[You walk leisurely up a gentle slope behind the garden, and come to a wooded area, where the trees become denser.]]></Caption>
+					<Caption start="1:37" end="1:38"><![CDATA[The sun is filtered through the leaves.]]></Caption>
+					<Caption start="1:39" end="1:43"><![CDATA[The air feels mild, and a bit cooler.]]></Caption>
+					<Caption start="1:43" end="1:47"><![CDATA[You become aware of the sound of a nearby brook.]]></Caption>
+					<Caption start="1:49" end="1:57"><![CDATA[You breathe deeply of the cool and fragrant air several times, and with each breath, you feel more relaxed.]]></Caption>
+					<Caption start="2:01" end="2:02"><![CDATA[Soon, you come upon the brook.]]></Caption>
+					<Caption start="2:04" end="2:10"><![CDATA[It's clear and clean as it tumbles over the rocks and some fallen logs.]]></Caption>
+					<Caption start="2:13" end="2:16"><![CDATA[You follow the path along the brook for a ways. ]]></Caption>
+					<Caption start="2:18" end="2:25"><![CDATA[The path takes you out into a sunlit clearing where you discover a small but picturesque waterfall.]]></Caption>
+					<Caption start="2:26" end="2:28"><![CDATA[There's a rainbow in the mist.]]></Caption>
+					<Caption start="2:34" end="2:42"><![CDATA[You find a comfortable place to sit for a while; a perfect spot where you can feel completely relaxed.]]></Caption>
+					<Caption start="2:47" end="2:53"><![CDATA[You feel good, as you allow yourself to just enjoy the warmth and solitude of this peaceful place.]]></Caption>
+					<Caption start="3:00" end="3:02"><![CDATA[It's now time to return.]]></Caption>
+					<Caption start="3:04" end="3:21"><![CDATA[You walk back down the path, through the cool trees, out into the sun-drenched overgrown garden, one last smell of the flowers, and out the creaky gate.]]></Caption>
+					<Caption start="3:26" end="3:31"><![CDATA[You leave this secret retreat, for now, and return down the country road.]]></Caption>
+					<Caption start="3:33" end="3:48"><![CDATA[Then, back to the room, slowly open your eyes, and remember, you can visit this place whenever you wish.]]></Caption>
+				</Content>
+			</Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="ridCategory" child_weight="50.0" displayName="RID" child_helpsWithSymptoms="reexperiencing" 
+			child_variable_tooltype="the RID tool" child_ui="SimpleExerciseController">
+			<Content name="rid" displayName="RID Tool" backButton="RID" ui="SimpleExerciseIntroController">
+				<![CDATA[
+				<div style="font-size:48pt;font-weight:bold;text-align:center;">RID</div>
+				The RID Tool is for times when you have been triggered by a reminder, or of, a past trauma. You will be led through three steps to manage your distress.
+				]]>
+				<Content name="@help" displayName="RID Tool">
+					<![CDATA[
+					<p>
+					When you’re triggered or reminded of terrible things that have happened, your mind not only believes that you’re in danger, your mind and your body act
+					like you're right back in the traumatic situation.  These lightning fast, automatic reactions are helpful at the time of the actual event because they
+					keep you safe in dangerous situations.  But now your automatic reactions to triggers are no longer helpful because back home, you're not in any actual danger.
+					</p>
+					<p>
+					You use the RID tool to stay focused and cope with your triggers.  Remember, triggers confuse your brain and your body into thinking that you’re back 
+					in the original situation.  You must clear away that confusion in order to manage your responses. 
+					</p>
+					<p>
+					RID has three steps: The first step, the R in RID, is to Relax or calm yourself.   The second step, the I in RID, is to identify what’s triggering you and 
+					how it’s different from your original trauma.  And the third step, the D in RID, is to decide how to respond to the trigger. Doing these three things when 
+					you’re triggered can be very helpful.
+					</p>
+					]]>
+				</Content>
+				<Content name="@next" displayName="Begin" title="RID: Relax" backButton="Relax" ui="RIDRelaxController">
+					<![CDATA[
+					<div style="font-size:48pt;font-weight:bold;text-align:center;"><span style="color:red;">R</span>ID</div>
+					<div style="font-size:120%;text-align:center;">Relax</div>
+					<hr/>
+					Take 30 seconds to <b>Relax</b> by breathing in and out slowly. As you breathe in think the word “let” and as you breathe out think “go.”
+					]]>
+					<Content name="@next" displayName="Go On" title="RID: Identify" backButton="Identify" ui="RIDSubsequentController">
+						<![CDATA[
+						<div style="font-size:48pt;font-weight:bold;text-align:center;">R<span style="color:red;">I</span>D</div>
+						<div style="font-size:120%;text-align:center;">Identify the Trigger</div>
+						<hr/>
+						<p>
+							Go back over the last few minutes or hours and <b>Identify</b> what reminder of your trauma you encountered. Triggers can be 
+							inside ourselves, like thoughts or memories, or outside of ourselves, like conversations or situations or things we 
+							encounter in the world (e.g., a particular person or place).  Figuring out what triggered you can be tricky sometimes.  
+							Do not worry if you cannot identify the trigger, just focus on relaxing and talking yourself down.
+						</p>
+						<p>
+							Once you identify the trigger if you can, it is important to notice how it is just a reminder and not the actual trauma 
+							happening again, despite how your mind and body may be reacting.  Really notice how the current trigger is different from 
+							your trauma.  Remind yourself of those differences again and again.
+                        </p>
+						<p>
+                            Go on to fill in your triggers on the next screen.
+                        </p>
+						]]>
+                        <Content name="@next" displayName="Go On" title="RID: Identify" backButton="Identify" ui="RIDSubsequentController">
+                            <![CDATA[
+                                <div style="font-size:48pt;font-weight:bold;text-align:center;">R<span style="color:red;">I</span>D</div>
+                                <div style="font-size:120%;text-align:center;">Identify the Trigger</div>
+                                <hr/>
+                            ]]>
+                            <Content name="input1" exampleText="e.g., 'Drove under a bridge.">
+                                What triggered you?
+                            </Content>
+                            <Content name="input2" exampleText="e.g., 'In U.S.A., not Iraq. Civilians on the highway.  Driving my own truck.'">
+                                How is your current situation different from the traumatic experience?
+                            </Content>
+                            
+                            <Content name="@next" displayName="Go On" title="RID: Decide" backButton="Decide" ui="RIDSubsequentController">
+                                <![CDATA[
+                                <div style="font-size:48pt;font-weight:bold;text-align:center;">RI<span style="color:red;">D</span></div>
+                                <div style="font-size:120%;text-align:center;">Decide What to Do Now</div>
+                                <hr/>
+                                <p>
+                                    The final step is to <b>Decide</b> what to do now. If you feel stressed now, you can try to decrease the trigger’s power by 
+                                    deciding to stick around to see that you can handle it and that your stress will actually go down the longer you stick it out. 
+                                    If the trigger made you very angry, your best bet is to decide to take a time out.  If you are in danger of hurting yourself or
+                                    others, seek support and don’t take any chances.
+                                </p>
+                                <p>
+                                    Go on to fill in your decision on the next screen.
+                                </p>
+                                ]]>
+                                <Content name="@next" displayName="Go On" title="RID: Decide" backButton="Decide" ui="RIDSubsequentController">
+                                    <![CDATA[
+                                        <div style="font-size:48pt;font-weight:bold;text-align:center;">RI<span style="color:red;">D</span></div>
+                                        <div style="font-size:120%;text-align:center;">Decide What to Do Now</div>
+                                        <hr/>
+                                    ]]>
+                                    <Content name="input3" exampleText="e.g., 'Go back a few times and drive under the bridge until it doesn’t bother me as much.'">
+                                        What will you decide to do?
+                                    </Content>
+                                    <Content name="@next" displayName="Finish" title="RID Summary" backButton="Summary" ui="SimpleExerciseController">
+                                        <![CDATA[
+                                        <p>How you were triggered:</p>
+                                        <ul><li style="font-weight:bold;">${input1}</li></ul>
+                                        <p>How your current situation is different from the traumatic experience:</p>
+                                        <ul><li style="font-weight:bold;">${input2}</li></ul>
+                                        <p>You decided:</p>
+                                        <ul><li style="font-weight:bold;">${input3}</li></ul>
+                                        ]]>
+                                    </Content>
+                                </Content>
+                            </Content>
+                        </Content>
+					</Content>
+				</Content>
+			</Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="changePerspective" child_weight="0.3" categoryLevelFavorite="YES" displayName="Change Perspective" 
+			child_help="changePerspectiveHelp" child_variable_tooltype="challenging your thoughts" child_title="Change Perspective" 
+			child_ui="SimpleExerciseController" child_image="thinker.jpg">
+			<Content helpsWithSymptoms="hopeless anxiety anger sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this more helpful thought:
+				<div style="text-alignment:center;font-weight:bold;">This is a hassle, not a horror.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I have been through many hard things in my life and survived.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I can tolerate this.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I will survive even if I don't sleep at all tonight.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This situation is different than what happened to me and I'm going to be fine.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing dissociation"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am right here, right now.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance anxiety hopeless anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This may seem hard now, but it will get easier and easier over time.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance isolation anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">When this is over, I’ll be glad I did it.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance isolation hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I’ve done this before, so I know I can do it again.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I know I'm in a safe place, even though my mind is telling me something else.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing dissociation hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I can feel my heart beating and my feet on the floor.  I am alive and okay.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I've been through worse before and made it through safely.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">My body is reacting to a memory.  Right now I am safe.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I don't have to feel comfortable all the time.  That just proves I am human.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This emotion will come and go.  I will feel differently in twenty minutes.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="dissociation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am able to respond effectively. I have skills to handle this situation.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I have been through this before and been just fine.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This is another challenge that I will figure out and face.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">These emotions are telling me something.  They won't hurt me.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am human.  I can make mistakes. No one is perfect.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am able to protect myself.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">Slow down.  I know there is more than one choice I can make.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I can ask others for help.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I have made the right decision before.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation dissociation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">My thoughts are just thoughts; they're not always right. Don't believe everything you think.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation dissociation anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am strong.  I am safe now.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance dissociation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This feeling will pass.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance dissociation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I will not feel this way forever.  I have felt differently before and will feel differently soon.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation dissociation anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am in a safe place.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">The emotions I feel right now are giving me information about how I feel but they’re not necessarily based on facts.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">If I don't fight my emotions, they will go down on their own.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="isolation hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am a decent person.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">It is okay if it takes me time to figure this out.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance isolation hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">There is always time to learn.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance isolation anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">Learning will give me more options in the future.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing avoidance isolation hopeless anxiety anger"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">There are times when I will fall back into old patterns.  I just need to catch myself and get back on track with what's effective.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">It's not always like this. There are times I have felt pretty amazing, too.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I know that I deserve love.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="avoidance hopeless anxiety"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">I am my own unique person: special, talented, and worthwhile.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="hopeless anxiety anger sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">One night of poor sleep is not the end of the world.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">This tossing and turning at night will pass.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="reexperiencing sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">Nightmares are disturbing, but they're not real. I am safe.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">Although it feels like I will never get a good night's sleep, I have in the past and I will in the future.</div>
+			]]></Content>
+			<Content helpsWithSymptoms="sleep"><![CDATA[
+				Changing the way you think can change the way you feel.  Concentrate on this functional thought:
+				<div style="text-alignment:center;font-weight:bold;">Although I am anticipating a poor night's sleep, it could be fine…I have slept well before.</div>
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="grounding" child_weight="1.0" displayName="Grounding" child_title="Grounding" child_variable_tooltype="doing a grounding exercise" 
+			child_help="GroundingHelp"
+			child_helpsWithSymptoms="reexperiencing dissociation anxiety" child_ui="SimpleExerciseController" child_image="grounding.jpg">
+			<Content displayName="Feel feet on floor"><![CDATA[
+				Focus all of your attention on your feet. Feel the floor under them.
+			]]></Content>
+			<Content displayName="Texture of a Pebble"><![CDATA[
+				Focus all of your attention on the feel of a pebble or coin in your hand.
+			]]></Content>
+			<Content displayName="Breathing"><![CDATA[
+				Sit quietly and focus all of your attention on your in-breath and then your out-breath.
+			]]></Content>
+			<Content displayName="The Space Around You--Colors"><![CDATA[
+				Look around and focus your attention on the colors around you, noticing as many colors as you can.
+			]]></Content>
+			<Content displayName="The Space Around You--Smells"><![CDATA[
+				Focus all of your attention on the smells in your environment.
+			]]></Content>
+			<Content displayName="The Space Around You--Sounds"><![CDATA[
+				Focus on and listen carefully to the many sounds in your environment.
+			]]></Content>
+			<Content displayName="The Space Around You--Temperature"><![CDATA[
+				Focus all of your attention of the temperature of the air on your skin.
+			]]></Content>
+			<Content displayName="Eating"><![CDATA[
+				While you are eating, focus all of your attention on the sensation of the food in your mouth while you chew very slowly.  
+			]]></Content>
+			<Content displayName="Brushing your teeth"><![CDATA[
+				Brush your teeth and focus your attention on all of the sensations, tastes, and smells of this activity.
+			]]></Content>
+			<Content displayName="Walking"><![CDATA[
+				Walk slowly, focusing your attention on what it feels like to take each step.
+			]]></Content>
+			<Content displayName="Object"><![CDATA[
+				Pick up any small object off the ground and focus your attention on the texture of the object and the feel of it in your hand.
+			]]></Content>
+			<Content displayName="Pet an animal"><![CDATA[
+				Pet an animal that is quiet and calm.  Focus all of your attention on the sensations on your hand.
+			]]></Content>
+			<Content displayName="Attach yourself to the earth"><![CDATA[
+				With your feet shoulder width apart, close your eyes and imagine that you are growing roots into the earth, making you strong and stable.
+			]]></Content>
+			<Content displayName="Ice Cube"><![CDATA[
+				Grab an ice cube and focus all of your attention on the sensations that go with it, cold, wet, and tingling.
+			]]></Content>
+			<Content displayName="Name what you see"><![CDATA[
+				Look around you and name what you see.  Start with large objects then move to smaller and smaller objects.
+			]]></Content>
+			<Content displayName="Focus on touch"><![CDATA[
+				Rub your hands together, clap your hands.  Focus all of your attention on the feelings and sounds that you experience.
+			]]></Content>
+			<Content displayName="Reorientation"><![CDATA[
+				Remind yourself where you are, what today's date is, when you were born, what you did yesterday.
+			]]></Content>
+			<Content displayName="Call a friend"><![CDATA[
+				Call a friend and discuss some activity you did together recently.
+			]]></Content>
+			<Content displayName="Past success"><![CDATA[
+				Remember what you did to successfully get past a previous painful experience.
+			]]></Content>
+			<Content displayName="Baby steps"><![CDATA[
+				Ask yourself and answer: What would be a small sign that things are getting a little better?
+			]]></Content>
+			<Content displayName="Suck on a peppermint"><![CDATA[
+				Slowly suck on a mint and describe the taste and your reaction in detail to yourself.
+			]]></Content>
+			<Content displayName="Stamp your feet on the ground"><![CDATA[
+				Stamp your feet on the ground. Feel the force.  Hear the sounds.  Notice.
+			]]></Content>
+			<Content displayName="Feel your clothes on your skin"><![CDATA[
+				Pay attention to the sensation of your clothes touching your skin.
+			]]></Content>
+			<Content displayName="Feel your hands"><![CDATA[
+				Put your hands together and notice the sensations of the skin-on-skin contact.
+			]]></Content>
+			<Content displayName="Hear Others"><![CDATA[
+				Tune into the voices of others around you. Only pay attention to the sounds of others’ voices.
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="planToReduceIsolationCategory" displayName="Make a Plan to Reduce Isolation" child_variable_tooltype="making a plan to reduce isolation" 
+			child_help="reduceIsolationHelp" child_ui="SimpleExerciseController">
+			<Content name="planToReduceIsolation" helpsWithSymptoms="isolation hopeless anxiety" weight="10.0" displayName="Reduce Isolation" backButton="Intro" ui="SimpleExerciseIntroController">
+				<![CDATA[
+				When you're feeling isolated, making a plan to do an activity with a friend can help.  Follow the steps in the next screen
+				to make a place for meeting up later with a friend or family member.
+				]]>
+				<Content name="@next" displayName="Make my plan" title="Make A Plan" backButton="Plan" ui="PlanController">
+					<Content name="@activities" title="Select Activity" ui="ContentListViewController" selectOnly="true">
+						<Content displayName="Go for a walk"/>
+						<Content displayName="Go fishing"/>
+						<Content displayName="Have tea or coffee at home"/>
+						<Content displayName="Go out for tea or coffee"/>
+						<Content displayName="Have a meal at home"/>
+						<Content displayName="Go out for a meal"/>
+						<Content displayName="Go to a museum or gallery"/>
+						<Content displayName="Go to a musical, dance or other show"/>
+						<Content displayName="Go to the park"/>
+						<Content displayName="Have a picnic"/>
+						<Content displayName="Go to the gym"/>
+						<Content displayName="Go to the beach"/>
+						<Content displayName="Go to a lake"/>
+						<Content displayName="Go out in a boat or canoe"/>
+						<Content displayName="Go for a drive"/>
+						<Content displayName="Go for a bike ride"/>
+						<Content displayName="Go golfing"/>
+						<Content displayName="Play tennis"/>
+						<Content displayName="Go for a run"/>
+						<Content displayName="Take a day trip out of town"/>
+						<Content displayName="Go to the movies"/>
+						<Content displayName="Go shopping"/>
+						<Content displayName="Go window shopping"/>
+						<Content displayName="People-watch"/>
+						<Content displayName="Play cards"/>
+						<Content displayName="Play chess or another board/strategy game"/>
+						<Content displayName="Play basketball"/>
+						<Content displayName="Sit and talk"/>
+						<Content displayName="Have a snack and talk"/>
+						<Content displayName="Work on a project together"/>
+						<Content displayName="Run errands together"/>
+						<Content displayName="Go to a party or gathering"/>
+						<Content displayName="Go to a yoga class"/>
+						<Content displayName="Go to a meditation class"/>
+						<Content displayName="Go get ice cream"/>
+						<Content displayName="Take your kid(s) to the playground"/>
+					</Content>
+				</Content>
+			</Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="timeout" child_weight="1.0" displayName="Take a Time Out" child_helpsWithSymptoms="anger" 
+			child_variable_tooltype="taking a time out" ui="CategoryIntroController" child_ui="TimeoutController"
+			child_help="timeOutHelp"
+			child_image="time_out.jpg" child_title="Time Out">
+			Sometimes the most effective thing to do is take a time out. This is especially helpful if your anger is escalating and you might do something hurtful or with consequences that you’d later regret. The goal is to avoid making a hard situation worse. 
+			<Content name="takeWalk" displayName="Take a walk"><![CDATA[
+				Take a walk.
+			]]></Content>
+			<Content displayName="Do some deep breathing for 10 minutes or more "><![CDATA[
+				Do some deep breathing for 10 minutes or more.
+			]]></Content>
+			<Content displayName="Exercise (bike ride, hike, lift weights, swim, run) "><![CDATA[
+				Exercise (bike, hike, lift weights, swim, run, walk).
+			]]></Content>
+			<Content displayName="Do some yard work or gardening"><![CDATA[
+				Do yard work or gardening.
+			]]></Content>
+			<Content displayName="Tell yourself something empowering, like 'I can handle this without losing my temper.'"><![CDATA[
+				Tell yourself something empowering, like "I can handle this without losing my temper."
+			]]></Content>
+			<Content displayName="Draw or paint  "><![CDATA[
+				Draw or paint.
+			]]></Content>
+			<Content displayName="Call a friend or loved one for support "><![CDATA[
+				Call a friend or loved one for support and fresh perspectives.
+			]]></Content>
+			<Content displayName="Call your therapist for support "><![CDATA[
+				Call your therapist for support.
+			]]></Content>
+			<Content displayName="Stretch and take slow, deep breaths"><![CDATA[
+				Stretch and take slow, deep breaths.
+			]]></Content>
+			<Content displayName="Remind yourself that you can cope with this. "><![CDATA[
+				Remind yourself that you can cope with this.
+			]]></Content>
+			<Content displayName="Meditate "><![CDATA[
+				Meditate.
+			]]></Content>
+			<Content displayName="Pray "><![CDATA[
+				Pray.
+			]]></Content>
+			<Content displayName="Think of how someone you trust would advise you."><![CDATA[
+				Think of how someone you trust would advise you. What would they tell you to do? 
+			]]></Content>
+			<Content displayName="Spend time with a pet."><![CDATA[
+				Spend time with a pet.
+			]]></Content>
+			<Content displayName="Take a shower or a bath to relax."><![CDATA[
+				Take a shower or bath to relax.
+			]]></Content>
+			<Content displayName="Think about how you want to be an example to others in your life- children, etc."><![CDATA[
+				Think about how you can be an example to children and others in your life right now.
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="helpSleeping" child_weight="1.0" displayName="Help Falling Asleep" 
+			categoryLevelFavorite="YES" child_title="Help Falling Asleep" 
+			child_help="sleepHelp"
+			child_variable_tooltype="getting tips for falling asleep" child_helpsWithSymptoms="sleep" 
+			child_ui="SimpleExerciseController" child_image="insomnia.jpg">
+			<Content><![CDATA[
+				Tip for Falling Asleep: Only go to bed when you are sleepy.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: If you are in bed for 20 minutes and are still not asleep, get up and do something else (without exposing yourself to bright light or a computer/phone/TV screen).
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Listen to relaxing music.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Read something soothing.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Have a cup of decaffeinated tea.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Have a cup of warm milk.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Take some slow, deep breaths through your nose-- do this for 10 minutes. You can use the breathing tool on this app if you would like.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Have a light snack if you are hungry- try something sugar and alcohol free.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Make sure the room is cool.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Try wearing earplugs if there is noise in your environment.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: If there is light in your environment, try an eyeshade.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Make sure the room is dark.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Try taking a warm bath an hour or 2 before bed.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Make sure you are comfortable and clothing is not constraining.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Avoid watching the clock.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Let your mind wander. Don't focus too much on the process of falling asleep.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: If you find yourself worrying, get up and write your worries down, then let them go.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Picture a calming safe place: picture yourself by a river, a lake, or in a meadow. Imagine the scene, the sights and sounds and smells, as you drift off. You can use the positive imagery tool on this app if you would like.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Feel all the muscles of your body relax, as if sinking into the mattress. You can use the progressive muscle relaxation tool on this app if you would like.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Avoid nicotine, caffeine, and alcohol in the evenings.
+				]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Avoid too much salt in your food.  This can cause you to wake-up thirsty throughout the night.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Turn off the TV and computer 30 minutes before bedtime. 
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Develop a relaxing bedtime routine.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Get up and have a glass of water.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Ensure that your sheets are clean and your pillow and mattress are comfortable and supportive.
+			]]></Content>
+			<Content><![CDATA[
+				Tip for Falling Asleep: Try not to worry about falling asleep; just allow it to happen.
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="pleasantEvents" child_weight="1.0" displayName="Pleasant Event Scheduling" child_helpsWithSymptoms="hopeless isolation anxiety" 
+			child_variable_tooltype="scheduling pleasant events" child_ui="SimpleExerciseController" child_displayName="Pleasant Events"
+			child_help="pleasantHelp" child_image="pleasant.jpg">
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take a relaxing bath.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Plan a trip.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to the movies.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take a walk.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go for a run.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Watch funny videos.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Watch a movie.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Read a magazine.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Read a book.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Spend time with a friend.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Remember a fun vacation.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Eat something delicious.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Practice yoga.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take care of projects around the house.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Remember someone being kind to you.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Put on an outfit that makes you feel good.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Practice a martial art.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Garden.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go for a swim.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Exercise.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to a party.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play a sport.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Call a friend.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Call a family member.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go camping.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Sing around the house.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy yourself flowers.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Pray.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to church/temple/mosque.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to the beach.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go skating.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go fishing.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go biking.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Paint or draw.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Knit or do needlepoint.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go for a drive.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Cook dinner for someone.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Bake something.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go out for ice cream.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play a musical instrument.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Do arts and crafts.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Make a gift for someone.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy yourself music.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to a bookstore.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go hiking.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Watch sports on tv.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Write a poem or story.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy clothes.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go sightseeing.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Get a manicure/pedicure.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play tennis.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play golf.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Watch children play.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to a live show or play.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go see live music.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Watch TV.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go out to dinner.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Cook for yourself.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Sew, knit, or crochet.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Join a book club.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to a coffee shop to read and have coffee/tea.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Have coffee and read the paper.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy someone a gift.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Complete a task.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go watch horse racing or auto racing.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take photographs.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Read the paper.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Write a letter.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play with animals.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Dance.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go for a picnic.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Meditate.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take a trip to the mountains.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to the ocean/lake/river.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play cards.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Do a puzzle.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play sudoku.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Do a crossword puzzle.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Play pool.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy yourself a small gift.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Talk on the phone.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go to a museum.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Light candles.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Listen to the radio.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Get a massage.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Visit a sauna or soak in a hot tub.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">List 5 things you like about yourself.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Buy yourself a book.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Go bowling.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Take a class (language, dance).</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Do woodworking.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Volunteer at a soup kitchen.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Volunteer at an animal shelter.</div>
+			]]></Content>
+			<Content><![CDATA[
+				Change negative moods by doing something pleasant:
+				<div style="text-alignment:center;font-weight:bold;">Think about someone you love.</div>
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="seekSupportCategory" child_weight="1.0" displayName="Seek Support" child_variable_tooltype="seeking support" 
+			child_helpsWithSymptoms="reexperiencing avoidance isolation dissociation hopeless anxiety anger" 
+			child_help="seekSupportHelp" child_ui="SimpleExerciseController">
+			<Content name="seekSupport" displayName="Seek Support" ui="CrisisController" backButton="Seek Support" title="Seek Support" theme="theme_default">
+				<Content special="contacts"/>
+				<Content name="@contacts">Getting support from others is one of the most effective ways to manage stress.</Content>
+			</Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="distract" child_weight="1.0" displayName="Distract from Intense Emotions" 
+			child_title="Distract Yourself" child_variable_tooltype="distracting yourself from intense emotion" 
+			child_helpsWithSymptoms="reexperiencing hopeless anxiety anger" child_ui="SimpleExerciseController"
+			child_help="distractHelp"
+			child_image="butterfly.jpg">
+			<Content displayName="Woodworking"><![CDATA[
+				Brainstorm, start, or continue with a project, working with your hands.
+			]]></Content>
+			<Content displayName="Watch a sports game"><![CDATA[
+				Turn on your favorite sporting event and let yourself get into it.
+			]]></Content>
+			<Content displayName="Go for a walk around the block"><![CDATA[
+				Moving your legs, even just walking around the block, helps to foster a different perspective.
+			]]></Content>
+			<Content displayName="Play with children."><![CDATA[
+				Remember those little ones in your family that just crack you up? Go spend time with them.
+			]]></Content>
+			<Content displayName="Go for a run."><![CDATA[
+				Go run to raise your heart rate, clear your mind, and release some tension in your muscles.
+			]]></Content>
+			<Content displayName="Read favorite comic book"><![CDATA[
+				Laughing and going into another world would be good for you right now.  Take a load off and read a comic book.
+			]]></Content>
+			<Content displayName="Watch a funny movie"><![CDATA[
+				It's hard to be upset when watching your favorite movie comedy.
+			]]></Content>
+			<Content displayName="Cook a meal and eat it"><![CDATA[
+				Cook your favorite meal and savor every bite.
+			]]></Content>
+			<Content displayName="Take a mental vacation"><![CDATA[
+				Allow your mind to take a vacation from your problems.
+			]]></Content>
+			<Content displayName="Chop wood"><![CDATA[
+				Get some of that energy out by chopping wood and then relax in front of the fireplace.
+			]]></Content>
+			<Content displayName="Facebook"><![CDATA[
+				Get on Facebook and connect with your friends virtually.  What are other people up to these days?
+			]]></Content>
+			<Content displayName="Draw a picture"><![CDATA[
+				Draw a picture and be creative!
+			]]></Content>
+			<Content displayName="Mold clay"><![CDATA[
+				Molding clay allows your hands to create a masterpiece or to just mix the colors.
+			]]></Content>
+			<Content displayName="Write poetry"><![CDATA[
+				Express yourself with your poetic words.  Put it down on paper.
+			]]></Content>
+			<Content displayName="Do a jigsaw puzzle"><![CDATA[
+				Worried you are falling to pieces?  Get a puzzle and have fun putting the pieces together.
+			]]></Content>
+			<Content displayName="Do Sudoko/crossword"><![CDATA[
+				Play sudoku or do a crossword.
+			]]></Content>
+			<Content displayName="Clean your room"><![CDATA[
+				Clean and straighten up your surroundings.
+			]]></Content>
+			<Content displayName="Walk your dog"><![CDATA[
+				Walk your dog…he needs a break, too.
+			]]></Content>
+			<Content displayName="Rubik's cube"><![CDATA[
+				Remember Rubik’s cube?  Looks simple, yet it’s mystifying.  Get busy with your hands and mind.
+			]]></Content>
+			<Content displayName="Go shopping"><![CDATA[
+				See what’s new at the mall or your favorite store. You can even shop around online!
+			]]></Content>
+			<Content displayName="Call a friend"><![CDATA[
+				Pick up the phone and see what your friends are up to.  Connecting with them will distract you from your own mind.
+			]]></Content>
+			<Content displayName="Email a distant friend"><![CDATA[
+				There's no better time to catch up with a friend via e-mail.
+			]]></Content>
+			<Content displayName="Do a home project"><![CDATA[
+				Work on that project you have been saving for a rainy day.  
+			]]></Content>
+			<Content displayName="Sing along to the radio"><![CDATA[
+				Turn on your radio and sing in the car. Or just blast it at home and belt it out.
+			]]></Content>
+			<Content displayName="Do something for someone else"><![CDATA[
+				Feel better about yourself by doing something nice for someone else.
+			]]></Content>
+			<Content displayName="Plan your next vacation"><![CDATA[
+				Nothing like having a trip to look forward to in the future.  Get started planning a vacation.
+			]]></Content>
+			<Content displayName="Scribble/doodle on paper"><![CDATA[
+				Just pick up a pen and put it down on the paper.  See what you create.
+			]]></Content>
+			<Content displayName="Alphabetize your bookcase/spice rack"><![CDATA[
+				Use your mind to organize your books or spice rack. It can be nice to have some order when your emotions feel chaotic!
+			]]></Content>
+			<Content displayName="Count to 100"><![CDATA[
+				Counting to 10 not enough to cool you down?  Try higher... say, 100?
+			]]></Content>
+			<Content displayName="Make as many words out of your full name as possible"><![CDATA[
+				Word scramble your full name and see how many words you can make out of it!
+			]]></Content>
+			<Content displayName="Go fishing"><![CDATA[
+				Catch some fish in the local pond or creek. 
+			]]></Content>
+			<Content displayName="Volunteer"><![CDATA[
+				Volunteer and do something nice for someone else. It will make you feel good!
+			]]></Content>
+			<Content displayName="Go to a museum"><![CDATA[
+				Be inspired by the works of others at a museum.
+			]]></Content>
+			<Content displayName="Ask someone to tell you a funny story"><![CDATA[
+				Ask someone to tell you a funny story. There’s nothing like hearing the adventures of others.
+			]]></Content>
+			<Content displayName="Play pool"><![CDATA[
+				Play some pool, sink them, and have fun!
+			]]></Content>
+			<Content displayName="Watch your favorite television show"><![CDATA[
+				Watch some of your favorite TV shows. 
+			]]></Content>
+			<Content displayName="Call a long distance friend"><![CDATA[
+				Time to check in with a friend.  Who haven't you talked to in a bit?
+			]]></Content>
+			<Content displayName="Make funny faces in the mirror"><![CDATA[
+				Crack yourself up by making funny faces in the mirror.
+			]]></Content>
+			<Content displayName="Think about the future"><![CDATA[
+				Imagine those times in your life you are excited about: being done with school, falling in love, going on your next adventure.
+			]]></Content>
+			<Content displayName="Write thank you cards"><![CDATA[
+				Express gratitude and write to others to let them know you appreciate them thinking of you.
+			]]></Content>
+			<Content displayName="Take a nap"><![CDATA[
+				Take a break and let yourself just sleep and recharge for a few minutes.
+			]]></Content>
+			<Content displayName="Put your troubles in an imaginary shoebox on the shelf for a bit"><![CDATA[
+				Imagine boxing your troubles up and shelving them—you can come back to them later.
+			]]></Content>
+			<Content displayName="YouTube"><![CDATA[
+				Find something funny to laugh at on YouTube.
+			]]></Content>
+			<Content displayName="Go to a friend's house"><![CDATA[
+				Go somewhere else, like a friend's house, to hang out.
+			]]></Content>
+		</ExerciseCategory>
+
+		<ExerciseCategory name="soothYourself" child_weight="10.0" displayName="Soothe Yourself" child_title="Sooth Yourself" 
+			child_variable_tooltype="soothing yourself" child_helpsWithSymptoms="reexperiencing dissociation hopeless anxiety sleep"
+			child_help="sootheHelp"
+			child_ui="SimpleExerciseController" child_image="tea.jpg">
+				<Content name="soothWithMyPictures" displayName="Soothing Pictures" title="Soothing Pictures" ui="SoothingPictureController">
+					Look at a picture that is meaningful or soothing to you.  (Tap on the plus sign to zoom in.)
+				</Content>
+				<Content name="soothWithMyAudio" displayName="Soothing Audio" title="Soothing Audio" ui="SoothingAudioController">
+					Listening to soothing songs or audio clips can help.  Put in headphones or go to a private place and tap the button to play the audio.
+				</Content>
+<!--
+			<Content displayName="Wash your hands"><![CDATA[
+				Soothe yourself by washing your hands slowly with warm water.
+			]]></Content>
+			<Content displayName="Pet your animal"><![CDATA[
+				Spend time with your pet and let them know you love them.
+			]]></Content>
+			<Content displayName="Put on some lotion"><![CDATA[
+				Put on lotion and pay attention to the way this feels. Take care of your body.
+			]]></Content>
+			<Content displayName="Look at photos of people you love"><![CDATA[
+				Look at photos of people you love. Take in the soothing images.
+			]]></Content>
+			<Content displayName="Play your favorite playlist"><![CDATA[
+				Listen to your favorite music. 
+			]]></Content>
+			<Content displayName="Hold your child and/or a loved one's hand"><![CDATA[
+				Receive and give comfort to a close one.
+			]]></Content>
+			<Content displayName="Rabbit's foot"><![CDATA[
+				Feel something soft, like a rabbit's foot, with your hands.
+			]]></Content>
+			<Content displayName="Sit by fireplace"><![CDATA[
+				Feel the warmth on your skin and look at the color of the flames in the fireplace.
+			]]></Content>
+			<Content displayName="Exercise"><![CDATA[
+				Move your body around and feel healthier.
+			]]></Content>
+			<Content displayName="Be in nature"><![CDATA[
+				Allow the beauty of nature to be around you.
+			]]></Content>
+			<Content displayName="Gardening"><![CDATA[
+				Try some gardening and GROW outside.
+			]]></Content>
+			<Content displayName="Plan a trip"><![CDATA[
+				Time to think ahead to your next vacation/trip.
+			]]></Content>
+			<Content displayName="Favorite meal"><![CDATA[
+				Treat yourself to that special favorite meal.
+			]]></Content>
+			<Content displayName="Baking cookies"><![CDATA[
+				Enjoy the smell of cookies baking.
+			]]></Content>
+			<Content displayName="Voicemail from a friend"><![CDATA[
+				Hear the words of a close friend by listening to a saved voicemail.
+			]]></Content>
+			<Content displayName="Journaling"><![CDATA[
+				Put your thoughts down on paper for yourself.
+			]]></Content>
+			<Content displayName="Clean sheets"><![CDATA[
+				Smell the clean scent of new sheets and let yourself spread out.
+			]]></Content>
+			<Content displayName="Sun on your skin"><![CDATA[
+				Sit outside and feel the sun beat down on you.
+			]]></Content>
+			<Content displayName="Dessert"><![CDATA[
+				Enjoy every bite of a favorite dessert.
+			]]></Content>
+			<Content displayName="Warm shower"><![CDATA[
+				Take a shower and feel the water on your skin and relax.
+			]]></Content>
+			<Content displayName="Get a massage"><![CDATA[
+				Release the tension in your muscles by having someone massage it away.
+			]]></Content>
+			<Content displayName="Hug someone"><![CDATA[
+				Find comfort in someone's arms.
+			]]></Content>
+			<Content displayName="Stretch/do yoga"><![CDATA[
+				Release the tension by stretching or doing yoga.
+			]]></Content>
+			<Content displayName="Nap"><![CDATA[
+				Allow your body to rest and take a nap.
+			]]></Content>
+			<Content displayName="Pray"><![CDATA[
+				Talk to a higher power.
+			]]></Content>
+			<Content displayName="Read the bible/etc"><![CDATA[
+				Read a document that feels profound  to you and find guidance in the words of others.
+			]]></Content>
+			<Content displayName="Soft sweater"><![CDATA[
+				Wear clothes that feel comfortable on your body.
+			]]></Content>
+			<Content displayName="Flower arrangement"><![CDATA[
+				It's time to smell the roses and make a flower arrangement.
+			]]></Content>
+			<Content displayName="Call therapist"><![CDATA[
+				Phone your therapist to ask for cheerleadings and support.
+			]]></Content>
+			<Content displayName="Something you are proud of"><![CDATA[
+				Remember the skills you do have and what you do well.
+			]]></Content>
+			<Content displayName="A time you felt better"><![CDATA[
+				Notice the good moments and give them weight.
+			]]></Content>
+			<Content displayName="Notice your breath"><![CDATA[
+				Take in a deep breath and exhale slowly .
+			]]></Content>
+			<Content displayName="Pleasant sound"><![CDATA[
+				Ring a bell
+			]]></Content>
+			<Content displayName="Read a favorite book"><![CDATA[
+				Pull that favorite book off your shelf and jump into it.
+			]]></Content>
+			<Content displayName="Read a magazine."><![CDATA[
+				Thumb through a magazine or two.
+			]]></Content>
+			<Content displayName="Brainstorming life appreciation"><![CDATA[
+				Write a gratitude list
+			]]></Content>
+			<Content displayName="Self care"><![CDATA[
+				Write yourself an "I love you" letter
+			]]></Content>
+			<Content displayName="Jacuzzi"><![CDATA[
+				Get in a jacuzzi and feel the hot jets.
+			]]></Content>
+			<Content displayName="Warm drink"><![CDATA[
+				Drink a warm drink like tea, warm milk, coffee.
+			]]></Content>
+			<Content displayName="Create an internal safe place where you can go"><![CDATA[
+				 In a time when you feel safe and secure, create a room or a garden or any safe area inside yourself where you can retreat to and get away from external stresses. Add as many detials as you can to make it real for you.
+			]]></Content>
+			<Content displayName="Positive pics/words from magazine"><![CDATA[
+				Go through magazines and cut out pictures and words that make you feel good about yourself
+			]]></Content>
+			<Content displayName="Spend time with family"><![CDATA[
+				Go on an outing with your granchild.
+			]]></Content>
+			<Content displayName="Feeling of problem solving"><![CDATA[
+				Notice what it will feel like once you have solved a problem.
+			]]></Content>
+			<Content displayName="Progressive Muscle Relaxation"><![CDATA[
+				Intentionally tense your muscles and then release them and notice the difference.
+			]]></Content>
+			<Content displayName="Change clothes"><![CDATA[
+				Wear clothes that feel comfortable on your body.
+			]]></Content>
+			<Content displayName="Positive statements"><![CDATA[
+				Make sure to balance the negatives with positive comments.
+			]]></Content>
+			<Content displayName="Blanket"><![CDATA[
+				Wrap yourself in your favorite blanket
+			]]></Content>
+			<Content displayName="Pictures from a positive event"><![CDATA[
+				Go through pictures that catalog the good times.
+			]]></Content>
+-->			
+		</ExerciseCategory>
+
+		<ExerciseCategory name="quotes" child_weight="0.1" displayName="Inspiring Quotes" child_title="Inspiring Quotes" 
+			categoryLevelFavorite="YES" child_variable_tooltype="reading inspiring quotes" 
+			child_helpsWithSymptoms="reexperiencing avoidance isolation dissociation hopeless anxiety sleep"
+			child_help="quotesHelp"
+			child_ui="SimpleExerciseController" child_image="summit.jpg">
+			<Content><![CDATA[
+				Although the world is full of suffering, it is full also of the overcoming of it.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Helen Keller</div>
+			]]></Content>
+			<Content><![CDATA[
+				You are not responsible for being down, but you are responsible for getting up.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Jesse Jackson</div>
+			]]></Content>
+			<Content><![CDATA[
+				No feeling is final.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ranier Maria Rilke</div>
+			]]></Content>
+			<Content><![CDATA[
+				Not to laugh, not to lament, not to judge, but to understand.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Baruch Spinoza</div>
+			]]></Content>
+			<Content><![CDATA[
+				And the trouble is, if you don’t risk anything, you risk even more.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Erica Jong</div>
+			]]></Content>
+			<Content><![CDATA[
+				Don’t compromise yourself. You are all you you’ve got.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Janis Joplin</div>
+			]]></Content>
+			<Content><![CDATA[
+				You yourself, as much as anybody in the entire universe, deserve your love and affection.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Buddha</div>
+			]]></Content>
+			<Content><![CDATA[
+				…be attentive to what is arising within you, and place that above everything else…What is happening in your innermost self is worthy of your entire love; somehow you must find a way to work at it.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ranier Maria Rilke</div>
+			]]></Content>
+			<Content><![CDATA[
+				Never, never, never, never, never give up.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Winston Churchill</div>
+			]]></Content>
+			<Content><![CDATA[
+				Watch your thoughts; they become your words. Watch your words; they become your actions. Watch your actions; they become your habits. Watch your habits; they become your character. Watch your character; it becomes your destiny.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Frank Outlaw</div>
+			]]></Content>
+			<Content><![CDATA[
+				Do what you can, with what you have, where you are.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Theodore Roosevelt</div>
+			]]></Content>
+			<Content><![CDATA[
+				Let your heart guide you. It whispers, so listen closely.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Molly Goode</div>
+			]]></Content>
+			<Content><![CDATA[
+				Life is never what one dreams. It is seldom what one desires, but for the vital spirit and the eager mind, the future will always hold the search for buried treasure and the possibility of high adventure.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ellen Glasgow</div>
+			]]></Content>
+			<Content><![CDATA[
+				It takes two to speak the truth—one to speak, the other to hear.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Henry David Thoreau</div>
+			]]></Content>
+			<Content><![CDATA[
+				When you do a thing, do it with all your might. Put your whole soul into it. Stamp it with your personality. Be active, be energetic, be enthusiastic and faithful, and you will accomplish your object. 
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ralph Waldo Emerson</div>
+			]]></Content>
+			<Content><![CDATA[
+				The future depends on what we do in the present.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Mohandas K. Gandhi</div>
+			]]></Content>
+			<Content><![CDATA[
+				If we change within, our outer life will change also.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Jean Shinoda Bolen</div>
+			]]></Content>
+			<Content><![CDATA[
+				Perhaps the truth depends on a walk around the lake. 
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Wallace Stevens</div>
+			]]></Content>
+			<Content><![CDATA[
+				A loving heart is the truest wisdom.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Charles Dickens</div>
+			]]></Content>
+			<Content><![CDATA[
+				Each of us is two selves, and the great challenge of life is to try to keep that higher self in command.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Martin Luther King Jr.</div>
+			]]></Content>
+			<Content><![CDATA[
+				In the time of your life, live.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;William Saroyan</div>
+			]]></Content>
+			<Content><![CDATA[
+				Life is not what it’s supposed to be. It’s what it is. The way you cope with it is what makes the difference.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Virginia Satir</div>
+			]]></Content>
+			<Content><![CDATA[
+				The difference between the impossible and the possible lies in a person's determination.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Tommy Lasorda</div>
+			]]></Content>
+			<Content><![CDATA[
+				Remember there's no such thing as a small act of kindness. Every act creates a ripple with no logical end.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Scott Adams</div>
+			]]></Content>
+			<Content><![CDATA[
+				The fact is, that to do anything in the world worth doing, we must not stand back shivering and thinking of the cold and danger, but jump in and scramble through as well as we can.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Robert Cushing</div>
+			]]></Content>
+			<Content><![CDATA[
+				Follow your honest convictions, and stay strong.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;William Thackeray</div>
+			]]></Content>
+			<Content><![CDATA[
+				Knowing yourself is the beginning of all wisdom.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Aristotle</div>
+			]]></Content>
+			<Content><![CDATA[
+				Your real influence is measured by your treatment of yourself. 
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;A. Bronson Alcott</div>
+			]]></Content>
+			<Content><![CDATA[
+				Energy and persistence conquer all things.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Benjamin Franklin</div>
+			]]></Content>
+			<Content><![CDATA[
+				Fear less, hope more, eat less, chew more, whine less, breathe more, talk less, say more, hate less, love more, and good things will be yours.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Swedish Proverb</div>
+			]]></Content>
+			<Content><![CDATA[
+				I have learned that the greater part of our misery or unhappiness is determined not by our circumstance but by our disposition.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Martha Washington</div>
+			]]></Content>
+			<Content><![CDATA[
+				The only journey is the journey within.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ranier Rilke</div>
+			]]></Content>
+			<Content><![CDATA[
+				Every day do something that will inch you closer to a better tomorrow.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Doug Firebaugh</div>
+			]]></Content>
+			<Content><![CDATA[
+				The happiest life is that which constantly exercises and educates what is best in us.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Hamerton</div>
+			]]></Content>
+			<Content><![CDATA[
+				If we all did the things we are capable of, we would astound ourselves.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Thomas Edison</div>
+			]]></Content>
+			<Content><![CDATA[
+				Go back a little to leap further.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;John Clarke</div>
+			]]></Content>
+			<Content><![CDATA[
+				I failed my way to success.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Thomas Edison</div>
+			]]></Content>
+			<Content><![CDATA[
+				Don't waste your life in doubts and fears: spend yourself on the work before you, well assured that the right performance of this hour's duties will be the best preparation for the hours or ages that follow it.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Ralph Waldo Emerson</div>
+			]]></Content>
+			<Content><![CDATA[
+				It is the trouble that never comes that causes the loss of sleep.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Chas. Austin Bates</div>
+			]]></Content>
+			<Content><![CDATA[
+				When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one that has been opened for us.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Helen Keller</div>
+			]]></Content>
+			<Content><![CDATA[
+				The more difficulties one has to encounter, within and without, the more significant and the higher in inspiration his life will be.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Horace Bushnell</div>
+			]]></Content>
+			<Content><![CDATA[
+				Years teach us more than books.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Berthold Auerbach</div>
+			]]></Content>
+			<Content><![CDATA[
+				Life is either a daring adventure or nothing.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Helen Keller</div>
+			]]></Content>
+			<Content><![CDATA[
+				If you do not hope, you will not find what is beyond your hopes.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;St. Clement of Alexandra</div>
+			]]></Content>
+			<Content><![CDATA[
+				Men's best successes come after their disappointments.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Henry Ward Beecher</div>
+			]]></Content>
+			<Content><![CDATA[
+				The best way out is always through.
+				<div style="margin:6pt;text-align:right;font-style:italic;">&mdash;Robert Frost</div>
+			]]></Content>
+		</ExerciseCategory>
+<!--
+		<ExerciseCategory name="planToReduceAvoidance" displayName="Make a Plan to Reduce Avoidance" child_variable_tooltype="making a plan" helpsWithSymptoms="avoidance" child_ui="SimpleExerciseController">
+		</ExerciseCategory>
+-->		
+	</Content>
+	
+</iStressLess>

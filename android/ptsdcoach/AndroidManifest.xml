@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="gov.va.ptsd.ptsdcoach" android:versionCode="1" 	
+	android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<uses-sdk android:targetSdkVersion="7" android:minSdkVersion="7"/>
+
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<supports-screens android:largeScreens="false" android:anyDensity="false" android:resizeable="false" android:normalScreens="true" android:smallScreens="false"></supports-screens>
+
+	<application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="false">
+		<activity android:name="gov.va.ptsd.ptsdcoach.activities.SplashActivity"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".PTSDCoach" android:label="@string/app_name"
+		android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.PTSDCoach" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.TAKE_ASSESSMENT" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.ENTER_SETUP" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activities.AudioEditListActivity"
+		android:screenOrientation="portrait"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.activities.AudioEditListActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activities.ImageEditListActivity"
+		android:screenOrientation="portrait"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.activities.ImageEditListActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activities.ContactsEditListActivity"
+		android:screenOrientation="portrait"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.activities.ContactsEditListActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activities.EULA" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.FirstLaunch" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.NavigationController" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.HomeNavigationController" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.ManageNavigationController" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.AssessNavigationController" android:screenOrientation="portrait"></activity>
+		<activity android:name=".content.ContentActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.QuestionnaireActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.FavoritesListActivity" android:screenOrientation="portrait"></activity>
+		<activity android:name=".activities.SetupActivity" android:screenOrientation="portrait"></activity>
+		<receiver android:name="AssessmentReminder">
+			<intent-filter>
+				<action android:name="gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT"></action>
+			</intent-filter>
+		</receiver>
+		
+		<provider android:name=".services.LocalJsProvider" android:authorities="gov.va.ptsd.ptsdcoach.services.localjs" />
+		<provider android:name=".services.TtsContentProvider" android:authorities="gov.va.ptsd.ptsdcoach.services.tts" />
+		
+	</application>
+</manifest>

@@ -1,0 +1,48 @@
+<project name="dbcompiler" default="compiledb" basedir=".">
+    <description>
+        build content db for PTSD Coach
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}" classpath="lib/jdom.jar:lib/sqlitejdbc-v056.jar"/>
+  </target>
+
+  <target name="compiledb" depends="compile" description="build the content database" >
+  	<java classname="gov.va.ptsd.ptsdcoach.compiler.Main" fork="true" classpath="lib/jdom.jar:lib/sqlitejdbc-v056.jar">
+      <arg value="../../content/content.xml"/>
+      <arg value="../ptsdcoach/assets/content.db"/>
+      <classpath>
+        <pathelement location="build"/>
+  	  </classpath>    
+  	</java>
+  	<copy todir="../ptsdcoach/assets/Content">
+  	  <fileset dir="../../content">
+  	    <exclude name="content.xml"/>
+  	    <exclude name="pcl.xml"/>
+  	  </fileset>
+  	</copy>
+  	<copy file="../../content/pcl.xml" todir="../ptsdcoach/assets" />
+  </target>
+
+  <target name="clean" description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete file="../ptsdcoach/assets/pcl.xml"/>
+    <delete file="../ptsdcoach/assets/content.db"/>
+    <delete>
+      <fileset dir="../ptsdcoach/assets/Content" includes="*" excludes=".placeholder"/>
+    </delete>
+  </target>
+</project>

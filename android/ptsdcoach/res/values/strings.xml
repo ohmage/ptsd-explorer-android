@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, PTSDCoach!</string>
+    <string name="app_name">PTSD Coach</string>
+    <string name="menu_plus">Add New</string>
+    <string name="menu_minus">-</string>
+    <string name="my_music">My Music</string>
+    <string name="menu_delete">Delete</string>
+    <string name="my_pictures">My Pictures</string>
+    <string name="my_contacts">My Contacts</string>
+    <string name="loading_images">Loading pictures</string>
+    <string name="loading_images_failed">No pictures found, please go to Setup and select pictures</string>
+    <string name="loading_audio_failed">No audio found, please go to Setup and select your audio</string>
+    <string name="add_audio_coach_text">To add a new audio title, tap the Add New button</string>
+    <string name="add_contact_coach_text">To add a new support contact, tap the Add New button</string>
+    <string name="add_image_coach_text">To add a new soothing image, tap the Add New button</string>
+    
+</resources>

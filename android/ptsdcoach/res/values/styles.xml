@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- Variation on the Light theme that turns off the title -->
+
+<style name="MinimalTheme" parent="android:style/Theme.Light">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+</style>
+
+<color name="list_selection">#FF80d000</color>
+<color name="list_unselection">#FF000000</color>
+
+</resources>

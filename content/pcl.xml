@@ -1,0 +1,201 @@
+<questionnaire id="pcl">
+
+	<globals>
+		<title>
+			<text locale="en">Assessment</text>
+		</title>
+		<notification>
+			<text locale="en">It is time to fill out your periodic assessment.</text>
+		</notification>
+		<nextButton>
+			<text locale="en">Next</text>
+		</nextButton>
+	</globals>
+
+	<intro>
+		<info>
+			<text>It is time to fill out your periodic assessment.  Please tap 'Next' to start the questionnaire.</text>
+		</info>
+	</intro>
+
+	<screen title="Assessment">
+		<image url="full_logo.png"/>
+		<info>
+			<text>
+				In the following screens is a list of problems and complaints that veterans and military servicepeople sometimes have
+				in response to stressful military experiences.  Please read each problem carefully, then select the option that
+				best describes how much you have been bothered by each problem ${pclSince}.  Please select only one answer for each question.
+			</text>
+		</info>
+	</screen>
+	<screen title="Question 1 of 17">
+		<multi id="pcl1">
+			<text>${pclSinceCap}, how much have you been bothered by repeated disturbing memories, thoughts, or images of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 2 of 17">
+		<multi id="pcl2">
+			<text>${pclSinceCap}, how much have you been bothered by repeated disturbing dreams of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 3 of 17">
+		<multi id="pcl3">
+			<text>${pclSinceCap}, how much have you been bothered by suddenly acting or feeling as if the stressful experience were happening again (i.e. as if you were re-living it)?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 4 of 17">
+		<multi id="pcl4">
+			<text>${pclSinceCap}, how much have you been bothered by feeling very upset when something reminded you of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 5 of 17">
+		<multi id="pcl5">
+			<text>${pclSinceCap}, how much have you been bothered by having physical reactions (e.g. heart pounding, trouble breathing, sweating) when something reminded you of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 6 of 17">
+		<multi id="pcl6">
+			<text>${pclSinceCap}, how much have you been bothered by avoiding thinking or talking about the stressful experience, or avoiding having feelings related to it?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 7 of 17">
+		<multi id="pcl7">
+			<text>${pclSinceCap}, how much have you been bothered by avoiding activities or situations because they reminded you of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 8 of 17">
+		<multi id="pcl8">
+			<text>${pclSinceCap}, how much have you been bothered by trouble remembering important parts of the stressful experience?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 9 of 17">
+		<multi id="pcl9">
+			<text>${pclSinceCap}, how much have you been bothered by loss of interest in activities that you used to enjoy?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 10 of 17">
+		<multi id="pcl10">
+			<text>${pclSinceCap}, how much have you been bothered by feeling distant or cut off from other people?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 11 of 17">
+		<multi id="pcl11">
+			<text>${pclSinceCap}, how much have you been bothered by feeling emotionally numb or being unable to have loving feelings for those close to you?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 12 of 17">
+		<multi id="pcl12">
+			<text>${pclSinceCap}, how much have you been bothered by feeling as if your future somehow will be cut short?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 13 of 17">
+		<multi id="pcl13">
+			<text>${pclSinceCap}, how much have you been bothered by trouble falling or staying asleep?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 14 of 17">
+		<multi id="pcl14">
+			<text>${pclSinceCap}, how much have you been bothered by feeling irritable or having angry outbursts?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 15 of 17">
+		<multi id="pcl15">
+			<text>${pclSinceCap}, how much have you been bothered by having difficulty concentrating?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 16 of 17">
+		<multi id="pcl16">
+			<text>${pclSinceCap}, how much have you been bothered by being "superalert" or watchful or on guard?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+	<screen title="Question 17 of 17">
+		<multi id="pcl17">
+			<text>${pclSinceCap}, how much have you been bothered by feeling jumpy or easily startled?</text>
+			<choice value="1">Not at all</choice>
+			<choice value="2">A little bit</choice>
+			<choice value="3">Moderately</choice>
+			<choice value="4">Quite a bit</choice>
+			<choice value="5">Extremely</choice>
+		</multi>
+	</screen>
+</questionnaire>

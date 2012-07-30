@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:myapp="http://schemas.android.com/apk/res/gov.va.ptsd.ptsdcoach"
+	android:id="@+id/audiolist" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="62dip"
+		android:background="@drawable/layout_gradient">
+
+    <TextView android:id="@+id/label" 
+              android:layout_width="220dip" 
+              android:layout_height="fill_parent" 
+   				android:gravity="center"
+              android:textSize="15dip"
+              android:layout_alignParentLeft="true" 
+              android:focusable="true"
+              android:focusableInTouchMode="false"
+              android:nextFocusDown="@+id/add_btn"
+              android:textColor="@color/black"
+              android:text="@string/add_audio_coach_text" />
+
+		
+			
+		<Button android:id="@+id/add_btn" android:text="@string/menu_plus"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_marginLeft="20dip"
+			android:layout_marginTop="9dip"
+            android:nextFocusUp="@+id/label"
+			android:layout_alignParentRight="true"
+			android:textSize="16dip"
+		/>
+			
+	</RelativeLayout>
+
+	
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_weight="1.0" >
+
+		<ListView android:id="@id/android:list" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:layout_weight="1"
+			android:nextFocusUp="@+id/add_btn"
+			android:drawSelectorOnTop="true" />
+
+		<LinearLayout android:id="@id/android:empty"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<ScrollView android:layout_width="fill_parent"  android:layout_height="fill_parent">
+			<LinearLayout android:id="@+id/emptylayout"
+				android:orientation="vertical" android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+			
+				
+			</LinearLayout>
+			</ScrollView>
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+
+

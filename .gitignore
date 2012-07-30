@@ -1,0 +1,16 @@
+ios/Content/*
+!ios/Content/.placeholder
+ios/pcl.xml
+ios/storedata.db
+ios/build/
+ios/istresslessrc/build/
+android/ptsdcoach/local.properties
+android/ptsdcoach/bin/
+android/ptsdcoach/gen/
+android/dbcompiler/bin/
+android/dbcompiler/build/
+android/ptsdcoach/assets/Content/*
+!android/ptsdcoach/assets/Content/.placeholder
+android/ptsdcoach/assets/content.db
+android/ptsdcoach/assets/pcl.xml
+
