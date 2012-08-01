@@ -6,6 +6,7 @@ import java.util.List;
 import gov.va.ptsd.ptsdcoach.Util;
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -76,7 +77,7 @@ public class RIDSubsequentController extends BaseExerciseController {
 			}
 		}
 		
-		Button b = addButton("Go On");
+		LoggingButton b = addButton("Go On");
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

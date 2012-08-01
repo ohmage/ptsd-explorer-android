@@ -3,6 +3,7 @@ package gov.va.ptsd.ptsdcoach.controllers;
 import gov.va.ptsd.ptsdcoach.Util;
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -18,7 +19,7 @@ public class SimpleExerciseIntroController extends BaseExerciseController {
 	public void build() {
 		super.build();
 		
-		Button beginExerciseButton = new Button(getContext());
+		LoggingButton beginExerciseButton = new LoggingButton(getContext());
 		beginExerciseButton.setText("Begin Exercise");
 		beginExerciseButton.setTextSize(17);
 		beginExerciseButton.setOnClickListener(new View.OnClickListener() {

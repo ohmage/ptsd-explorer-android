@@ -33,6 +33,10 @@ import gov.va.ptsd.ptsdcoach.controllers.ButtonGridController;
 
 import java.util.Locale;
 import java.util.Random;
+
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.ContentObjectSelectedEvent;
+import com.openmhealth.ohmage.core.EventLog;
+
 import android.content.Intent;
 
 public class NavigationController extends Activity {
@@ -353,6 +357,12 @@ public class NavigationController extends Activity {
 	}
 
 	public void contentSelected(Content c) {
+		ContentObjectSelectedEvent e = new ContentObjectSelectedEvent();
+		e.contentObjectId = c.uniqueID;
+		e.contentObjectName = c.getName();
+		e.contentObjectDisplayName = c.getDisplayName();
+		EventLog.log(e);
+		
 		pushViewForContent(c);
 	}
 

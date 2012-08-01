@@ -1,33 +1,22 @@
 package gov.va.ptsd.ptsdcoach.controllers;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import gov.va.ptsd.ptsdcoach.PTSDCoach;
-import gov.va.ptsd.ptsdcoach.R;
-import gov.va.ptsd.ptsdcoach.Util;
-import gov.va.ptsd.ptsdcoach.activities.EULA;
-import gov.va.ptsd.ptsdcoach.activities.FirstLaunch;
-import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
-import android.util.Log;
+
+import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class ContentViewController extends ContentViewControllerBase {
 
@@ -114,7 +103,8 @@ public class ContentViewController extends ContentViewControllerBase {
 		return true;
 	}
 	
-	public void buttonTapped(int id) {
+	@Override
+    public void buttonTapped(int id) {
 		if (id == TAP_TO_LISTEN) {
 			playAudio();
 		}
@@ -124,7 +114,8 @@ public class ContentViewController extends ContentViewControllerBase {
 		}
 	}
 	
-	public void build() {
+	@Override
+    public void build() {
 		topView = new LinearLayout(getContext());
 		topView.setOrientation(LinearLayout.VERTICAL);
 		topView.setBackgroundColor(0);
@@ -159,7 +150,8 @@ public class ContentViewController extends ContentViewControllerBase {
 		return content.hasAudio();
 	}
 	
-	public void viewLoaded() {
+	@Override
+    public void viewLoaded() {
 		if (scroller != null) {
 			scroller.fullScroll(ScrollView.FOCUS_UP);
 		}
@@ -262,12 +254,12 @@ public class ContentViewController extends ContentViewControllerBase {
 		return rightButtons;
 	}
 
-	public Button addButton(String text) {
+	public LoggingButton addButton(String text) {
 		return addButton(text,-1);
 	}
 
-	public Button addButton(String text, int id) {
-		Button b = new Button(getContext());
+	public LoggingButton addButton(String text, int id) {
+		LoggingButton b = new LoggingButton(getContext());
 //		b.setBackgroundResource(R.drawable.button_bg);
 		b.setMinWidth(80);
 		b.setText(text);

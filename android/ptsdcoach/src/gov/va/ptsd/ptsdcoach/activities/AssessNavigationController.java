@@ -16,6 +16,12 @@ import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.LineAndPointRenderer;
 import com.androidplot.xy.XYPlot;
 import com.flurry.android.FlurryAgent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentAbortedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentCompletedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentStartedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclReminderScheduledEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimeElapsedBetweenPCLAssessmentsEvent;
+import com.openmhealth.ohmage.core.EventLog;
 
 import gov.va.ptsd.ptsdcoach.PTSDCoach;
 import gov.va.ptsd.ptsdcoach.R;
@@ -222,6 +228,10 @@ public class AssessNavigationController extends NavigationController implements 
 	}
 	
 	public void startQuestionnaire() {
+		PclAssessmentStartedEvent e = new PclAssessmentStartedEvent();
+		e.pclAssessmentStarted = System.currentTimeMillis();
+		EventLog.log(e);
+
 		try {
 			QuestionnaireHandler handler = new QuestionnaireHandler();
 			QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), handler);
@@ -236,8 +246,8 @@ public class AssessNavigationController extends NavigationController implements 
 			player.setQuestionnaireListener(this);
 			inQuestionnaire = true;
 			player.play();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
 	}
 	
@@ -312,6 +322,10 @@ public class AssessNavigationController extends NavigationController implements 
 		PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, reminderIntent, 0);
 		am.cancel(reminderPendingIntent);
 		am.set(AlarmManager.RTC_WAKEUP, when, reminderPendingIntent);
+		
+		PclReminderScheduledEvent e = new PclReminderScheduledEvent();
+		e.pclReminderScheduledTimestamp = when;
+		EventLog.log(e);
 	}
 	
 /*		
@@ -340,6 +354,7 @@ public class AssessNavigationController extends NavigationController implements 
 
 	public void schedulePCLReminder(String interval) {
 		userDb.setSetting("pclScheduled", interval);
+		
 		if (interval.equals("none")) {
 			// Cancel any notifications
 			String ns = Context.NOTIFICATION_SERVICE;
@@ -349,6 +364,10 @@ public class AssessNavigationController extends NavigationController implements 
 			Intent reminderIntent = new Intent("gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT");
 			PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, reminderIntent, 0);
 			am.cancel(reminderPendingIntent);
+
+			PclReminderScheduledEvent e = new PclReminderScheduledEvent();
+			e.pclReminderScheduledTimestamp = 0;
+			EventLog.log(e);
 		} else {
 			PCLScore lastScoreObj = getLastPCLScore();
 			boolean before = (lastScoreObj != null);
@@ -390,6 +409,19 @@ public class AssessNavigationController extends NavigationController implements 
 		map.put("score",""+totalScore);
 		map.put("completed","yes");
 		FlurryAgent.logEvent("ASSESSMENT",map);
+		
+		{
+			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
+			e.pclAssessmentCompleted = 1;
+			e.pclAssessmentCompletedFinalScore = totalScore;
+			EventLog.log(e);
+		}
+		
+		if (lastScoreObj != null) {
+			TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
+			e.timeElapsedBetweenPCLAssessments = now.getTime() - lastScoreObj.time;
+			EventLog.log(e);
+		}
 
 		player = null;
 		
@@ -432,6 +464,18 @@ public class AssessNavigationController extends NavigationController implements 
 	
 	@Override
 	public void onQuestionnaireDeferred(QuestionnairePlayer player) {
+		{
+			PclAssessmentAbortedEvent e = new PclAssessmentAbortedEvent();
+			e.pclAssessmentAbortedTimestamp = System.currentTimeMillis();
+			EventLog.log(e);
+		}
+		
+		{
+			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
+			e.pclAssessmentCompleted = 0;
+			e.pclAssessmentCompletedFinalScore = -1;
+			EventLog.log(e);
+		}
 	}
 
 	@Override

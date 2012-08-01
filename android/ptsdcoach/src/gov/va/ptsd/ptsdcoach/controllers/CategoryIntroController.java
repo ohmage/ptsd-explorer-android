@@ -2,6 +2,7 @@ package gov.va.ptsd.ptsdcoach.controllers;
 
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ public class CategoryIntroController extends BaseExerciseController {
 	public void build() {
 		super.build();
 		
-		Button beginExerciseButton = new Button(getContext());
+		LoggingButton beginExerciseButton = new LoggingButton(getContext());
 		beginExerciseButton.setText("Take a Timeout");
 		beginExerciseButton.setTextSize(17);
 		beginExerciseButton.setOnClickListener(new View.OnClickListener() {

@@ -34,6 +34,8 @@ public class SplashActivity extends Activity {
 
 	File dataDir;
 	
+	gov.va.ptsd.ptsdcoach.Util dummy = new gov.va.ptsd.ptsdcoach.Util();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);

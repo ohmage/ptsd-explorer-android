@@ -1,32 +1,27 @@
 package gov.va.ptsd.ptsdcoach.controllers;
 
-import gov.va.ptsd.ptsdcoach.UserDBHelper;
-import gov.va.ptsd.ptsdcoach.Util;
-import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import android.content.Context;
-import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ToggleButton;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
-import android.util.Log;
+
+import gov.va.ptsd.ptsdcoach.UserDBHelper;
+import gov.va.ptsd.ptsdcoach.Util;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
+import gov.va.ptsd.ptsdcoach.views.LoggingImageButton;
 
 public class BaseExerciseController extends ContentViewController implements SensorEventListener {
 
 	Integer score;
-	ImageButton thumbsUp;
-	ImageButton thumbsDown;
-	ImageButton ccToggle;
+	LoggingImageButton thumbsUp;
+	LoggingImageButton thumbsDown;
+	LoggingImageButton ccToggle;
 
 	boolean accelSupported;
 	long lastUpdate=-1;
@@ -35,6 +30,7 @@ public class BaseExerciseController extends ContentViewController implements Sen
 	
 	public BaseExerciseController(Context ctx) {
 		super(ctx);
+		viewTypeID = 0; // tool
 	}
 	
 	@Override
@@ -90,7 +86,8 @@ public class BaseExerciseController extends ContentViewController implements Sen
 		super.onDetachedFromWindow();
 	}
 
-	public void toggleCC() {
+	@Override
+    public void toggleCC() {
 		super.toggleCC();
 		updateThumbs();
 	}
@@ -127,12 +124,12 @@ public class BaseExerciseController extends ContentViewController implements Sen
 		score = getContent().getScore();
 		
 		LinearLayout.LayoutParams layout;
-		Button b = new Button(getContext());
+		LoggingButton b = new LoggingButton(getContext());
 		b.setText("Some Text");
 		b.measure(MeasureSpec.UNSPECIFIED,MeasureSpec.UNSPECIFIED);
 		int height = b.getMeasuredHeight();
 
-		thumbsUp = new ImageButton(getContext());
+		thumbsUp = new LoggingImageButton(getContext());
 		thumbsUp.setScaleType(ScaleType.CENTER_INSIDE);
 		thumbsUp.setContentDescription("thumbs up");
 		Drawable thumbsUpImage = Util.makeDrawable(getContext(), "thumbsup.png", true);
@@ -152,7 +149,7 @@ public class BaseExerciseController extends ContentViewController implements Sen
 		});
 		getLeftButtons().addView(thumbsUp);
 
-		thumbsDown = new ImageButton(getContext());
+		thumbsDown = new LoggingImageButton(getContext());
 		thumbsDown.setScaleType(ScaleType.CENTER_INSIDE);
 		thumbsDown.setContentDescription("thumbs down");
 		Drawable thumbsDownImage = Util.makeDrawable(getContext(), "thumbsdown.png", true);
@@ -173,7 +170,8 @@ public class BaseExerciseController extends ContentViewController implements Sen
 		getLeftButtons().addView(thumbsDown);
 
 		if (hasCaptions()) {
-			ccToggle = new ImageButton(getContext());
+			ccToggle = new LoggingImageButton(getContext());
+			ccToggle.setContentDescription("toggle closed captioning");
 			ccToggle.setScaleType(ScaleType.CENTER_INSIDE);
 			Drawable ccToggleImage = Util.makeDrawable(getContext(), "closed_captioning_symbol.png", true);
 			ccToggle.setImageDrawable(ccToggleImage);
@@ -191,7 +189,8 @@ public class BaseExerciseController extends ContentViewController implements Sen
 		updateThumbs();
 	}
 	
-	public boolean shouldAddListenButton() {
+	@Override
+    public boolean shouldAddListenButton() {
 		return false;
 	}
 

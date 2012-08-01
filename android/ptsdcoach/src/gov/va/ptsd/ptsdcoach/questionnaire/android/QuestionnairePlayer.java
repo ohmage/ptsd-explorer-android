@@ -7,6 +7,7 @@ import gov.va.ptsd.ptsdcoach.questionnaire.AbstractQuestionnairePlayer;
 import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
 import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
 import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,10 +50,10 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 		ContentViewController topView = null;
 		LinearLayout screenView = null;
 		ScrollView scrollView = null;
-		Button nextButton = null;
-		Button deferButton = null;
-		Button doneButton = null;
-		Button skipButton = null;
+		LoggingButton nextButton = null;
+		LoggingButton deferButton = null;
+		LoggingButton doneButton = null;
+		LoggingButton skipButton = null;
 		QuestionnaireListener listener = null;
 		ArrayList<IEnablement> enablements = null;
 		
@@ -312,7 +313,7 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 
 		@Override
 		public void addButton(final int buttonType, String label) {
-			final Button button = new Button(context);
+			final LoggingButton button = new LoggingButton(context);
 			button.setText(label);
 			button.setMinWidth(150);
 			button.setOnClickListener(new Button.OnClickListener() {
@@ -381,13 +382,13 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 			buttons.setOrientation(LinearLayout.HORIZONTAL);
 			buttons.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM);
 			buttons.setLayoutParams(new ViewGroup.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
-			ArrayList<Button> allbuttons = new ArrayList<Button>(); 
+			ArrayList<LoggingButton> allbuttons = new ArrayList<LoggingButton>(); 
 			if (deferButton != null) allbuttons.add(deferButton);
 			if (skipButton != null) allbuttons.add(skipButton);
 			if (nextButton != null) allbuttons.add(nextButton);
 			if (doneButton != null) allbuttons.add(doneButton);
 			for (int i=0;i<allbuttons.size();i++) {
-				Button b = allbuttons.get(i);
+				LoggingButton b = allbuttons.get(i);
 				if (b != null) {
 					LinearLayout group = new LinearLayout(context);
 					LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);

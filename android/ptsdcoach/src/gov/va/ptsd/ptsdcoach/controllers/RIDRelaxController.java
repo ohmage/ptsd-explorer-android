@@ -3,6 +3,7 @@ package gov.va.ptsd.ptsdcoach.controllers;
 import gov.va.ptsd.ptsdcoach.Util;
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -17,7 +18,7 @@ public class RIDRelaxController extends BaseExerciseController {
 
 	static final int ANOTHER_30_SECONDS = 701;
 	
-	Button another30SecondsButton; 
+	LoggingButton another30SecondsButton; 
 	TextView timer;
 	long timeout;
 	Runnable timerUpdateRunnable;
@@ -77,7 +78,7 @@ public class RIDRelaxController extends BaseExerciseController {
 				updateTimer();
 			}
 		});
-		Button goOn = addButton("Go On", ManageNavigationController.BUTTON_NEXT);
+		LoggingButton goOn = addButton("Go On", ManageNavigationController.BUTTON_NEXT);
 		goOn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

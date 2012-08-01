@@ -1,45 +1,36 @@
 package gov.va.ptsd.ptsdcoach;
 
+import android.app.Activity;
+import android.app.TabActivity;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
+
+import com.flurry.android.FlurryAgent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.AppExitedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.AppLaunchedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimeElapsedBetweenSessionsEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TotalTimeOnAppEvent;
+import com.openmhealth.ohmage.core.EventLog;
+
 import gov.va.ptsd.ptsdcoach.activities.AssessNavigationController;
 import gov.va.ptsd.ptsdcoach.activities.HomeNavigationController;
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.activities.NavigationController;
 import gov.va.ptsd.ptsdcoach.activities.SetupActivity;
-import gov.va.ptsd.ptsdcoach.content.Content;
-import gov.va.ptsd.ptsdcoach.content.ContentActivity;
-import gov.va.ptsd.ptsdcoach.controllers.ContentViewControllerBase;
-
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-import com.flurry.android.FlurryAgent;
-
-import android.app.Activity;
-import android.app.TabActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.database.SQLException;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TabHost;
-import android.widget.TabWidget;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ImageView.ScaleType;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.OnInitListener;
-import android.widget.Toast;
+import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
 
 public class PTSDCoach extends TabActivity implements OnInitListener{
 
@@ -47,9 +38,12 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 	public boolean fromBackground;
 	private static final int TTS_CHECK_CODE = 4;
 	private TextToSpeech tts;
-	private int MY_DATA_CHECK_CODE = 0;
-	private String lastActiveTab = "home";
+	private final int MY_DATA_CHECK_CODE = 0;
+	private final String lastActiveTab = "home";
+	private long sessionStartTime;
 	
+	gov.va.ptsd.ptsdcoach.Util dummy = new gov.va.ptsd.ptsdcoach.Util();
+
 	@Override
 	public void onInit(int status) {		
 		if (status == TextToSpeech.SUCCESS) {
@@ -68,7 +62,8 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 	    return true;
 	}
 
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == MY_DATA_CHECK_CODE) {
 			if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
 				// success, create the TTS instance
@@ -241,10 +236,53 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 	}
 	
 	@Override
+	protected void onResume() {
+		sessionStartTime = System.currentTimeMillis();
+		
+		String lastSessionTSStr = UserDBHelper.instance(this).getSetting("lastSessionEndTime");
+		if (lastSessionTSStr != null) {
+			long lastSessionTS = Long.parseLong(lastSessionTSStr);
+			TimeElapsedBetweenSessionsEvent e = new TimeElapsedBetweenSessionsEvent();
+			e.timeElapsedBetweenSessions = System.currentTimeMillis() - lastSessionTS;
+			EventLog.log(e);
+		}
+		
+		AppLaunchedEvent e = new AppLaunchedEvent();
+		e.accessibilityFeaturesActiveOnLaunch = TtsContentProvider.shouldSpeak(this) ? 1 : 0;
+		EventLog.log(e);
+	
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		
+        String uptimeStr = UserDBHelper.instance(this).getSetting("totalUptime");
+        long uptime = (uptimeStr == null) ? 0 : Long.parseLong(uptimeStr);
+        uptime += System.currentTimeMillis() - sessionStartTime;
+        
+        {
+        	TotalTimeOnAppEvent e = new TotalTimeOnAppEvent();
+        	e.totalTimeOnApp = uptime;
+        	EventLog.log(e);
+        }
+        UserDBHelper.instance(this).setSetting("totalUptime",""+uptime);
+
+        UserDBHelper.instance(this).setSetting("lastSessionEndTime", ""+System.currentTimeMillis());
+
+        {
+        	AppExitedEvent e = new AppExitedEvent();
+        	e.appExitedAccessibilityFeaturesActive = TtsContentProvider.shouldSpeak(this) ? 1 : 0;
+        	EventLog.log(e);
+        }
+	}
+	
+	@Override
 	protected void onStart() {
 		super.onStart();
 		FlurryAgent.onStartSession(this, "15TJQ1LZBD8MNZTRNF3K");
-	
+		
 //		if(tts==null)
 	//		checkForTTS();
 
@@ -255,22 +293,5 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 		FlurryAgent.onEndSession(this);
 
 		super.onStop();
-	}
-	
-	@Override
-	protected void onPause()
-	{
-		fromBackground=true;
-
-		super.onPause();
-	}
-	
-
-	@Override
-	protected void onResume()
-	{
-		fromBackground=false;
-		
-		super.onResume();
 	}
 }

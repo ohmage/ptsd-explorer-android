@@ -27,6 +27,7 @@ import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.activities.NavigationController;
 import gov.va.ptsd.ptsdcoach.activities.SetupActivity;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 
 public class ButtonGridController extends ContentViewControllerBase {
 
@@ -41,7 +42,7 @@ public class ButtonGridController extends ContentViewControllerBase {
 		super(ctx);
 	}
 	
-	class PictureButton extends Button {
+	class PictureButton extends LoggingButton {
 		public PictureButton(Context ctx) {
 			super(ctx);
 		}
@@ -194,7 +195,7 @@ public class ButtonGridController extends ContentViewControllerBase {
 		if (getContent() != null) {
 			Content c = getContent();
 			if ("home".equals(c.getName())) {
-				Button setupButton = new Button(getContext());
+				LoggingButton setupButton = new LoggingButton(getContext());
 				setupButton.setText("Setup");
 				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 50);
 				params.weight = 0;
@@ -205,7 +206,7 @@ public class ButtonGridController extends ContentViewControllerBase {
 				});
 				linear.addView(setupButton, params);
 			} else if ("manage".equals(c.getName())) {
-				Button favoritesButton = new Button(getContext());
+				LoggingButton favoritesButton = new LoggingButton(getContext());
 				favoritesButton.setText("Favorites");
 				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 50);
 				params.weight = 0;

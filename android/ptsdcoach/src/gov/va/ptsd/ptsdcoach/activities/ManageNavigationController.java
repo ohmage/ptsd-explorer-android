@@ -3,6 +3,10 @@ package gov.va.ptsd.ptsdcoach.activities;
 import java.util.TreeMap;
 
 import com.flurry.android.FlurryAgent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PostExerciseSudsEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PreExerciseSudsEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.ToolAbortedEvent;
+import com.openmhealth.ohmage.core.EventLog;
 
 import gov.va.ptsd.ptsdcoach.ContentDBHelper;
 import gov.va.ptsd.ptsdcoach.PTSDCoach;
@@ -49,6 +53,7 @@ public class ManageNavigationController extends NavigationController {
 	public static final int BUTTON_SKIP_SUDS = 100;
 	public static final int BUTTON_OK_SUDS = 101;
 	public static final int BUTTON_NEW_TOOL = 102;
+	public static final int BUTTON_RETRY_WITH_NEW_TOOL = 110;
 	public static final int BUTTON_DONE_EXERCISE = 103;
 	public static final int BUTTON_NEXT = 104;
 	public static final int BUTTON_DONE_RESUDS = 105;
@@ -81,7 +86,7 @@ public class ManageNavigationController extends NavigationController {
 		Content c = db.getContentForName("sudsreprompt");
 		ContentViewController cv = (ContentViewController)c.createContentView(this);
 		if (sudsScore == null) {
-			cv.addButton("Try Another Tool",BUTTON_NEW_TOOL);
+			cv.addButton("Try Another Tool",BUTTON_RETRY_WITH_NEW_TOOL);
 			cv.addButton("Done",BUTTON_DONE_ALL);
 		} else {
 			cv.addButton("Next",BUTTON_DONE_RESUDS);
@@ -101,7 +106,10 @@ public class ManageNavigationController extends NavigationController {
 		TreeMap<String,String> map = new TreeMap<String, String>();
 		map.put("suds",""+sudsScore);
 		FlurryAgent.logEvent("SUDS_READING",map);
-
+		
+		PreExerciseSudsEvent e = new PreExerciseSudsEvent();
+		e.preExerciseSudsScore = sudsScore;
+		EventLog.log(e);
 	}
 
 	public void recordReSUDS() {
@@ -112,7 +120,12 @@ public class ManageNavigationController extends NavigationController {
 		map.put("suds",""+sudsScore);
 		map.put("resuds",""+resudsScore);
 		FlurryAgent.logEvent("RESUDS_READING",map);
-}
+
+		PostExerciseSudsEvent e = new PostExerciseSudsEvent();
+		e.initialSudsScore = sudsScore;
+		e.postExerciseSudsScore = resudsScore;
+		EventLog.log(e);
+	}
 
 	public void compareSUDS() {
 		if ((sudsScore != null) && (resudsScore != null)) {
@@ -125,7 +138,7 @@ public class ManageNavigationController extends NavigationController {
 			}
 			Content c = db.getContentForName(contentName);
 			ContentViewController cv = (ContentViewController)c.createContentView(this);
-			cv.addButton("Try Another Tool",BUTTON_NEW_TOOL);
+			cv.addButton("Try Another Tool",BUTTON_RETRY_WITH_NEW_TOOL);
 			cv.addButton("Done",BUTTON_DONE_ALL);
 			pushView(cv,1);
 		} else {
@@ -171,6 +184,12 @@ public class ManageNavigationController extends NavigationController {
 			}
 			distressLevelDone();
 		} else if (id == BUTTON_NEW_TOOL) {
+			ToolAbortedEvent e = new ToolAbortedEvent();
+			e.toolId = getCurrentContent().uniqueID;
+			e.toolName = getCurrentContent().name;
+			EventLog.log(e);
+			selectExerciseController(true);
+		} else if (id == BUTTON_RETRY_WITH_NEW_TOOL) {
 			selectExerciseController(true);
 		} else if (id == BUTTON_DONE_EXERCISE) {
 			exerciseDone();

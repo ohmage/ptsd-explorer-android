@@ -5,6 +5,7 @@ import gov.va.ptsd.ptsdcoach.UserDBHelper;
 import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.audio.Audio;
 import gov.va.ptsd.ptsdcoach.audio.AudioUtil;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class SoothingAudioController extends SimpleExerciseController {
 	
 	Spinner audioList;
 	
-	Button play;
+	LoggingButton play;
 	private AudioStringAdapter adapter = null;
 	UserDBHelper userDb ;
 	Context con;
@@ -159,7 +160,7 @@ public class SoothingAudioController extends SimpleExerciseController {
 			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			clientView.addView(audioList);
 			audioList.setAdapter(adapter);
-			play= new Button(con);
+			play= new LoggingButton(con);
 			play.setText("Play");
 			clientView.addView(play);
 

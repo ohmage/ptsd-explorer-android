@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclQuestionAnsweredEvent;
+import com.openmhealth.ohmage.core.EventLog;
+
 import android.content.Context;
 import android.os.IBinder;
 import android.view.View;
@@ -33,6 +36,12 @@ abstract public class AbstractQuestionnairePlayer {
 	}
 	
 	public void recordAnswer(String id, Object answer) {
+		if (id.startsWith("pcl")) {
+			int questionNum = Integer.parseInt(id.substring(3));
+	        PclQuestionAnsweredEvent e = new PclQuestionAnsweredEvent();
+	        e.pclNumberOfQuestionsAnswered = questionNum;
+	        EventLog.log(e);
+		}
 		answersByID.put(id, answer);
 	}
 

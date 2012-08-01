@@ -20,6 +20,10 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.ContentScreenViewedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimePerScreenEvent;
+import com.openmhealth.ohmage.core.EventLog;
+
 import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -85,6 +89,8 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 	CaptionView captionView;
 	WebView lastWebView;
 	boolean blocked = false;
+	long timeAppeared;
+	public int viewTypeID=2;
 	
 	class JSInterface {
 		public void listen() {
@@ -403,6 +409,28 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 	@Override
 	protected void onDetachedFromWindow() {
 		stopAudio();
+		
+		long timeGone = System.currentTimeMillis();
+
+		{
+			ContentScreenViewedEvent e = new ContentScreenViewedEvent();
+			e.contentScreenId = content.uniqueID;
+			e.contentScreenName = content.getName();
+			e.contentScreenDisplayName = content.getDisplayName();
+			e.contentScreenTimestampStart = timeAppeared;
+			e.contentScreenTimestampDismissal = timeGone;
+			e.contentScreenType = viewTypeID;
+			EventLog.log(e);
+		}
+		
+		{
+			TimePerScreenEvent e = new TimePerScreenEvent();
+			e.screenId = content.uniqueID;
+			e.screenStartTime = timeAppeared;
+			e.timeSpentOnScreen = timeGone - timeAppeared;
+			EventLog.log(e);
+		}
+		
 		super.onDetachedFromWindow();
 	}
 
@@ -678,6 +706,7 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
+		timeAppeared = System.currentTimeMillis();
 		unblockInput();
 	}
 	
