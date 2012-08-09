@@ -1,69 +1,52 @@
 package gov.va.ptsd.ptsdcoach.controllers;
 
-import gov.va.ptsd.ptsdcoach.UserDBHelper;
-import gov.va.ptsd.ptsdcoach.Util;
-import gov.va.ptsd.ptsdcoach.activities.NavigationController;
-import gov.va.ptsd.ptsdcoach.audio.Audio;
-import gov.va.ptsd.ptsdcoach.audio.AudioUtil;
-import gov.va.ptsd.ptsdcoach.content.Caption;
-import gov.va.ptsd.ptsdcoach.content.Content;
-import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
-
-import java.io.FileDescriptor;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLDecoder;
-import java.text.BreakIterator;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.Picture;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.LinearInterpolator;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.ContentScreenViewedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimePerScreenEvent;
 import com.openmhealth.ohmage.core.EventLog;
 
-import android.speech.tts.TextToSpeech;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.graphics.Paint.Style;
-import android.graphics.Picture;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Handler;
-import android.os.Message;
-import android.os.SystemClock;
-import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.accessibility.AccessibilityManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.LinearInterpolator;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JsResult;
-import android.webkit.MimeTypeMap;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.FrameLayout.LayoutParams;
+import gov.va.ptsd.ptsdcoach.UserDBHelper;
+import gov.va.ptsd.ptsdcoach.Util;
+import gov.va.ptsd.ptsdcoach.activities.NavigationController;
+import gov.va.ptsd.ptsdcoach.content.Caption;
+import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
+
+import java.net.URLDecoder;
+import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 abstract public class ContentViewControllerBase extends FrameLayout implements OnGestureListener {
@@ -259,7 +242,8 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 		return titleView;
 	}
 
-	public Drawable getBackground() {
+	@Override
+    public Drawable getBackground() {
 		return Util.makeDrawable(getContext(), "table_bg_darker.png", true);
 	}
 
@@ -413,24 +397,27 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 		long timeGone = System.currentTimeMillis();
 
 		{
-			ContentScreenViewedEvent e = new ContentScreenViewedEvent();
-			e.contentScreenId = content.uniqueID;
-			e.contentScreenName = content.getName();
-			e.contentScreenDisplayName = content.getDisplayName();
-			e.contentScreenTimestampStart = timeAppeared;
-			e.contentScreenTimestampDismissal = timeGone;
-			e.contentScreenType = viewTypeID;
-			EventLog.log(e);
+		    ContentScreenViewedEvent e = new ContentScreenViewedEvent();
+		    if(content != null) {
+		        e.contentScreenId = content.uniqueID;
+		        e.contentScreenName = content.getName();
+		        e.contentScreenDisplayName = content.getDisplayName();
+		    }
+		    e.contentScreenTimestampStart = timeAppeared;
+		    e.contentScreenTimestampDismissal = timeGone;
+		    e.contentScreenType = viewTypeID;
+		    EventLog.log(e);
 		}
-		
+
 		{
-			TimePerScreenEvent e = new TimePerScreenEvent();
-			e.screenId = content.uniqueID;
-			e.screenStartTime = timeAppeared;
-			e.timeSpentOnScreen = timeGone - timeAppeared;
-			EventLog.log(e);
+		    TimePerScreenEvent e = new TimePerScreenEvent();
+		    if(content != null)
+		        e.screenId = content.uniqueID;
+		    e.screenStartTime = timeAppeared;
+		    e.timeSpentOnScreen = timeGone - timeAppeared;
+		    EventLog.log(e);
 		}
-		
+
 		super.onDetachedFromWindow();
 	}
 
@@ -543,7 +530,8 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 		String html = String.format(webviewFormat, htmlBody);
 
 		final WebView wv = new WebView(getContext()) {
-			public boolean dispatchPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent event) {
+			@Override
+            public boolean dispatchPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent event) {
 //				event.setContentDescription("some other text");
 				return false;
 			}
