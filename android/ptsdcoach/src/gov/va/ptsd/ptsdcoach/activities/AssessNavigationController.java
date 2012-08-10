@@ -1,62 +1,40 @@
 package gov.va.ptsd.ptsdcoach.activities;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 
-import com.androidplot.ui.layout.AnchorPosition;
-import com.androidplot.ui.layout.XLayoutStyle;
-import com.androidplot.ui.layout.YLayoutStyle;
-import com.androidplot.ui.widget.Widget;
-import com.androidplot.xy.LineAndPointFormatter;
-import com.androidplot.xy.LineAndPointRenderer;
-import com.androidplot.xy.XYPlot;
 import com.flurry.android.FlurryAgent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentAbortedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentCompletedEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentStartedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclReminderScheduledEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimeElapsedBetweenPCLAssessmentsEvent;
 import com.openmhealth.ohmage.core.EventLog;
 
 import gov.va.ptsd.ptsdcoach.PTSDCoach;
-import gov.va.ptsd.ptsdcoach.R;
-import gov.va.ptsd.ptsdcoach.UserDBHelper;
-import gov.va.ptsd.ptsdcoach.Util;
 import gov.va.ptsd.ptsdcoach.content.Content;
-import gov.va.ptsd.ptsdcoach.content.ContentActivity;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
-import gov.va.ptsd.ptsdcoach.content.PCLSeries;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
-import gov.va.ptsd.ptsdcoach.controllers.ContentViewControllerBase;
 import gov.va.ptsd.ptsdcoach.controllers.PCLHistoryController;
 import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
 import gov.va.ptsd.ptsdcoach.questionnaire.QuestionnaireHandler;
-import gov.va.ptsd.ptsdcoach.questionnaire.Settings;
 import gov.va.ptsd.ptsdcoach.questionnaire.SurveyUtil;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnaireManager;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnairePlayer;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnairePlayer.QuestionnaireListener;
-import android.app.ActivityGroup;
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.Menu;
+
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class AssessNavigationController extends NavigationController implements QuestionnaireListener {
 
@@ -237,7 +215,8 @@ public class AssessNavigationController extends NavigationController implements 
 			QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), handler);
 			Questionnaire q = handler.getQuestionaire();
 			player = new QuestionnairePlayer(this, q) {
-				public String getGlobalVariable(String key) {
+				@Override
+                public String getGlobalVariable(String key) {
 					String val = getVariable(key);
 					if (val != null) return val;
 					return super.getGlobalVariable(key);
@@ -422,6 +401,8 @@ public class AssessNavigationController extends NavigationController implements 
 			e.timeElapsedBetweenPCLAssessments = now.getTime() - lastScoreObj.time;
 			EventLog.log(e);
 		}
+
+        EventLog.log(new PclAssessmentEvent(player));
 
 		player = null;
 		
