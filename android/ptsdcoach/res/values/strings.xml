@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, PTSDCoach!</string>
-    <string name="app_name">PTSD Coach</string>
+    <string name="app_name">PTSD Explorer</string>
     <string name="menu_plus">Add New</string>
     <string name="menu_minus">-</string>
     <string name="my_music">My Music</string>
