@@ -1,6 +1,13 @@
 package gov.va.ptsd.ptsdcoach.activities;
 
-import java.util.TreeMap;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.flurry.android.FlurryAgent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PostExerciseSudsEvent;
@@ -12,24 +19,11 @@ import gov.va.ptsd.ptsdcoach.ContentDBHelper;
 import gov.va.ptsd.ptsdcoach.PTSDCoach;
 import gov.va.ptsd.ptsdcoach.Util;
 import gov.va.ptsd.ptsdcoach.content.Content;
-import gov.va.ptsd.ptsdcoach.content.ContentActivity;
-import gov.va.ptsd.ptsdcoach.controllers.CategoryIntroController;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewControllerBase;
 import gov.va.ptsd.ptsdcoach.controllers.SUDSController;
-import android.app.ActivityGroup;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.Window;
-import android.util.Log;
+
+import java.util.TreeMap;
 
 public class ManageNavigationController extends NavigationController {
 
@@ -122,8 +116,8 @@ public class ManageNavigationController extends NavigationController {
 		FlurryAgent.logEvent("RESUDS_READING",map);
 
 		PostExerciseSudsEvent e = new PostExerciseSudsEvent();
-		e.initialSudsScore = sudsScore;
-		e.postExerciseSudsScore = resudsScore;
+		e.initialSudsScore = sudsScore != null ? sudsScore : -1;
+		e.postExerciseSudsScore = resudsScore != null ? resudsScore : -1;
 		EventLog.log(e);
 	}
 
