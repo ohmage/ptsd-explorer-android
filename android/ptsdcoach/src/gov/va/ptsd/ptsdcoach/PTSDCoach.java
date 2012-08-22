@@ -249,7 +249,7 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 		
 		AppLaunchedEvent e = new AppLaunchedEvent();
 		e.accessibilityFeaturesActiveOnLaunch = TtsContentProvider.shouldSpeak(this);
-		EventLog.logProbe(e);
+		EventLog.log(e);
 	
 		super.onResume();
 	}

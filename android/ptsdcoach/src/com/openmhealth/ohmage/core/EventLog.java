@@ -33,7 +33,7 @@ public class EventLog {
         }
     }
 
-    static public void logProbe(ProbeRecord event) {
+    static public void log(ProbeRecord event) {
         try {
             event.buildProbe(OBSERVER_ID, OBSERVER_VERSION).write(PTSDApplication.getProbeWriter());
         } catch (RemoteException e) {
