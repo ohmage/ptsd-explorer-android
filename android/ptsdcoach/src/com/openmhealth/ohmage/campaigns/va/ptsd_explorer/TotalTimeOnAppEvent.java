@@ -1,43 +1,36 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class TotalTimeOnAppEvent extends EventRecord {
-	public long totalTimeOnApp;
-	
-	public TotalTimeOnAppEvent() {
-		super(16);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "totalTimeOnAppProbe";
-	}
+public class TotalTimeOnAppEvent extends ProbeRecord {
+    public long totalTimeOnApp;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("totalTimeOnApp",totalTimeOnApp);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","totalTimeOnApp");
-			obj.put("value",totalTimeOnApp==-1 ? "NOT_DISPLAYED" : totalTimeOnApp);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "totalTimeOnApp";
+    }
 
-	}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
+
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("time", totalTimeOnApp);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

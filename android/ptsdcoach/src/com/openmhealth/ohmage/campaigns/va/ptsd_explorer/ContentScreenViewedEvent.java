@@ -1,105 +1,47 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class ContentScreenViewedEvent extends EventRecord {
-	public long contentScreenTimestampStart;
-	public long contentScreenTimestampDismissal;
-	public String contentScreenName;
-	public String contentScreenDisplayName;
-	public int contentScreenType;
-	public String contentScreenId;
-	
-	public ContentScreenViewedEvent() {
-		super(7);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "contentScreenViewedProbe";
-	}
+public class ContentScreenViewedEvent extends ProbeRecord {
+    public long timestampStart;
+    public long timestampDismissal;
+    public String name;
+    public String displayName;
+    public int type;
+    public String id;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("contentScreenTimestampStart",contentScreenTimestampStart);
-		into.put("contentScreenTimestampDismissal",contentScreenTimestampDismissal);
-		into.put("contentScreenName",contentScreenName);
-		into.put("contentScreenDisplayName",contentScreenDisplayName);
-		into.put("contentScreenType",contentScreenType);
-		into.put("contentScreenId",contentScreenId);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenTimestampStart");
-			cal.setTimeInMillis(contentScreenTimestampStart);
-			obj.put("value", timestampFormat.format(cal.getTime()));
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "contentScreenViewed";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenTimestampDismissal");
-			cal.setTimeInMillis(contentScreenTimestampDismissal);
-			obj.put("value", timestampFormat.format(cal.getTime()));
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 2;
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenName");
-			obj.put("value",(contentScreenName!=null) ? contentScreenName : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("start", timestampStart);
+            data.put("dismissal", timestampDismissal);
+            data.put("name", name);
+            data.put("display_name", displayName);
+            data.put("type", type);
+            data.put("id", id);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenDisplayName");
-			obj.put("value",(contentScreenDisplayName!=null) ? contentScreenDisplayName : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenType");
-			obj.put("value",contentScreenType==-1 ? "NOT_DISPLAYED" : contentScreenType);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentScreenId");
-			obj.put("value",(contentScreenId!=null) ? contentScreenId : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 }

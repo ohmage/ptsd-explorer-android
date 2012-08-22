@@ -1,55 +1,38 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class ButtonPressedEvent extends EventRecord {
-	public String buttonPressedButtonId;
-	public String buttonPressedButtonTitle;
-	
-	public ButtonPressedEvent() {
-		super(6);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "buttonPressedProbe";
-	}
+public class ButtonPressedEvent extends ProbeRecord {
+    public int buttonId;
+    public String buttonTitle;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("buttonPressedButtonId",buttonPressedButtonId);
-		into.put("buttonPressedButtonTitle",buttonPressedButtonTitle);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","buttonPressedButtonId");
-			obj.put("value",(buttonPressedButtonId!=null) ? buttonPressedButtonId : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "buttonPressed";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","buttonPressedButtonTitle");
-			obj.put("value",(buttonPressedButtonTitle!=null) ? buttonPressedButtonTitle : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
 
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("id", buttonId);
+            data.put("title", buttonTitle);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

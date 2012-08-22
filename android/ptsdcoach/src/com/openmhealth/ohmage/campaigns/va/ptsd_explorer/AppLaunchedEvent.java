@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.ohmage.probemanager.ProbeBuilder;
 
 public class AppLaunchedEvent extends ProbeRecord {
-    public boolean accessibilityFeaturesActiveOnLaunch;
+    public boolean accessibilityFeaturesActive;
 
     @Override
     protected String getStreamId() {
@@ -25,7 +25,7 @@ public class AppLaunchedEvent extends ProbeRecord {
         ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
         try {
             JSONObject data = new JSONObject();
-            data.put("accessibilityFeaturesActiveOnLaunch", accessibilityFeaturesActiveOnLaunch);
+            data.put("accessibilityFeaturesActive", accessibilityFeaturesActive);
             probe.setData(data.toString());
         } catch (JSONException e) {
             // TODO Auto-generated catch block

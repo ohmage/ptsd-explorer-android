@@ -14,9 +14,9 @@ public class LoggingImageButton extends ImageButton {
 	@Override
 	public boolean performClick() {
 		ButtonPressedEvent e = new ButtonPressedEvent();
-		e.buttonPressedButtonId = ""+this.getId();
+		e.buttonId = getId();
 		CharSequence seq = getContentDescription();
-		e.buttonPressedButtonTitle = (seq==null) ? null : ""+seq;
+		e.buttonTitle = (seq==null) ? null : seq.toString();
 		EventLog.log(e);
 		
 		return super.performClick();

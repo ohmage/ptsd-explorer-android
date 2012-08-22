@@ -1,43 +1,36 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class PclQuestionAnsweredEvent extends EventRecord {
-	public long pclNumberOfQuestionsAnswered;
-	
-	public PclQuestionAnsweredEvent() {
-		super(5);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "pclQuestionAnsweredProbe";
-	}
+public class PclQuestionAnsweredEvent extends ProbeRecord {
+    public long pclNumberOfQuestionsAnswered;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("pclNumberOfQuestionsAnswered",pclNumberOfQuestionsAnswered);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","pclNumberOfQuestionsAnswered");
-			obj.put("value",pclNumberOfQuestionsAnswered==-1 ? "NOT_DISPLAYED" : pclNumberOfQuestionsAnswered);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "pclQuestionAnswered";
+    }
 
-	}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
+
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("answered_count", pclNumberOfQuestionsAnswered);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

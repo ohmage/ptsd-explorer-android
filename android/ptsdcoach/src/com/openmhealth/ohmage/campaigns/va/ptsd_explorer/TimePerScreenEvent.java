@@ -1,68 +1,40 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class TimePerScreenEvent extends EventRecord {
-	public String screenId;
-	public long screenStartTime;
-	public long timeSpentOnScreen;
-	
-	public TimePerScreenEvent() {
-		super(17);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "timePerScreenProbe";
-	}
+public class TimePerScreenEvent extends ProbeRecord {
+    public String id;
+    public long start;
+    public long time;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("screenId",screenId);
-		into.put("screenStartTime",screenStartTime);
-		into.put("timeSpentOnScreen",timeSpentOnScreen);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","screenId");
-			obj.put("value",(screenId!=null) ? screenId : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "timePerScreen";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","screenStartTime");
-			cal.setTimeInMillis(screenStartTime);
-			obj.put("value", timestampFormat.format(cal.getTime()));
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 2;
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","timeSpentOnScreen");
-			obj.put("value",timeSpentOnScreen==-1 ? "NOT_DISPLAYED" : timeSpentOnScreen);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("id", id);
+            data.put("start", start);
+            data.put("time", time);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

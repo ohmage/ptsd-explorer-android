@@ -14,10 +14,10 @@ public class LoggingButton extends Button {
 	@Override
 	public boolean performClick() {
 		ButtonPressedEvent e = new ButtonPressedEvent();
-		e.buttonPressedButtonId = ""+this.getId();
+		e.buttonId = getId();
 		CharSequence seq = getText();
 		if (seq == null) seq = getContentDescription();
-		e.buttonPressedButtonTitle = (seq==null) ? null : ""+seq;
+		e.buttonTitle = (seq==null) ? null : seq.toString();
 		EventLog.log(e);
 		
 		return super.performClick();

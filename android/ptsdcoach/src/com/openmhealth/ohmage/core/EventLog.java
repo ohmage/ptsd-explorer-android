@@ -15,7 +15,7 @@ public class EventLog {
     public static String CAMPAIGN_CREATION = "2011-12-18 15:21:04";
 
     private static final String OBSERVER_ID = "com.openmhealth.ohmage.va.ptsd_explorer";
-    private static final int OBSERVER_VERSION = 20120820;
+    private static final int OBSERVER_VERSION = 2012082401;
 
     static public void log(EventRecord event) {
         try {

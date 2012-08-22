@@ -358,9 +358,9 @@ public class NavigationController extends Activity {
 
 	public void contentSelected(Content c) {
 		ContentObjectSelectedEvent e = new ContentObjectSelectedEvent();
-		e.contentObjectId = c.uniqueID;
-		e.contentObjectName = c.getName();
-		e.contentObjectDisplayName = c.getDisplayName();
+		e.id = c.uniqueID;
+		e.name = c.getName();
+		e.displayName = c.getDisplayName();
 		EventLog.log(e);
 		
 		pushViewForContent(c);

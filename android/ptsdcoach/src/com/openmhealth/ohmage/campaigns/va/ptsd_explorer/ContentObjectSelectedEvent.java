@@ -1,67 +1,40 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class ContentObjectSelectedEvent extends EventRecord {
-	public String contentObjectName;
-	public String contentObjectDisplayName;
-	public String contentObjectId;
-	
-	public ContentObjectSelectedEvent() {
-		super(8);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "contentObjectSelectedProbe";
-	}
+public class ContentObjectSelectedEvent extends ProbeRecord {
+    public String name;
+    public String displayName;
+    public String id;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("contentObjectName",contentObjectName);
-		into.put("contentObjectDisplayName",contentObjectDisplayName);
-		into.put("contentObjectId",contentObjectId);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentObjectName");
-			obj.put("value",(contentObjectName!=null) ? contentObjectName : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "contentObjectSelected";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentObjectDisplayName");
-			obj.put("value",(contentObjectDisplayName!=null) ? contentObjectDisplayName : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 2;
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","contentObjectId");
-			obj.put("value",(contentObjectId!=null) ? contentObjectId : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("name", name);
+            data.put("display_name", displayName);
+            data.put("id", id);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

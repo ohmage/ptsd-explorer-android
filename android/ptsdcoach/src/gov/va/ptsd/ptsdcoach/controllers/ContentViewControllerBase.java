@@ -399,22 +399,22 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 		{
 		    ContentScreenViewedEvent e = new ContentScreenViewedEvent();
 		    if(content != null) {
-		        e.contentScreenId = content.uniqueID;
-		        e.contentScreenName = content.getName();
-		        e.contentScreenDisplayName = content.getDisplayName();
+		        e.id = content.uniqueID;
+		        e.name = content.getName();
+		        e.displayName = content.getDisplayName();
 		    }
-		    e.contentScreenTimestampStart = timeAppeared;
-		    e.contentScreenTimestampDismissal = timeGone;
-		    e.contentScreenType = viewTypeID;
+		    e.timestampStart = timeAppeared;
+		    e.timestampDismissal = timeGone;
+		    e.type = viewTypeID;
 		    EventLog.log(e);
 		}
 
 		{
 		    TimePerScreenEvent e = new TimePerScreenEvent();
 		    if(content != null)
-		        e.screenId = content.uniqueID;
-		    e.screenStartTime = timeAppeared;
-		    e.timeSpentOnScreen = timeGone - timeAppeared;
+		        e.id = content.uniqueID;
+		    e.start = timeAppeared;
+		    e.time = timeGone - timeAppeared;
 		    EventLog.log(e);
 		}
 

@@ -179,8 +179,8 @@ public class ManageNavigationController extends NavigationController {
 			distressLevelDone();
 		} else if (id == BUTTON_NEW_TOOL) {
 			ToolAbortedEvent e = new ToolAbortedEvent();
-			e.toolId = getCurrentContent().uniqueID;
-			e.toolName = getCurrentContent().name;
+			e.id = getCurrentContent().uniqueID;
+			e.name = getCurrentContent().name;
 			EventLog.log(e);
 			selectExerciseController(true);
 		} else if (id == BUTTON_RETRY_WITH_NEW_TOOL) {

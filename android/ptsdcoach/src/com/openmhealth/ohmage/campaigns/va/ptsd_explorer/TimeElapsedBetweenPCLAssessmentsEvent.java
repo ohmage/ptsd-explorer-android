@@ -1,43 +1,36 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class TimeElapsedBetweenPCLAssessmentsEvent extends EventRecord {
-	public long timeElapsedBetweenPCLAssessments;
-	
-	public TimeElapsedBetweenPCLAssessmentsEvent() {
-		super(19);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "timeElapsedBetweenPCLAssessmentsProbe";
-	}
+public class TimeElapsedBetweenPCLAssessmentsEvent extends ProbeRecord {
+    public long elapsedTime;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("timeElapsedBetweenPCLAssessments",timeElapsedBetweenPCLAssessments);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","timeElapsedBetweenPCLAssessments");
-			obj.put("value",timeElapsedBetweenPCLAssessments==-1 ? "NOT_DISPLAYED" : timeElapsedBetweenPCLAssessments);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "timeElapsedBetweenPCLAssessments";
+    }
 
-	}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
+
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("elapsed_time", elapsedTime);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

@@ -1,55 +1,38 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class PostExerciseSudsEvent extends EventRecord {
-	public long initialSudsScore;
-	public long postExerciseSudsScore;
-	
-	public PostExerciseSudsEvent() {
-		super(10);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "postExerciseSudsProbe";
-	}
+public class PostExerciseSudsEvent extends ProbeRecord {
+    public long initialSudsScore;
+    public long postExerciseSudsScore;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("initialSudsScore",initialSudsScore);
-		into.put("postExerciseSudsScore",postExerciseSudsScore);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","initialSudsScore");
-			obj.put("value",initialSudsScore==-1 ? "NOT_DISPLAYED" : initialSudsScore);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "postExerciseSuds";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","postExerciseSudsScore");
-			obj.put("value",postExerciseSudsScore==-1 ? "NOT_DISPLAYED" : postExerciseSudsScore);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
 
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("initial_score", initialSudsScore);
+            data.put("post_score", postExerciseSudsScore);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

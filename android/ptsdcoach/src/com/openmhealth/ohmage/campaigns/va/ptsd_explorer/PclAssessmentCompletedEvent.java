@@ -1,55 +1,38 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class PclAssessmentCompletedEvent extends EventRecord {
-	public long pclAssessmentCompletedFinalScore;
-	public int pclAssessmentCompleted;
-	
-	public PclAssessmentCompletedEvent() {
-		super(15);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "pclAssessmentCompletedProbe";
-	}
+public class PclAssessmentCompletedEvent extends ProbeRecord {
+    public long finalScore;
+    public boolean completed;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("pclAssessmentCompletedFinalScore",pclAssessmentCompletedFinalScore);
-		into.put("pclAssessmentCompleted",pclAssessmentCompleted);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","pclAssessmentCompletedFinalScore");
-			obj.put("value",pclAssessmentCompletedFinalScore==-1 ? "NOT_DISPLAYED" : pclAssessmentCompletedFinalScore);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "pclAssessmentCompleted";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","pclAssessmentCompleted");
-			obj.put("value",pclAssessmentCompleted==-1 ? "NOT_DISPLAYED" : pclAssessmentCompleted);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
 
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("final_score", finalScore);
+            data.put("completed", completed);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

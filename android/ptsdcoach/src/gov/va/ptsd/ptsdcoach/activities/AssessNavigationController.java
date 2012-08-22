@@ -303,7 +303,7 @@ public class AssessNavigationController extends NavigationController implements 
 		am.set(AlarmManager.RTC_WAKEUP, when, reminderPendingIntent);
 		
 		PclReminderScheduledEvent e = new PclReminderScheduledEvent();
-		e.pclReminderScheduledTimestamp = when;
+		e.time = when;
 		EventLog.log(e);
 	}
 	
@@ -345,7 +345,7 @@ public class AssessNavigationController extends NavigationController implements 
 			am.cancel(reminderPendingIntent);
 
 			PclReminderScheduledEvent e = new PclReminderScheduledEvent();
-			e.pclReminderScheduledTimestamp = 0;
+			e.time = 0;
 			EventLog.log(e);
 		} else {
 			PCLScore lastScoreObj = getLastPCLScore();
@@ -391,14 +391,14 @@ public class AssessNavigationController extends NavigationController implements 
 		
 		{
 			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
-			e.pclAssessmentCompleted = 1;
-			e.pclAssessmentCompletedFinalScore = totalScore;
+			e.completed = true;
+			e.finalScore = totalScore;
 			EventLog.log(e);
 		}
 		
 		if (lastScoreObj != null) {
 			TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
-			e.timeElapsedBetweenPCLAssessments = now.getTime() - lastScoreObj.time;
+			e.elapsedTime = now.getTime() - lastScoreObj.time;
 			EventLog.log(e);
 		}
 
@@ -453,8 +453,8 @@ public class AssessNavigationController extends NavigationController implements 
 		
 		{
 			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
-			e.pclAssessmentCompleted = 0;
-			e.pclAssessmentCompletedFinalScore = -1;
+			e.completed = false;
+			e.finalScore = -1;
 			EventLog.log(e);
 		}
 	}

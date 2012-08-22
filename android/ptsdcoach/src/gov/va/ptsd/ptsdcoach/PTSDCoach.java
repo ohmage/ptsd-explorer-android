@@ -243,12 +243,12 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 		if (lastSessionTSStr != null) {
 			long lastSessionTS = Long.parseLong(lastSessionTSStr);
 			TimeElapsedBetweenSessionsEvent e = new TimeElapsedBetweenSessionsEvent();
-			e.timeElapsedBetweenSessions = System.currentTimeMillis() - lastSessionTS;
+			e.elapsedTime = System.currentTimeMillis() - lastSessionTS;
 			EventLog.log(e);
 		}
 		
 		AppLaunchedEvent e = new AppLaunchedEvent();
-		e.accessibilityFeaturesActiveOnLaunch = TtsContentProvider.shouldSpeak(this);
+		e.accessibilityFeaturesActive = TtsContentProvider.shouldSpeak(this);
 		EventLog.log(e);
 	
 		super.onResume();
@@ -273,7 +273,7 @@ public class PTSDCoach extends TabActivity implements OnInitListener{
 
         {
         	AppExitedEvent e = new AppExitedEvent();
-        	e.appExitedAccessibilityFeaturesActive = TtsContentProvider.shouldSpeak(this) ? 1 : 0;
+        	e.accessibilityFeaturesActive = TtsContentProvider.shouldSpeak(this);
         	EventLog.log(e);
         }
 	}

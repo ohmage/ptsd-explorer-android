@@ -1,43 +1,36 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class PreExerciseSudsEvent extends EventRecord {
-	public long preExerciseSudsScore;
-	
-	public PreExerciseSudsEvent() {
-		super(9);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "preExerciseSudsProbe";
-	}
+public class PreExerciseSudsEvent extends ProbeRecord {
+    public long preExerciseSudsScore;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("preExerciseSudsScore",preExerciseSudsScore);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","preExerciseSudsScore");
-			obj.put("value",preExerciseSudsScore==-1 ? "NOT_DISPLAYED" : preExerciseSudsScore);
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "preExerciseSuds";
+    }
 
-	}
+    @Override
+    protected int getStreamVersion() {
+        return 1;
+    }
+
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("pre_score", preExerciseSudsScore);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }

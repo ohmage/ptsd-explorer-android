@@ -1,55 +1,38 @@
 
 package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
-import com.openmhealth.ohmage.core.EventRecord;
+import com.openmhealth.ohmage.core.ProbeRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohmage.probemanager.ProbeBuilder;
 
-public class ToolAbortedEvent extends EventRecord {
-	public String toolId;
-	public String toolName;
-	
-	public ToolAbortedEvent() {
-		super(20);
-	}
-	
-	public String ohmageSurveyID() {
-	    return "toolAbortedProbe";
-	}
+public class ToolAbortedEvent extends ProbeRecord {
+    public String id;
+    public String name;
 
-	public void toMap(Map<String,Object> into) {
-		into.put("toolId",toolId);
-		into.put("toolName",toolName);
-	}
-	
-	public void addAttributesToOhmageJSON(JSONArray into) {
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","toolId");
-			obj.put("value",(toolId!=null) ? toolId : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected String getStreamId() {
+        return "toolAborted";
+    }
 
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("prompt_id","toolName");
-			obj.put("value",(toolName!=null) ? toolName : "NONE");
-			into.put(obj);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    protected int getStreamVersion() {
+        return 2;
+    }
 
-	}
+    @Override
+    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
+        ProbeBuilder probe = super.buildProbe(observerName, observerVersion);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("id", id);
+            data.put("name", name);
+            probe.setData(data.toString());
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return probe;
+    }
 }
