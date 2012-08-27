@@ -3,7 +3,6 @@ package com.openmhealth.ohmage.core;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ohmage.probemanager.ProbeBuilder;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,14 +11,12 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 abstract public class EventRecord {
-	private final int eventID;
 	private final long timestamp;
 	
 	static protected DateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 	static protected Calendar cal = Calendar.getInstance();
 	
-	public EventRecord(int id) {
-		eventID = id;
+	public EventRecord() {
 		timestamp = System.currentTimeMillis();
 	}
 	
@@ -51,18 +48,4 @@ abstract public class EventRecord {
 	    
 	    return obj;
 	}
-
-    public ProbeBuilder buildProbe(String observerName, int observerVersion) {
-        return new ProbeBuilder(observerName, observerVersion).setStream(getStreamId(), getStreamVersion()).withTime(timestamp, TimeZone.getDefault().getID()).withId(UUID.randomUUID().toString());
-    }
-
-    protected String getStreamId() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    protected int getStreamVersion() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 }

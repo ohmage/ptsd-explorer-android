@@ -16,12 +16,7 @@ public class PclAssessmentEvent extends EventRecord {
     private static final int PROMPT_COUNT = 17;
     private final Hashtable<String, Integer> pcl = new Hashtable<String, Integer>();
 
-    public PclAssessmentEvent() {
-        super(2);
-    }
-
     public PclAssessmentEvent(QuestionnairePlayer player) {
-        super(2);
         if (player == null || player.getAnswers() == null)
             return;
 

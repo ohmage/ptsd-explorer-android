@@ -3,15 +3,11 @@ package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
 import com.openmhealth.ohmage.core.EventRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class Phq9SurveyEvent extends EventRecord {
 	public int phq91;
@@ -23,12 +19,9 @@ public class Phq9SurveyEvent extends EventRecord {
 	public int phq97;
 	public int phq98;
 	public int phq99;
-	
-	public Phq9SurveyEvent() {
-		super(3);
-	}
-	
-	public String ohmageSurveyID() {
+
+	@Override
+    public String ohmageSurveyID() {
 	    return "phq9Survey";
 	}
 
@@ -44,7 +37,8 @@ public class Phq9SurveyEvent extends EventRecord {
 		into.put("phq99",phq99);
 	}
 	
-	public void addAttributesToOhmageJSON(JSONArray into) {
+	@Override
+    public void addAttributesToOhmageJSON(JSONArray into) {
 		try {
 			JSONObject obj = new JSONObject();
 			obj.put("prompt_id","phq91");

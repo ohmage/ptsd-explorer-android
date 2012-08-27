@@ -3,24 +3,17 @@ package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
 import com.openmhealth.ohmage.core.EventRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class PclAssessmentAbortedEvent extends EventRecord {
 	public long pclAssessmentAbortedTimestamp;
-	
-	public PclAssessmentAbortedEvent() {
-		super(14);
-	}
-	
-	public String ohmageSurveyID() {
+
+	@Override
+    public String ohmageSurveyID() {
 	    return "pclAssessmentAbortedProbe";
 	}
 
@@ -28,7 +21,8 @@ public class PclAssessmentAbortedEvent extends EventRecord {
 		into.put("pclAssessmentAbortedTimestamp",pclAssessmentAbortedTimestamp);
 	}
 	
-	public void addAttributesToOhmageJSON(JSONArray into) {
+	@Override
+    public void addAttributesToOhmageJSON(JSONArray into) {
 		try {
 			JSONObject obj = new JSONObject();
 			obj.put("prompt_id","pclAssessmentAbortedTimestamp");

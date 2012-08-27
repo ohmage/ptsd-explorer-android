@@ -3,15 +3,12 @@ package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
 import com.openmhealth.ohmage.core.EventRecord;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 public class DailyAssessmentEvent extends EventRecord {
 	public int overallMood;
@@ -29,12 +26,9 @@ public class DailyAssessmentEvent extends EventRecord {
 	public int drinkAlcohol;
 	public int howMuchAlcohol;
 	public int takeNonPrescribedDrug;
-	
-	public DailyAssessmentEvent() {
-		super(0);
-	}
-	
-	public String ohmageSurveyID() {
+
+	@Override
+    public String ohmageSurveyID() {
 	    return "dailyAssessment";
 	}
 
@@ -56,7 +50,8 @@ public class DailyAssessmentEvent extends EventRecord {
 		into.put("takeNonPrescribedDrug",takeNonPrescribedDrug);
 	}
 	
-	public void addAttributesToOhmageJSON(JSONArray into) {
+	@Override
+    public void addAttributesToOhmageJSON(JSONArray into) {
 		try {
 			JSONObject obj = new JSONObject();
 			obj.put("prompt_id","overallMood");
