@@ -1,18 +1,11 @@
 package gov.va.ptsd.ptsdcoach.questionnaire;
 
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Hashtable;
-
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclQuestionAnsweredEvent;
 import com.openmhealth.ohmage.core.EventLog;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Hashtable;
 
 abstract public class AbstractQuestionnairePlayer {
 
@@ -21,14 +14,17 @@ abstract public class AbstractQuestionnairePlayer {
 	public static final int BUTTON_SKIP = 3;
 	public static final int BUTTON_DONE = 4;
 	
-	Questionnaire questionnaire;
-	Hashtable answersByID = new Hashtable();
+	Questionnaire[] questionnaires;
+	Hashtable[] answersByID;
 	Hashtable userData = new Hashtable();
 	Node currentNode = null;
-	long triggerTime;	
+	long triggerTime;
+    private int currentQuestionnaire;
 
-	public AbstractQuestionnairePlayer(Questionnaire q) {
-		questionnaire = q;
+	public AbstractQuestionnairePlayer(Questionnaire... q) {
+		questionnaires = q;
+		currentQuestionnaire = 0;
+		answersByID = new Hashtable[q.length];
 	}
 	
 	public void setTriggerTime(long triggerTime) {
@@ -42,11 +38,11 @@ abstract public class AbstractQuestionnairePlayer {
 	        e.pclNumberOfQuestionsAnswered = questionNum;
 	        EventLog.log(e);
 		}
-		answersByID.put(id, answer);
+		getAnswers().put(id, answer);
 	}
 
 	public Object fetchAnswer(String id) {
-		return answersByID.get(id);
+		return getAnswers().get(id);
 	}
 
 	public void setUserData(Object key, Object data) {
@@ -58,7 +54,9 @@ abstract public class AbstractQuestionnairePlayer {
 	}
 	
 	public Hashtable getAnswers() {
-		return answersByID;
+	    if(answersByID[currentQuestionnaire] == null)
+	        answersByID[currentQuestionnaire] = new Hashtable();
+		return answersByID[currentQuestionnaire];
 	}
 	
 	public String getGlobalVariable(String key) {
@@ -83,15 +81,15 @@ abstract public class AbstractQuestionnairePlayer {
 	}
 	
 	public Questionnaire getQuestionnaire() {
-		return questionnaire;
+		return questionnaires[currentQuestionnaire];
 	}
 
 	public void play() {
-		playNode(questionnaire.getSubnodes()[0]);
+	    playNode(getQuestionnaire().getSubnodes()[0]);
 	}
 
 	public void playIntro() {
-		playNode(questionnaire.getIntro());
+		playNode(getQuestionnaire().getIntro());
 	}
 
 	public void playNode(Node n) {
@@ -104,7 +102,11 @@ abstract public class AbstractQuestionnairePlayer {
 	public void nextPressed() {
 		Node n = currentNode.next(this);
 		if (n == null) {
-			finish();
+            finish();
+		    if(currentQuestionnaire < questionnaires.length - 1) {
+		        currentQuestionnaire++;
+		        play();
+		    }
 		} else {
 			playNode(n);
 		}

@@ -1,31 +1,9 @@
 package gov.va.ptsd.ptsdcoach.questionnaire.android;
 
-import gov.va.ptsd.ptsdcoach.Util;
-import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
-import gov.va.ptsd.ptsdcoach.controllers.ContentViewControllerBase;
-import gov.va.ptsd.ptsdcoach.questionnaire.AbstractQuestionnairePlayer;
-import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
-import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
-import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
-import gov.va.ptsd.ptsdcoach.views.LoggingButton;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.BreakIterator;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.TreeMap;
-
-import com.flurry.android.FlurryAgent;
-
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.IBinder;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,15 +16,30 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
+
+import com.flurry.android.FlurryAgent;
+
+import gov.va.ptsd.ptsdcoach.Util;
+import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
+import gov.va.ptsd.ptsdcoach.questionnaire.AbstractQuestionnairePlayer;
+import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
+import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
+import gov.va.ptsd.ptsdcoach.views.LoggingButton;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.TreeMap;
 
 public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 
-		private Context context;
+		private final Context context;
 		ContentViewController topView = null;
 		LinearLayout screenView = null;
 		ScrollView scrollView = null;
@@ -68,7 +61,7 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 			public boolean checkEnablement();
 		}
 		
-		public QuestionnairePlayer(Context ctx, Questionnaire q) {
+		public QuestionnairePlayer(Context ctx, Questionnaire... q) {
 			super(q);
 			context = ctx;
 		}
@@ -180,7 +173,8 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 				});
 				
 				enablements.add(new IEnablement() {
-					public boolean checkEnablement() {
+					@Override
+                    public boolean checkEnablement() {
 						if (minChoices == 0) return true;
 						return choicesView.getCheckedRadioButtonId() != -1;
 					}
@@ -222,7 +216,8 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 					});
 				}			
 				enablements.add(new IEnablement() {
-					public boolean checkEnablement() {
+					@Override
+                    public boolean checkEnablement() {
 						int total = checkboxes.size();
 						int checked = 0;
 						for (CheckBox checkbox : checkboxes) {
@@ -269,7 +264,8 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 				}
 			});
 			enablements.add(new IEnablement() {
-				public boolean checkEnablement() {
+				@Override
+                public boolean checkEnablement() {
 					if (!mandatory) return true;
 					if ((edit.getText() == null) || "".equals(edit.getText())) return false;
 					return true;
@@ -317,7 +313,8 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 			button.setText(label);
 			button.setMinWidth(150);
 			button.setOnClickListener(new Button.OnClickListener() {
-				public void onClick(View v) {
+				@Override
+                public void onClick(View v) {
 					InputMethodManager imm = (InputMethodManager)QuestionnairePlayer.this.context.getSystemService(Context.INPUT_METHOD_SERVICE);
 					IBinder token = button.getWindowToken();
 					imm.hideSoftInputFromWindow(token, 0);

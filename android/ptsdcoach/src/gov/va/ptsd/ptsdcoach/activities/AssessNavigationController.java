@@ -15,6 +15,7 @@ import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentCompletedE
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentStartedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclReminderScheduledEvent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.Phq9SurveyEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimeElapsedBetweenPCLAssessmentsEvent;
 import com.openmhealth.ohmage.core.EventLog;
 
@@ -23,7 +24,6 @@ import gov.va.ptsd.ptsdcoach.content.Content;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
 import gov.va.ptsd.ptsdcoach.controllers.PCLHistoryController;
-import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
 import gov.va.ptsd.ptsdcoach.questionnaire.QuestionnaireHandler;
 import gov.va.ptsd.ptsdcoach.questionnaire.SurveyUtil;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnaireManager;
@@ -211,10 +211,13 @@ public class AssessNavigationController extends NavigationController implements 
 		EventLog.log(e);
 
 		try {
-			QuestionnaireHandler handler = new QuestionnaireHandler();
-			QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), handler);
-			Questionnaire q = handler.getQuestionaire();
-			player = new QuestionnairePlayer(this, q) {
+		    QuestionnaireHandler handler = new QuestionnaireHandler();
+		    QuestionnaireManager.parseQuestionaire(getAssets().open("phq9.xml"), handler);
+
+		    QuestionnaireHandler pclHandler = new QuestionnaireHandler();
+		    QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), pclHandler);
+
+			player = new QuestionnairePlayer(this, handler.getQuestionaire(), pclHandler.getQuestionaire()) {
 				@Override
                 public String getGlobalVariable(String key) {
 					String val = getVariable(key);
@@ -366,97 +369,107 @@ public class AssessNavigationController extends NavigationController implements 
 
 	@Override
 	public void onQuestionnaireCompleted(QuestionnairePlayer player) {
-		inQuestionnaire = false;
-		
-		Hashtable answers = player.getAnswers();
-		int totalScore = 0;
-		for (Object o : answers.entrySet()) {
-			Map.Entry entry = (Map.Entry)o;
-			String str = SurveyUtil.answerToString(entry.getValue());
-			int val = Integer.parseInt(str);
-			totalScore += val;
-		}
 
-		PCLScore lastScoreObj = userDb.getLastPCLScore();
-		int lastScore = (lastScoreObj != null) ? lastScoreObj.score : -1;
+        String questionnaireId = player.getQuestionnaire().getID();
 
-		Date now = new Date();
-		userDb.addPCLScore(now.getTime(), totalScore);
-		
-		TreeMap<String,String> map = new TreeMap<String, String>();
-		map.put("lastScore",""+lastScore);
-		map.put("score",""+totalScore);
-		map.put("completed","yes");
-		FlurryAgent.logEvent("ASSESSMENT",map);
-		
-		{
-			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
-			e.completed = true;
-			e.finalScore = totalScore;
-			EventLog.log(e);
-		}
-		
-		if (lastScoreObj != null) {
-			TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
-			e.elapsedTime = now.getTime() - lastScoreObj.time;
-			EventLog.log(e);
-		}
+	    if("pcl".equals(questionnaireId)) {
+	        inQuestionnaire = false;
 
-        EventLog.log(new PclAssessmentEvent(player));
+	        Hashtable answers = player.getAnswers();
+	        int totalPclScore = 0;
+	        for (Object o : answers.entrySet()) {
+	            Map.Entry entry = (Map.Entry)o;
+	            String str = SurveyUtil.answerToString(entry.getValue());
+	            int val = Integer.parseInt(str);
+	            totalPclScore += val;
+	        }
 
-		player = null;
-		
-		String absStr = null;
-		String relStr = null;
+	        PCLScore lastScoreObj = userDb.getLastPCLScore();
+	        int lastScore = (lastScoreObj != null) ? lastScoreObj.score : -1;
 
-		if (totalScore >= 50) {
-			absStr = "High";
-		} else if (totalScore >= 30) {
-			absStr = "Mid";
-		} else if (totalScore == 17) {
-			absStr = "Bottom";
-		} else {
-			absStr = "Low";
-		}
-		
-		if (lastScore == -1) {
-			relStr = "First";
-		} else if (totalScore > lastScore) {
-			relStr = "Higher";
-		} else if (totalScore == lastScore) {
-			relStr = "Same";
-		} else {
-			relStr = "Lower";
-		}
-		
-		String pclResultName = String.format("pcl%s%s",absStr,relStr);
-		
-		ContentViewController cvc = (ContentViewController)db.getContentForName(pclResultName).createContentView(this);
+	        Date now = new Date();
+	        userDb.addPCLScore(now.getTime(), totalPclScore);
 
-		String currentPCLScheduling = userDb.getSetting("pclScheduled");
-		if ((currentPCLScheduling == null) || currentPCLScheduling.equals("") || currentPCLScheduling.equals("none")) {
-			cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
-		} else {
-			schedulePCLReminder(currentPCLScheduling);
-			cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
-		}
-		pushReplaceView(cvc);
+	        TreeMap<String,String> map = new TreeMap<String, String>();
+	        map.put("lastScore",""+lastScore);
+	        map.put("score",""+totalPclScore);
+	        map.put("completed","yes");
+	        FlurryAgent.logEvent("ASSESSMENT",map);
+
+	        {
+	            PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
+	            e.completed = true;
+	            e.finalScore = totalPclScore;
+	            EventLog.log(e);
+	        }
+
+	        if (lastScoreObj != null) {
+	            TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
+	            e.elapsedTime = now.getTime() - lastScoreObj.time;
+	            EventLog.log(e);
+	        }
+
+	        EventLog.log(new PclAssessmentEvent(player));
+
+	        player = null;
+
+	        String absStr = null;
+	        String relStr = null;
+
+	        if (totalPclScore >= 50) {
+	            absStr = "High";
+	        } else if (totalPclScore >= 30) {
+	            absStr = "Mid";
+	        } else if (totalPclScore == 17) {
+	            absStr = "Bottom";
+	        } else {
+	            absStr = "Low";
+	        }
+
+	        if (lastScore == -1) {
+	            relStr = "First";
+	        } else if (totalPclScore > lastScore) {
+	            relStr = "Higher";
+	        } else if (totalPclScore == lastScore) {
+	            relStr = "Same";
+	        } else {
+	            relStr = "Lower";
+	        }
+
+	        String pclResultName = String.format("pcl%s%s",absStr,relStr);
+
+	        ContentViewController cvc = (ContentViewController)db.getContentForName(pclResultName).createContentView(this);
+
+	        String currentPCLScheduling = userDb.getSetting("pclScheduled");
+	        if ((currentPCLScheduling == null) || currentPCLScheduling.equals("") || currentPCLScheduling.equals("none")) {
+	            cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
+	        } else {
+	            schedulePCLReminder(currentPCLScheduling);
+	            cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
+	        }
+	        pushReplaceView(cvc);
+	    } else if("phq9".equals(questionnaireId)) {
+	        EventLog.log(new Phq9SurveyEvent(player));
+	    }
 	}
 	
 	@Override
 	public void onQuestionnaireDeferred(QuestionnairePlayer player) {
-		{
-			PclAssessmentAbortedEvent e = new PclAssessmentAbortedEvent();
-			e.pclAssessmentAbortedTimestamp = System.currentTimeMillis();
-			EventLog.log(e);
-		}
-		
-		{
-			PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
-			e.completed = false;
-			e.finalScore = -1;
-			EventLog.log(e);
-		}
+	    if("pcl".equals(player.getQuestionnaire().getID())) {
+
+	        {
+	            PclAssessmentAbortedEvent e = new PclAssessmentAbortedEvent();
+	            e.pclAssessmentAbortedTimestamp = System.currentTimeMillis();
+	            EventLog.log(e);
+	        }
+
+	        {
+	            PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
+	            e.completed = false;
+	            e.finalScore = -1;
+	            EventLog.log(e);
+	        }
+	    }
 	}
 
 	@Override
