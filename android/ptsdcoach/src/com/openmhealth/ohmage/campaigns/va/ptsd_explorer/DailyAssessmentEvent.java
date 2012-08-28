@@ -3,31 +3,84 @@ package com.openmhealth.ohmage.campaigns.va.ptsd_explorer;
 
 import com.openmhealth.ohmage.core.EventRecord;
 
+import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnairePlayer;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 public class DailyAssessmentEvent extends EventRecord {
-	public int overallMood;
-	public int sleepWell;
-	public int howMuchAnger;
-	public int conflictWithOthers;
-	public int needForCoping;
+	public int overallMood = -1;
+	public int sleepWell = -1;
+	public int howMuchAnger = -1;
+	public int conflictWithOthers = -1;
+	public int needForCoping = -1;
 	public String copingSituations;
-	public int overallCoping;
-	public int qualityOfGettingThingsDone;
+	public int overallCoping = -1;
+	public int qualityOfGettingThingsDone = -1;
 	public List<Integer> copingToolsUsed;
-	public int copingSupport;
-	public int takePrescribedMedications;
-	public int medicationSideEffects;
-	public int drinkAlcohol;
-	public int howMuchAlcohol;
-	public int takeNonPrescribedDrug;
+	public int copingSupport = -1;
+	public int takePrescribedMedications = -1;
+	public int medicationSideEffects = -1;
+	public int drinkAlcohol = -1;
+	public int howMuchAlcohol = -1;
+	public int takeNonPrescribedDrug = -1;
 
-	@Override
+	public DailyAssessmentEvent(QuestionnairePlayer player) {
+	    if (player == null || player.getAnswers() == null)
+	        return;
+
+	    Hashtable answers = player.getAnswers();
+	    overallMood = getInt(answers.get("overallMood"));
+	    sleepWell = getInt(answers.get("sleepWell"));
+	    howMuchAnger = getInt(answers.get("howMuchAnger"));
+	    conflictWithOthers = getInt(answers.get("conflictWithOthers"));
+	    needForCoping = getInt(answers.get("needForCoping"));
+	    if(answers.get("copingSituations") instanceof String)
+	        copingSituations = (String)answers.get("copingSituations");
+	    overallCoping = getInt(answers.get("overallCoping"));
+	    qualityOfGettingThingsDone = getInt(answers.get("qualityOfGettingThingsDone"));
+	    copingToolsUsed = getIntList(answers.get("copingToolsUsed"));
+	    copingSupport = getInt(answers.get("copingSupport"));
+	    takePrescribedMedications = getInt(answers.get("takePrescribedMedications"));
+	    medicationSideEffects = getInt(answers.get("medicationSideEffects"));
+	    drinkAlcohol = getInt(answers.get("drinkAlcohol"));
+	    howMuchAlcohol = getInt(answers.get("howMuchAlcohol"));
+	    takeNonPrescribedDrug = getInt(answers.get("takeNonPrescribedDrug"));
+	}
+
+    public int getInt(Object value) {
+        try {
+            if (value != null)
+                return Integer.parseInt(value.toString());
+        } catch (NumberFormatException e) {
+            // Ignore this
+        }
+        return -1;
+    }
+
+    public List<Integer> getIntList(Object value) {
+        List<Integer> list = null;
+        if (value instanceof String[]) {
+            list = new ArrayList<Integer>();
+            for (String s : (String[]) value) {
+                try {
+                    if (s != null)
+                        list.add(Integer.parseInt(s.toString()));
+                } catch (NumberFormatException e) {
+                    // Ignore this one, we will continue trying others
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
     public String ohmageSurveyID() {
 	    return "dailyAssessment";
 	}

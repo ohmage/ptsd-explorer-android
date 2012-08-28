@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.IBinder;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -254,14 +256,25 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 					return false;
 				}
 			});
-			edit.setOnKeyListener(new View.OnKeyListener() {
-				@Override
-				public boolean onKey(View v, int keyCode, KeyEvent event) {
-					String txt = ((TextView)v).getText().toString();
-					recordAnswer(id, txt);
-					updateEnablements();
-					return false;
-				}
+			edit.addTextChangedListener(new TextWatcher() {
+
+			    @Override
+			    public void onTextChanged(CharSequence s, int start, int before, int count) {
+			        recordAnswer(id, s.toString());
+			        updateEnablements();
+			    }
+
+			    @Override
+			    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			        // TODO Auto-generated method stub
+
+			    }
+
+			    @Override
+			    public void afterTextChanged(Editable s) {
+			        // TODO Auto-generated method stub
+
+			    }
 			});
 			enablements.add(new IEnablement() {
 				@Override

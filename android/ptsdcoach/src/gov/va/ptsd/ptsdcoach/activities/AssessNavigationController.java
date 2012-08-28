@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.flurry.android.FlurryAgent;
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.DailyAssessmentEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentAbortedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentCompletedEvent;
 import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclAssessmentEvent;
@@ -453,7 +454,9 @@ public class AssessNavigationController extends NavigationController implements 
 	        pushReplaceView(cvc);
 	    } else if("phq9".equals(questionnaireId)) {
 	        EventLog.log(new Phq9SurveyEvent(player));
-	    }
+	    } else if("daily".equals(questionnaireId)) {
+            EventLog.log(new DailyAssessmentEvent(player));
+        }
 	}
 	
 	@Override
