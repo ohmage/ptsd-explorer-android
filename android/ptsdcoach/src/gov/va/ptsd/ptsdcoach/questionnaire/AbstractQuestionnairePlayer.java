@@ -19,14 +19,24 @@ abstract public class AbstractQuestionnairePlayer {
 	Hashtable userData = new Hashtable();
 	Node currentNode = null;
 	long triggerTime;
-    private int currentQuestionnaire;
+	private int currentQuestionnaire;
+	private boolean isFinished = false;
 
 	public AbstractQuestionnairePlayer(Questionnaire... q) {
 		questionnaires = q;
 		currentQuestionnaire = 0;
-		answersByID = new Hashtable[q.length];
+		answersByID = new Hashtable[questionnaires.length];
 	}
-	
+
+	public AbstractQuestionnairePlayer(QuestionnaireHandler... handlers) {
+		questionnaires = new Questionnaire[handlers.length];
+		for(int i=0;i<handlers.length;i++) {
+			questionnaires[i] = handlers[i].getQuestionaire();
+	    }
+		currentQuestionnaire = 0;
+		answersByID = new Hashtable[questionnaires.length];
+	}
+
 	public void setTriggerTime(long triggerTime) {
 		this.triggerTime = triggerTime;
 	}
@@ -102,8 +112,9 @@ abstract public class AbstractQuestionnairePlayer {
 	public void nextPressed() {
 		Node n = currentNode.next(this);
 		if (n == null) {
+		    isFinished = currentQuestionnaire >= questionnaires.length - 1;
             finish();
-		    if(currentQuestionnaire < questionnaires.length - 1) {
+		    if(!isFinished) {
 		        currentQuestionnaire++;
 		        play();
 		    }
@@ -112,6 +123,10 @@ abstract public class AbstractQuestionnairePlayer {
 		}
 	}
 	
+    public boolean isFinished() {
+        return isFinished;
+    }
+
 	abstract public void beginScreen(String title);
 	abstract public void addImage(String url);
 	abstract public void addText(String text);

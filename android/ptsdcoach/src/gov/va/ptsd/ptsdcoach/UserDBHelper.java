@@ -1,24 +1,21 @@
 package gov.va.ptsd.ptsdcoach;
 
-import gov.va.ptsd.ptsdcoach.content.Content;
-import gov.va.ptsd.ptsdcoach.content.PCLScore;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.text.format.DateFormat;
+
+import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.content.PCLScore;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeMap;
 
 public class UserDBHelper extends SQLiteOpenHelper {
 
@@ -32,6 +29,10 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     private static String DROP_PCL_SCORE_TABLE = "drop table if exists pclscore;";
     private static String PCL_SCORE_TABLE_CREATE = "create table pclscore (_id INTEGER PRIMARY KEY ASC, score INT, time INT);";
+    private static String DROP_DAILY_TABLE = "drop table if exists daily;";
+    private static String DAILY_TABLE_CREATE = "create table daily (_id INTEGER PRIMARY KEY ASC, time INT);";
+    private static String DROP_PHQ9_TABLE = "drop table if exists phq9;";
+    private static String PHQ9_TABLE_CREATE = "create table phq9 (_id INTEGER PRIMARY KEY ASC, time INT);";
 
     private static String SETTING_TABLE_CREATE = "create table settings (_id INTEGER PRIMARY KEY ASC, name TEXT, value TEXT);";
     
@@ -45,7 +46,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     private static String EXERCISE_SCORE_INDEX1_CREATE = "create index exercisescore_score_idx on exercisescore (score);";
     private static String EXERCISE_SCORE_INDEX2_CREATE = "create index exercisescore_uniqueID_idx on exercisescore (exerciseUniqueID);";
 
-    private ContentDBHelper contentDB;
+    private final ContentDBHelper contentDB;
     private static UserDBHelper instance;
     
     public static UserDBHelper instance(Context ctx) {
@@ -67,7 +68,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
 		createDemoData(getWritableDatabase());
 	}
 	
-	private String[] demoFavorites = {
+	private final String[] demoFavorites = {
 		"progressiveRelaxation",	
 		"deepBreathing",
 		"soothWithMyPictures",
@@ -90,8 +91,8 @@ public class UserDBHelper extends SQLiteOpenHelper {
 			int score = (int)(fy + (14 * Math.random() - 7));
 			if (score < 17) score = 17;
 
-			long ts = (long)(now.getTime() + startingTime+(fx*24*60*60*1000));
-			long delta = (long)(now.getTime() - ts);
+			long ts = now.getTime() + startingTime+(fx*24*60*60*1000);
+			long delta = now.getTime() - ts;
 			long deltaDays = delta / (24*60*60*1000);
 
 			Calendar cal = Calendar.getInstance();
@@ -129,6 +130,8 @@ public class UserDBHelper extends SQLiteOpenHelper {
 		db.execSQL(IMAGE_TABLE_CREATE);
 		db.execSQL(CONTACTS_TABLE_CREATE);
 		db.execSQL(PCL_SCORE_TABLE_CREATE);
+        db.execSQL(PHQ9_TABLE_CREATE);
+        db.execSQL(DAILY_TABLE_CREATE);
 		db.execSQL(EXERCISE_SCORE_TABLE_CREATE);
 		db.execSQL(EXERCISE_SCORE_INDEX1_CREATE);
 		db.execSQL(EXERCISE_SCORE_INDEX2_CREATE);
@@ -258,6 +261,38 @@ public class UserDBHelper extends SQLiteOpenHelper {
 		c.close();
 		return scores;
 	}
+
+    public void setPhq9Taken(long timestamp) {
+        ContentValues values = new ContentValues(2);
+        values.put("time", timestamp);
+        sql().insert("phq9", null, values);
+    }
+
+    public long getPhq9LastTaken() {
+        Cursor c = sql().query("phq9", new String[] { "time" }, null, null, null, null, "time ASC");
+        long time = -1;
+        if (c.moveToFirst()) {
+            time = c.getLong(0);
+        }
+        c.close();
+        return time;
+    }
+
+    public void setDailyTaken(long timestamp) {
+        ContentValues values = new ContentValues(2);
+        values.put("time", timestamp);
+        sql().insert("daily", null, values);
+    }
+
+    public long getDailyLastTaken() {
+        Cursor c = sql().query("daily", new String[] { "time" }, null, null, null, null, "time ASC");
+        long time = -1;
+        if (c.moveToFirst()) {
+            time = c.getLong(0);
+        }
+        c.close();
+        return time;
+    }
 
 	public Cursor getFavorites() {
 		return sql().query("exercisescore", null, "score > 0", null, null, null, null);

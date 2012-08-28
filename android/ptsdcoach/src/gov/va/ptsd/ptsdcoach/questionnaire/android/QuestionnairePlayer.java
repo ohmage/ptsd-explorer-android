@@ -31,6 +31,7 @@ import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
 import gov.va.ptsd.ptsdcoach.questionnaire.AbstractQuestionnairePlayer;
 import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
 import gov.va.ptsd.ptsdcoach.questionnaire.Questionnaire;
+import gov.va.ptsd.ptsdcoach.questionnaire.QuestionnaireHandler;
 import gov.va.ptsd.ptsdcoach.views.LoggingButton;
 
 import java.io.IOException;
@@ -62,12 +63,17 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 		interface IEnablement {
 			public boolean checkEnablement();
 		}
-		
+
 		public QuestionnairePlayer(Context ctx, Questionnaire... q) {
 			super(q);
 			context = ctx;
 		}
-				
+
+		public QuestionnairePlayer(Context ctx, QuestionnaireHandler... handlers) {
+			super(handlers);
+			context = ctx;
+		}
+
 		@Override
 		public String getLocale() {
 			String lang = Locale.getDefault().getLanguage();

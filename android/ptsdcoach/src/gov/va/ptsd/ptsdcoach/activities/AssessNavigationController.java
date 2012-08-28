@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,6 +32,7 @@ import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnaireManager;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnairePlayer;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnairePlayer.QuestionnaireListener;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
@@ -156,74 +158,81 @@ public class AssessNavigationController extends NavigationController implements 
 	}
 	
 	public void takeAssessment(boolean force) {
-		boolean tooSoon = false;
-		String pclSince = "in the time since you last took this assessment";
-		String pclLastTime = "just recently";
-		PCLScore lastScoreObj = getLastPCLScore();
-		if (lastScoreObj == null) {
-			pclSince = "in the past month";
-			pclLastTime = "a month ago";
-		} else {
-			Date now = new Date();
-			Date lastScoreTime = new Date(lastScoreObj.time);
-			long secondsSinceLastTime = (now.getTime() - lastScoreTime.getTime())/1000L;
-			long daysSinceLastTime = ((secondsSinceLastTime / 60)/60)/24;
-			if (daysSinceLastTime < 6) tooSoon = true;
-			if (daysSinceLastTime < 1) {
-				pclSince = "in the time since you last took this assessment";
-				pclLastTime = "less than a day ago";
-			} else if (daysSinceLastTime < 6) {
-				int days = (int)daysSinceLastTime;
-				pclSince = String.format("in the past %s day%s",numbersToWords[days],(days > 1) ? "s" : "");
-				pclLastTime = String.format("%s day%s ago",numbersToWords[days],(days > 1) ? "s" : "" );
-			} else if ((daysSinceLastTime < 27)) {
-				int weeks = (int)(daysSinceLastTime / 7);
-				if (weeks == 0) weeks = 1;
-				pclSince = String.format("in the past %s week%s",numbersToWords[weeks],(weeks > 1) ? "s" : "");
-				pclLastTime = String.format("%s week%s ago",numbersToWords[weeks],(weeks > 1) ? "s" : "");
-			} else {
-				int months = (int)(daysSinceLastTime / 30);
-				if (months == 0) months = 1;
-				pclSince = String.format("in the past %s month%s",numbersToWords[months],(months > 1) ? "s" : "");
-				pclLastTime = String.format("%s month%s ago",numbersToWords[months],(months > 1) ? "s" : "");
-			}
+
+		ArrayList<String> surveys = new ArrayList<String>(3);
+		Date now = new Date();
+
+		// Add the daily survey if they haven't taken it today
+		if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
+			surveys.add("daily");
 		}
 
-		String pclSinceCap = pclSince.substring(0, 1).toUpperCase() +  pclSince.substring(1);
+		// Add the phq9 survey if its been longer than 2 weeks
+		if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 14) {
+			surveys.add("phq9");
+		}
 
-		setVariable("pclSince", pclSince);
-		setVariable("pclSinceCap", pclSinceCap);
-		setVariable("pclLastTime", pclLastTime);
+		// Add the pcl survey if its been longer than a week
+		PCLScore lastScoreObj = getLastPCLScore();
+		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= 7) {
+			surveys.add("pcl");
 
-		if (tooSoon && !force) {
+			String pclSince = "in the past month";
+
+			if (lastScoreObj != null) {
+				Date lastScoreTime = new Date(lastScoreObj.time);
+				long secondsSinceLastTime = (now.getTime() - lastScoreTime.getTime())/1000L;
+				long daysSinceLastTime = ((secondsSinceLastTime / 60)/60)/24;
+				if (daysSinceLastTime < 1) {
+					pclSince = "in the time since you last took this assessment";
+				} else if (daysSinceLastTime < 6) {
+					int days = (int)daysSinceLastTime;
+					pclSince = String.format("in the past %s day%s",numbersToWords[days],(days > 1) ? "s" : "");
+				} else if ((daysSinceLastTime < 27)) {
+					int weeks = (int)(daysSinceLastTime / 7);
+					if (weeks == 0) weeks = 1;
+					pclSince = String.format("in the past %s week%s",numbersToWords[weeks],(weeks > 1) ? "s" : "");
+				} else {
+					int months = (int)(daysSinceLastTime / 30);
+					if (months == 0) months = 1;
+					pclSince = String.format("in the past %s month%s",numbersToWords[months],(months > 1) ? "s" : "");
+				}
+			}
+
+			String pclSinceCap = pclSince.substring(0, 1).toUpperCase() +  pclSince.substring(1);
+
+			setVariable("pclSince", pclSince);
+			setVariable("pclSinceCap", pclSinceCap);
+		}
+
+		if(force) {
+			startQuestionnaire("daily","pcl","phq9");
+		} else if (surveys.isEmpty()) {
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclTooSoon").createContentView(this);
 			cvc.addButton("Remind me after a week", BUTTON_REMIND_ME);
 			cvc.addButton("Take it now", BUTTON_TAKE_IT_ANYWAY);
 			pushView(cvc);
-			return;
+		} else {
+			startQuestionnaire(surveys.toArray(new String[] {}));
 		}
-		
-		startQuestionnaire();
 	}
 	
-	public void startQuestionnaire() {
+	public void startQuestionnaire(String... surveys) {
 		PclAssessmentStartedEvent e = new PclAssessmentStartedEvent();
 		e.pclAssessmentStarted = System.currentTimeMillis();
 		EventLog.log(e);
 
+		QuestionnaireHandler[] handlers = new QuestionnaireHandler[surveys.length];
+
 		try {
-		    QuestionnaireHandler dailyHandler = new QuestionnaireHandler();
-		    QuestionnaireManager.parseQuestionaire(getAssets().open("daily.xml"), dailyHandler);
+			for(int i=0;i<surveys.length;i++) {
+				handlers[i] = new QuestionnaireHandler();
+				QuestionnaireManager.parseQuestionaire(getAssets().open(surveys[i]+".xml"), handlers[i]);
+			}
 
-		    QuestionnaireHandler phq9Handler = new QuestionnaireHandler();
-		    QuestionnaireManager.parseQuestionaire(getAssets().open("phq9.xml"), phq9Handler);
-
-		    QuestionnaireHandler pclHandler = new QuestionnaireHandler();
-		    QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), pclHandler);
-
-			player = new QuestionnairePlayer(this, dailyHandler.getQuestionaire(), phq9Handler.getQuestionaire(), pclHandler.getQuestionaire()) {
+			player = new QuestionnairePlayer(this, handlers) {
 				@Override
-                public String getGlobalVariable(String key) {
+				public String getGlobalVariable(String key) {
 					String val = getVariable(key);
 					if (val != null) return val;
 					return super.getGlobalVariable(key);
@@ -374,89 +383,95 @@ public class AssessNavigationController extends NavigationController implements 
 	@Override
 	public void onQuestionnaireCompleted(QuestionnairePlayer player) {
 
-        String questionnaireId = player.getQuestionnaire().getID();
+		String questionnaireId = player.getQuestionnaire().getID();
+		Date now = new Date();
 
-	    if("pcl".equals(questionnaireId)) {
-	        inQuestionnaire = false;
+		if("pcl".equals(questionnaireId)) {
+			inQuestionnaire = false;
 
-	        Hashtable answers = player.getAnswers();
-	        int totalPclScore = 0;
-	        for (Object o : answers.entrySet()) {
-	            Map.Entry entry = (Map.Entry)o;
-	            String str = SurveyUtil.answerToString(entry.getValue());
-	            int val = Integer.parseInt(str);
-	            totalPclScore += val;
-	        }
+			Hashtable answers = player.getAnswers();
+			int totalPclScore = 0;
+			for (Object o : answers.entrySet()) {
+				Map.Entry entry = (Map.Entry)o;
+				String str = SurveyUtil.answerToString(entry.getValue());
+				int val = Integer.parseInt(str);
+				totalPclScore += val;
+			}
 
-	        PCLScore lastScoreObj = userDb.getLastPCLScore();
-	        int lastScore = (lastScoreObj != null) ? lastScoreObj.score : -1;
+			PCLScore lastScoreObj = userDb.getLastPCLScore();
+			int lastScore = (lastScoreObj != null) ? lastScoreObj.score : -1;
 
-	        Date now = new Date();
-	        userDb.addPCLScore(now.getTime(), totalPclScore);
+			userDb.addPCLScore(now.getTime(), totalPclScore);
 
-	        TreeMap<String,String> map = new TreeMap<String, String>();
-	        map.put("lastScore",""+lastScore);
-	        map.put("score",""+totalPclScore);
-	        map.put("completed","yes");
-	        FlurryAgent.logEvent("ASSESSMENT",map);
+			TreeMap<String,String> map = new TreeMap<String, String>();
+			map.put("lastScore",""+lastScore);
+			map.put("score",""+totalPclScore);
+			map.put("completed","yes");
+			FlurryAgent.logEvent("ASSESSMENT",map);
 
-	        {
-	            PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
-	            e.completed = true;
-	            e.finalScore = totalPclScore;
-	            EventLog.log(e);
-	        }
+			{
+				PclAssessmentCompletedEvent e = new PclAssessmentCompletedEvent();
+				e.completed = true;
+				e.finalScore = totalPclScore;
+				EventLog.log(e);
+			}
 
-	        if (lastScoreObj != null) {
-	            TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
-	            e.elapsedTime = now.getTime() - lastScoreObj.time;
-	            EventLog.log(e);
-	        }
+			if (lastScoreObj != null) {
+				TimeElapsedBetweenPCLAssessmentsEvent e = new TimeElapsedBetweenPCLAssessmentsEvent();
+				e.elapsedTime = now.getTime() - lastScoreObj.time;
+				EventLog.log(e);
+			}
 
-	        EventLog.log(new PclAssessmentEvent(player));
+			EventLog.log(new PclAssessmentEvent(player));
 
-	        player = null;
+			player = null;
 
-	        String absStr = null;
-	        String relStr = null;
+			String absStr = null;
+			String relStr = null;
 
-	        if (totalPclScore >= 50) {
-	            absStr = "High";
-	        } else if (totalPclScore >= 30) {
-	            absStr = "Mid";
-	        } else if (totalPclScore == 17) {
-	            absStr = "Bottom";
-	        } else {
-	            absStr = "Low";
-	        }
+			if (totalPclScore >= 50) {
+				absStr = "High";
+			} else if (totalPclScore >= 30) {
+				absStr = "Mid";
+			} else if (totalPclScore == 17) {
+				absStr = "Bottom";
+			} else {
+				absStr = "Low";
+			}
 
-	        if (lastScore == -1) {
-	            relStr = "First";
-	        } else if (totalPclScore > lastScore) {
-	            relStr = "Higher";
-	        } else if (totalPclScore == lastScore) {
-	            relStr = "Same";
-	        } else {
-	            relStr = "Lower";
-	        }
+			if (lastScore == -1) {
+				relStr = "First";
+			} else if (totalPclScore > lastScore) {
+				relStr = "Higher";
+			} else if (totalPclScore == lastScore) {
+				relStr = "Same";
+			} else {
+				relStr = "Lower";
+			}
 
-	        String pclResultName = String.format("pcl%s%s",absStr,relStr);
+			String pclResultName = String.format("pcl%s%s",absStr,relStr);
 
-	        ContentViewController cvc = (ContentViewController)db.getContentForName(pclResultName).createContentView(this);
+			ContentViewController cvc = (ContentViewController)db.getContentForName(pclResultName).createContentView(this);
 
-	        String currentPCLScheduling = userDb.getSetting("pclScheduled");
-	        if ((currentPCLScheduling == null) || currentPCLScheduling.equals("") || currentPCLScheduling.equals("none")) {
-	            cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
-	        } else {
-	            schedulePCLReminder(currentPCLScheduling);
-	            cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
-	        }
-	        pushReplaceView(cvc);
-	    } else if("phq9".equals(questionnaireId)) {
-	        EventLog.log(new Phq9SurveyEvent(player));
-	    } else if("daily".equals(questionnaireId)) {
-            EventLog.log(new DailyAssessmentEvent(player));
-        }
+			String currentPCLScheduling = userDb.getSetting("pclScheduled");
+			if ((currentPCLScheduling == null) || currentPCLScheduling.equals("") || currentPCLScheduling.equals("none")) {
+				cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
+			} else {
+				schedulePCLReminder(currentPCLScheduling);
+				cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
+			}
+			pushReplaceView(cvc);
+		} else if("phq9".equals(questionnaireId)) {
+			userDb.setPhq9Taken(now.getTime());
+			EventLog.log(new Phq9SurveyEvent(player));
+			if(player.isFinished())
+				popView();
+		} else if("daily".equals(questionnaireId)) {
+			userDb.setDailyTaken(now.getTime());
+			EventLog.log(new DailyAssessmentEvent(player));
+			if(player.isFinished())
+				popView();
+		}
 	}
 	
 	@Override
