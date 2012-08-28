@@ -244,7 +244,7 @@ public class QuestionnairePlayer extends AbstractQuestionnairePlayer {
 
     		final EditText edit = new EditText(context);
 			edit.setLines(lines);
-			edit.setInputType(0);
+			edit.setGravity(Gravity.TOP);
 			edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 				@Override
 				public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

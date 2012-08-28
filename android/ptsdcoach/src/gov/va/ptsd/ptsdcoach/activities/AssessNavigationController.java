@@ -211,13 +211,16 @@ public class AssessNavigationController extends NavigationController implements 
 		EventLog.log(e);
 
 		try {
-		    QuestionnaireHandler handler = new QuestionnaireHandler();
-		    QuestionnaireManager.parseQuestionaire(getAssets().open("phq9.xml"), handler);
+		    QuestionnaireHandler dailyHandler = new QuestionnaireHandler();
+		    QuestionnaireManager.parseQuestionaire(getAssets().open("daily.xml"), dailyHandler);
+
+		    QuestionnaireHandler phq9Handler = new QuestionnaireHandler();
+		    QuestionnaireManager.parseQuestionaire(getAssets().open("phq9.xml"), phq9Handler);
 
 		    QuestionnaireHandler pclHandler = new QuestionnaireHandler();
 		    QuestionnaireManager.parseQuestionaire(getAssets().open("pcl.xml"), pclHandler);
 
-			player = new QuestionnairePlayer(this, handler.getQuestionaire(), pclHandler.getQuestionaire()) {
+			player = new QuestionnairePlayer(this, dailyHandler.getQuestionaire(), phq9Handler.getQuestionaire(), pclHandler.getQuestionaire()) {
 				@Override
                 public String getGlobalVariable(String key) {
 					String val = getVariable(key);

@@ -1,0 +1,181 @@
+<questionnaire id="daily">
+
+	<globals>
+		<title>
+			<text locale="en">Assessment</text>
+		</title>
+		<notification>
+			<text locale="en">It is time to fill out your periodic assessment.</text>
+		</notification>
+		<nextButton>
+			<text locale="en">Next</text>
+		</nextButton>
+	</globals>
+
+	<intro>
+		<info>
+			<text>It is time to fill out your periodic assessment.  Please tap 'Next' to start the questionnaire.</text>
+		</info>
+	</intro>
+
+	<screen title="Assessment">
+		<image url="full_logo.png"/>
+		<info>
+			<text>
+				Please perform your daily assessment.
+			</text>
+		</info>
+	</screen>
+	<screen title="Overall Mood">
+		<multi id="overallMood">
+			<text>How would you rate your overall mood today?</text>
+			<choice value="0">Very bad</choice>
+			<choice value="1">Bad</choice>
+			<choice value="2">Neither good nor bad</choice>
+			<choice value="3">Good</choice>
+			<choice value="4">Very good</choice>
+		</multi>
+	</screen>
+	<screen title="Sleep Quality">
+		<multi id="sleepWell">
+			<text>How well did you sleep last night?</text>
+			<choice value="0">Very poorly</choice>
+			<choice value="1">Poorly</choice>
+			<choice value="2">Neither well nor poorly</choice>
+			<choice value="3">Well</choice>
+			<choice value="4">Very well</choice>
+		</multi>
+	</screen>
+	<screen title="How Much Anger">
+		<multi id="howMuchAnger">
+			<text>How much anger did you experience today?</text>
+			<choice value="0">No anger</choice>
+			<choice value="1">A little anger</choice>
+			<choice value="2">Some anger</choice>
+			<choice value="3">A lot of anger</choice>
+			<choice value="4">Extreme amount of anger</choice>
+		</multi>
+	</screen>
+	<screen title="Conflict With Others">
+		<multi id="conflictWithOthers">
+			<text>How much conflict with others did you have today?</text>
+			<choice value="0">No conflict</choice>
+			<choice value="1">A little conflict</choice>
+			<choice value="2">Some conflict</choice>
+			<choice value="3">A lot of conflict</choice>
+			<choice value="4">Extreme amount of conflict</choice>
+		</multi>
+	</screen>
+	<screen title="Need for Coping">
+		<multi id="needForCoping">
+			<text>Did you have any situations today that you needed to try to cope with?</text>
+			<choice value="0">No</choice>
+			<choice value="1">Yes</choice>
+		</multi>
+	</screen>
+	<screen title="Coping Situations">
+	    <condition>
+	        <equals var="needForCoping" value="1"></equals>
+	    </condition>
+		<freeform id="copingSituations" lines="5">
+			<text>What situations happened today that you needed to try to cope with?</text>
+		</freeform>
+	</screen>
+	<screen title="Overall Coping">
+		<multi id="overallCoping">
+			<text>Overall, how well or poorly did you cope with things in the last 24 hours?</text>
+			<choice value="0">Very poorly</choice>
+			<choice value="1">Poorly</choice>
+			<choice value="2">Neither well nor poorly</choice>
+			<choice value="3">Well</choice>
+			<choice value="4">Very well</choice>
+		</multi>
+	</screen>
+	<screen title="Quality Of Getting Things Done">
+		<multi id="qualityOfGettingThingsDone">
+			<text>How well did you get things today that you needed to do?</text>
+			<choice value="0">Very poorly</choice>
+			<choice value="1">Poorly</choice>
+			<choice value="2">Neither well nor poorly</choice>
+			<choice value="3">Well</choice>
+			<choice value="4">Very well</choice>
+		</multi>
+	</screen>
+	<screen title="Coping Tools Used">
+		<multi id="copingToolsUsed" max="none">
+			<text>In the last 24 hours, which of the following coping tools did you use?</text>
+			<choice value="0">Practice a formal relaxation or meditation method?</choice>
+			<choice value="1">Deliberately face a situation that you have been avoiding?</choice>
+			<choice value="2">Consciously talk to yourself as a way of coping?</choice>
+			<choice value="3">Do some kind of positive activity to try and improve your mood?</choice>
+			<choice value="4">At least 15 minutes of physical exercise?</choice>
+			<choice value="5">Spend time socializing with others?</choice>
+			<choice value="6">Do a homework task assigned by your treatment provider?</choice>
+			<choice value="7">Talk to somebody about a problem or seek support in some way?</choice>
+		</multi>
+	</screen>
+	<screen title="Coping Support">
+	    <condition>
+	        <contains var="copingToolsUsed" value="7"></contains>
+	    </condition>
+		<multi id="copingSupport">
+			<text>How was the support you got from other(s)?</text>
+			<choice value="0">Made me feel a lot worse</choice>
+			<choice value="1">Made me feel somewhat worse</choice>
+			<choice value="2">Had no effect on me</choice>
+			<choice value="3">Helped me feel somewhat better</choice>
+			<choice value="4">Helped me feel a lot better</choice>
+		</multi>
+	</screen>
+	<screen title="Prescribed Medications">
+		<multi id="takePrescribedMedications">
+			<text>Did you take your doctor-prescribed medication(s) today?</text>
+			<choice value="0">No, my doctor has not prescribed any medications to me</choice>
+			<choice value="1">No, I didn't take them</choice>
+			<choice value="2">I took some medications, but not all</choice>
+			<choice value="3">Yes, I took them</choice>
+		</multi>
+	</screen>
+	<screen title="Medication Side Effects">
+	    <condition>
+	        <or>
+	        	<equals var="takePrescribedMedications" value="2"></equals>
+	        	<equals var="takePrescribedMedications" value="3"></equals>
+	        </or>
+	    </condition>
+		<multi id="medicationSideEffects">
+			<text>Did you experience any side effects?</text>
+			<choice value="0">No</choice>
+			<choice value="1">Yes</choice>
+		</multi>
+	</screen>
+	<screen title="Alcohol">
+		<multi id="drinkAlcohol">
+			<text>Did you drink alcohol in the last 24 hours?</text>
+			<choice value="0">No</choice>
+			<choice value="1">Yes</choice>
+		</multi>
+	</screen>
+	<screen title="How Much Alcohol">
+	    <condition>
+	        <equals var="drinkAlcohol" value="1"></equals>
+	    </condition>
+		<multi id="howMuchAlcohol">
+			<text>How much did you drink? (One drink = 12oz of beer = one 6oz glass of wine = one 1.5oz shot of vodka or whiskey or gin)</text>
+			<choice value="0">1 drink</choice>
+			<choice value="1">2 drinks</choice>
+			<choice value="2">3 drinks</choice>
+			<choice value="3">4 drinks</choice>
+			<choice value="4">5-6 drinks</choice>
+			<choice value="5">7-8 drinks</choice>
+			<choice value="6">More than 8 drinks</choice>
+		</multi>
+	</screen>
+	<screen title="Non-Prescribed Drug">
+		<multi id="takeNonPrescribedDrug">
+			<text>Did you take any non-prescribed drug in the last 24 hours?</text>
+			<choice value="0">No</choice>
+			<choice value="1">Yes</choice>
+		</multi>
+	</screen>
+</questionnaire>
