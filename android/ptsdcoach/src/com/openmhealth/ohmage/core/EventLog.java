@@ -11,8 +11,8 @@ import org.json.JSONObject;
 
 public class EventLog {
 
-    public static String CAMPAIGN_URN = "urn:campaign:va:ptsd_explorer";
-    public static String CAMPAIGN_CREATION = "2011-12-18 15:21:04";
+    public static String CAMPAIGN_URN = "urn:campaign:ptsd_explorer:android";
+    public static String CAMPAIGN_CREATION = "2012-09-13 13:47:31";
 
     private static final String OBSERVER_ID = "com.openmhealth.ohmage.va.ptsd_explorer";
     private static final int OBSERVER_VERSION = 2012082401;
