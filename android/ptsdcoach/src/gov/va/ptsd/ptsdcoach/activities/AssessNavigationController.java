@@ -44,6 +44,7 @@ public class AssessNavigationController extends NavigationController implements 
 	QuestionnairePlayer player;
 	MenuItem favoritesItem;
 	boolean inQuestionnaire = false;
+    private String pclResultName;
 	
 	static private AssessNavigationController instance;
 
@@ -162,16 +163,6 @@ public class AssessNavigationController extends NavigationController implements 
 		ArrayList<String> surveys = new ArrayList<String>(3);
 		Date now = new Date();
 
-		// Add the daily survey if they haven't taken it today
-		if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
-			surveys.add("daily");
-		}
-
-		// Add the phq9 survey if its been longer than 2 weeks
-		if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 14) {
-			surveys.add("phq9");
-		}
-
 		// Add the pcl survey if its been longer than a week
 		PCLScore lastScoreObj = getLastPCLScore();
 		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= 7) {
@@ -204,6 +195,16 @@ public class AssessNavigationController extends NavigationController implements 
 			setVariable("pclSince", pclSince);
 			setVariable("pclSinceCap", pclSinceCap);
 		}
+
+	    // Add the phq9 survey if its been longer than 2 weeks
+        if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 7) {
+            surveys.add("phq9");
+        }
+
+        // Add the daily survey if they haven't taken it today
+        if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
+            surveys.add("daily");
+        }
 
 		if(force) {
 			startQuestionnaire("daily","pcl","phq9");
@@ -449,31 +450,39 @@ public class AssessNavigationController extends NavigationController implements 
 				relStr = "Lower";
 			}
 
-			String pclResultName = String.format("pcl%s%s",absStr,relStr);
+			pclResultName = String.format("pcl%s%s",absStr,relStr);
 
-			ContentViewController cvc = (ContentViewController)db.getContentForName(pclResultName).createContentView(this);
 
-			String currentPCLScheduling = userDb.getSetting("pclScheduled");
-			if ((currentPCLScheduling == null) || currentPCLScheduling.equals("") || currentPCLScheduling.equals("none")) {
-				cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
-			} else {
-				schedulePCLReminder(currentPCLScheduling);
-				cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
-			}
-			pushReplaceView(cvc);
 		} else if("phq9".equals(questionnaireId)) {
 			userDb.setPhq9Taken(now.getTime());
 			EventLog.log(new Phq9SurveyEvent(player));
-			if(player.isFinished())
-				popView();
 		} else if("daily".equals(questionnaireId)) {
 			userDb.setDailyTaken(now.getTime());
 			EventLog.log(new DailyAssessmentEvent(player));
-			if(player.isFinished())
-				popView();
 		}
-	}
-	
+
+        if (player != null && player.isFinished()) {
+
+            if (pclResultName != null) {
+                ContentViewController cvc = (ContentViewController) db.getContentForName(
+                        pclResultName)
+                        .createContentView(this);
+
+                String currentPCLScheduling = userDb.getSetting("pclScheduled");
+                if ((currentPCLScheduling == null) || currentPCLScheduling.equals("")
+                        || currentPCLScheduling.equals("none")) {
+                    cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
+                } else {
+                    schedulePCLReminder(currentPCLScheduling);
+                    cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
+                }
+                pushReplaceView(cvc);
+            } else {
+                popView();
+            }
+        }
+    }
+
 	@Override
 	public void onQuestionnaireDeferred(QuestionnairePlayer player) {
 	    if("pcl".equals(player.getQuestionnaire().getID())) {
