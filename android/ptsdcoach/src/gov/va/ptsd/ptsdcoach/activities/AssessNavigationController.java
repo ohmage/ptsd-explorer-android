@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.format.DateUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import gov.va.ptsd.ptsdcoach.content.Content;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
 import gov.va.ptsd.ptsdcoach.controllers.PCLHistoryController;
+import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
 import gov.va.ptsd.ptsdcoach.questionnaire.QuestionnaireHandler;
 import gov.va.ptsd.ptsdcoach.questionnaire.SurveyUtil;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnaireManager;
@@ -264,7 +266,6 @@ public class AssessNavigationController extends NavigationController implements 
 			cvc.addButton("Schedule the reminder",BUTTON_SCHEDULE_IN_DAY);
 			pushReplaceView(cvc);
 		} else if (id == BUTTON_SCHEDULE_IN_DAY) {
-			userDb.setSetting("pclScheduled", "day");
 			schedulePCLReminder("day");
 			setVariable("pclScheduledWhen","day");
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(this);
@@ -288,28 +289,6 @@ public class AssessNavigationController extends NavigationController implements 
 		}
 	}
 
-	public void schedulePCLReminder(double secondsFromLast, boolean before, boolean repeat) {
-		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
-		mNotificationManager.cancel(1);
-
-		long when = System.currentTimeMillis();
-		PCLScore lastScoreObj = getLastPCLScore();
-		if (lastScoreObj != null) when = lastScoreObj.time;
-		long interval = (long)(secondsFromLast * 1000L);
-		when += interval;
-		
-		AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-		Intent reminderIntent = new Intent("gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT");
-		PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, reminderIntent, 0);
-		am.cancel(reminderPendingIntent);
-		am.set(AlarmManager.RTC_WAKEUP, when, reminderPendingIntent);
-		
-		PclReminderScheduledEvent e = new PclReminderScheduledEvent();
-		e.time = when;
-		EventLog.log(e);
-	}
-	
 /*		
 		UILocalNotification *n = [[UILocalNotification alloc] init];
 		NSManagedObject *lastScoreObj = [AssessNavigationController getLastPCLScore];
@@ -334,14 +313,21 @@ public class AssessNavigationController extends NavigationController implements 
 		return userDb.getSetting("pclScheduled");
 	}
 
+	private void cancelNotifications() {
+		String ns = Context.NOTIFICATION_SERVICE;
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+		mNotificationManager.cancel(1);
+	}
+
 	public void schedulePCLReminder(String interval) {
+		if(interval==null || interval.equals(userDb.getSetting("pclScheduled")))
+			return;
+
 		userDb.setSetting("pclScheduled", interval);
 		
 		if (interval.equals("none")) {
 			// Cancel any notifications
-			String ns = Context.NOTIFICATION_SERVICE;
-			NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
-			mNotificationManager.cancel(1);
+			cancelNotifications();
 			AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
 			Intent reminderIntent = new Intent("gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT");
 			PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, reminderIntent, 0);
@@ -354,7 +340,8 @@ public class AssessNavigationController extends NavigationController implements 
 			PCLScore lastScoreObj = getLastPCLScore();
 			boolean before = (lastScoreObj != null);
 			if (interval.equals("day")) {
-				schedulePCLReminder(24*60*60, before, true);
+				DialogFragment newFragment = new ReminderPickerFragment();
+			    newFragment.show(getSupportFragmentManager(), "timePicker");
 			}
 		}
 	}
@@ -440,6 +427,8 @@ public class AssessNavigationController extends NavigationController implements 
 
 		if (player != null && player.isFinished()) {
 
+			cancelNotifications();
+
 			String currentPCLScheduling = userDb.getSetting("pclScheduled");
 			boolean notscheduled = (currentPCLScheduling == null)
 					|| currentPCLScheduling.equals("")
@@ -461,9 +450,6 @@ public class AssessNavigationController extends NavigationController implements 
 					popView();
 				}
 			}
-
-			if (!notscheduled)
-				schedulePCLReminder(currentPCLScheduling);
 		}
     }
 

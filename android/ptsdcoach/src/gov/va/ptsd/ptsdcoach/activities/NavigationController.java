@@ -28,6 +28,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 
 import android.widget.ViewAnimator;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import gov.va.ptsd.ptsdcoach.controllers.ButtonGridController;
 
@@ -39,7 +40,7 @@ import com.openmhealth.ohmage.core.EventLog;
 
 import android.content.Intent;
 
-public class NavigationController extends Activity {
+public class NavigationController extends FragmentActivity {
 
 
 	ContentDBHelper db;
