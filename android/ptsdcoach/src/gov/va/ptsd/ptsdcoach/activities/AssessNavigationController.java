@@ -23,6 +23,7 @@ import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.TimeElapsedBetweenPCLAs
 import com.openmhealth.ohmage.core.EventLog;
 
 import gov.va.ptsd.ptsdcoach.PTSDCoach;
+import gov.va.ptsd.ptsdcoach.UserDBHelper;
 import gov.va.ptsd.ptsdcoach.content.Content;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
@@ -159,14 +160,13 @@ public class AssessNavigationController extends NavigationController implements 
 		popView();
 	}
 	
-	private void takeAssessmentImpl() {
-		pclResultName = null;
+	public static ArrayList<String> getSurveys(UserDBHelper userDb, NavigationController controller) {
 
 		ArrayList<String> surveys = new ArrayList<String>(3);
 		Date now = new Date();
 
 		// Add the pcl survey if its been longer than a week
-		PCLScore lastScoreObj = getLastPCLScore();
+		PCLScore lastScoreObj = userDb.getLastPCLScore();
 		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= 7) {
 			surveys.add("pcl");
 
@@ -194,19 +194,29 @@ public class AssessNavigationController extends NavigationController implements 
 
 			String pclSinceCap = pclSince.substring(0, 1).toUpperCase() +  pclSince.substring(1);
 
-			setVariable("pclSince", pclSince);
-			setVariable("pclSinceCap", pclSinceCap);
+			if(controller != null) {
+				controller.setVariable("pclSince", pclSince);
+				controller.setVariable("pclSinceCap", pclSinceCap);
+			}
 		}
 
-	    // Add the phq9 survey if its been longer than 2 weeks
+	    // Add the phq9 survey if its been longer than 1 week
         if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 7) {
             surveys.add("phq9");
         }
 
         // Add the daily survey if they haven't taken it today
-        if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
+       if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
             surveys.add("daily");
         }
+       
+       return surveys;
+	}
+	
+	private void takeAssessmentImpl() {
+		pclResultName = null;
+
+		ArrayList<String> surveys = getSurveys(userDb, this);
 
 		if (surveys.isEmpty()) {
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclTooSoon").createContentView(this);

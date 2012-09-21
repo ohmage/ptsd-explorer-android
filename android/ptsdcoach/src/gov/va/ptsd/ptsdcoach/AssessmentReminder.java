@@ -1,6 +1,9 @@
 package gov.va.ptsd.ptsdcoach;
 
+import java.util.ArrayList;
+
 import gov.va.ptsd.ptsdcoach.R;
+import gov.va.ptsd.ptsdcoach.activities.AssessNavigationController;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,6 +16,13 @@ import android.net.Uri;
 public class AssessmentReminder extends BroadcastReceiver {
 
 	public void notifyPCL(Context context) {
+		
+		UserDBHelper udb = UserDBHelper.instance(context);
+		ArrayList<String> surveys = AssessNavigationController.getSurveys(udb, null);
+
+		if (surveys.isEmpty())
+			return;
+		
 		// Set up the notification
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
