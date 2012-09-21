@@ -157,6 +157,7 @@ public class AssessNavigationController extends NavigationController implements 
 	}
 	
 	private void takeAssessmentImpl() {
+		pclResultName = null;
 
 		ArrayList<String> surveys = new ArrayList<String>(3);
 		Date now = new Date();
@@ -437,7 +438,6 @@ public class AssessNavigationController extends NavigationController implements 
 
 			pclResultName = String.format("pcl%s%s",absStr,relStr);
 
-
 		} else if("phq9".equals(questionnaireId)) {
 			userDb.setPhq9Taken(now.getTime());
 			EventLog.log(new Phq9SurveyEvent(player));
@@ -446,26 +446,33 @@ public class AssessNavigationController extends NavigationController implements 
 			EventLog.log(new DailyAssessmentEvent(player));
 		}
 
-        if (player != null && player.isFinished()) {
+		if (player != null && player.isFinished()) {
 
-            if (pclResultName != null) {
-                ContentViewController cvc = (ContentViewController) db.getContentForName(
-                        pclResultName)
-                        .createContentView(this);
+			String currentPCLScheduling = userDb.getSetting("pclScheduled");
+			boolean notscheduled = (currentPCLScheduling == null)
+					|| currentPCLScheduling.equals("")
+					|| currentPCLScheduling.equals("none");
 
-                String currentPCLScheduling = userDb.getSetting("pclScheduled");
-                if ((currentPCLScheduling == null) || currentPCLScheduling.equals("")
-                        || currentPCLScheduling.equals("none")) {
-                    cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
-                } else {
-                    schedulePCLReminder(currentPCLScheduling);
-                    cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
-                }
-                pushReplaceView(cvc);
-            } else {
-                popView();
-            }
-        }
+			if (pclResultName != null) {
+				ContentViewController cvc = (ContentViewController) db
+						.getContentForName(pclResultName).createContentView(
+								this);
+				if (notscheduled)
+					cvc.addButton("Next", BUTTON_PROMPT_TO_SCHEDULE);
+				else
+					cvc.addButton("See Symptom History", BUTTON_SEE_HISTORY);
+				pushReplaceView(cvc);
+			} else {
+				if (notscheduled) {
+					buttonTapped(BUTTON_PROMPT_TO_SCHEDULE);
+				} else {
+					popView();
+				}
+			}
+
+			if (!notscheduled)
+				schedulePCLReminder(currentPCLScheduling);
+		}
     }
 
 	@Override
