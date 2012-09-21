@@ -622,8 +622,8 @@
 
 	<Content name="pclTooSoon" displayName="Too Early"><![CDATA[
 		<p>
-			It has been less than a week since you last took the self-assessment.  The questions are designed to assess your symptoms since the
-			last time you answered, so it is not helpful to take it more than once a week.
+			It has been less than a day since you last took the self-assessment.  The questions are designed to assess your symptoms since the
+			last time you answered, so it is not helpful to take it more than once a day.
 		</p>
 	]]></Content>
 
