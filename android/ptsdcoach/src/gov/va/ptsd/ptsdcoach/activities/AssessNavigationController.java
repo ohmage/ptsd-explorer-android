@@ -28,6 +28,7 @@ import gov.va.ptsd.ptsdcoach.content.PCLScore;
 import gov.va.ptsd.ptsdcoach.controllers.ContentViewController;
 import gov.va.ptsd.ptsdcoach.controllers.PCLHistoryController;
 import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
+import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment.ReminderPickerListener;
 import gov.va.ptsd.ptsdcoach.questionnaire.QuestionnaireHandler;
 import gov.va.ptsd.ptsdcoach.questionnaire.SurveyUtil;
 import gov.va.ptsd.ptsdcoach.questionnaire.android.QuestionnaireManager;
@@ -266,11 +267,22 @@ public class AssessNavigationController extends NavigationController implements 
 			cvc.addButton("Schedule the reminder",BUTTON_SCHEDULE_IN_DAY);
 			pushReplaceView(cvc);
 		} else if (id == BUTTON_SCHEDULE_IN_DAY) {
-			schedulePCLReminder("day");
-			setVariable("pclScheduledWhen","day");
-			ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(this);
-			cvc.addButton("See Assessment History",BUTTON_SEE_HISTORY);
-			pushReplaceView(cvc);
+			schedulePCLReminder("day", new ReminderPickerListener() {
+				
+				@Override
+				public void onTimeSelected(ReminderPickerFragment fragment) {
+					setVariable("pclScheduledWhen","day");
+					ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(AssessNavigationController.this);
+					cvc.addButton("See Assessment History",BUTTON_SEE_HISTORY);
+					pushReplaceView(cvc);
+				}
+				
+				@Override
+				public void onCancelled(ReminderPickerFragment fragment) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 		} else if (id == BUTTON_RETURN_TO_ROOT) {
 			popToRoot();
 		} else {
@@ -319,11 +331,9 @@ public class AssessNavigationController extends NavigationController implements 
 		mNotificationManager.cancel(1);
 	}
 
-	public void schedulePCLReminder(String interval) {
+	public void schedulePCLReminder(String interval, ReminderPickerListener listener) {
 		if(interval==null || interval.equals(userDb.getSetting("pclScheduled")))
 			return;
-
-		userDb.setSetting("pclScheduled", interval);
 		
 		if (interval.equals("none")) {
 			// Cancel any notifications
@@ -336,11 +346,12 @@ public class AssessNavigationController extends NavigationController implements 
 			PclReminderScheduledEvent e = new PclReminderScheduledEvent();
 			e.time = 0;
 			EventLog.log(e);
+			
+			userDb.setSetting("pclScheduled", "none");
 		} else {
-			PCLScore lastScoreObj = getLastPCLScore();
-			boolean before = (lastScoreObj != null);
 			if (interval.equals("day")) {
-				DialogFragment newFragment = new ReminderPickerFragment();
+				ReminderPickerFragment newFragment = new ReminderPickerFragment();
+				newFragment.setListener(listener);
 			    newFragment.show(getSupportFragmentManager(), "timePicker");
 			}
 		}

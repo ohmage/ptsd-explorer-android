@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,15 @@ import android.widget.LinearLayout.LayoutParams;
 import gov.va.ptsd.ptsdcoach.R;
 import gov.va.ptsd.ptsdcoach.activities.AssessNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
+import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
 import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
 
 public class PCLSchedulerController extends ContentViewControllerBase {
 
 	List<Content> children;
 	boolean needsReset = false;
+	private String[] tags;
+	private RadioButton[] radios;
 
 	public PCLSchedulerController(Context ctx) {
 		super(ctx);
@@ -47,8 +51,8 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 
 		children = getContent().getChildren();
 		String[] items = new String[children.size()];
-		final String[] tags = new String[children.size()];
-		final RadioButton[] radios = new RadioButton[children.size()];
+		tags = new String[children.size()];
+		radios = new RadioButton[children.size()];
 		for (int i=0;i<items.length;i++) {
 			items[i] = children.get(i).getDisplayName();
 			tags[i] = children.get(i).getName();
@@ -80,9 +84,17 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				AssessNavigationController nc = (AssessNavigationController)getNavigator();
-				nc.schedulePCLReminder(tags[checkedId-2000]);
-				RadioButton radio = (RadioButton)group.findViewById(checkedId);
-				String value = (String)radio.getTag();
+				nc.schedulePCLReminder(tags[checkedId-2000], new ReminderPickerFragment.ReminderPickerListener() {
+					
+					@Override
+					public void onTimeSelected(ReminderPickerFragment fragment) {
+					}
+					
+					@Override
+					public void onCancelled(ReminderPickerFragment fragment) {
+						setItemChecked();
+					}
+				});
 			}
 		});
 
@@ -128,14 +140,7 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 			
 		});
 */
-		AssessNavigationController nc = (AssessNavigationController)getNavigator();
-		String schedule = nc.getPCLReminderSchedule();
-		for (int i = 0;i<tags.length;i++) {
-			if (tags[i].equals(schedule)) {
-				radios[i].setChecked(true);
-				break;
-			}
-		}
+		setItemChecked();
 		
 
 		/*
@@ -173,5 +178,19 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 			}
 		});
 	*/
+	}
+
+	private void setItemChecked() {
+		AssessNavigationController nc = (AssessNavigationController)getNavigator();
+		String schedule = nc.getPCLReminderSchedule();
+		if(TextUtils.isEmpty(schedule))
+			schedule="none";
+		for (int i = 0;i<tags.length;i++) {
+			if (tags[i].equals(schedule)) {
+				radios[i].setChecked(true);
+			} else {
+				radios[i].setChecked(false);
+			}
+		}
 	}
 }

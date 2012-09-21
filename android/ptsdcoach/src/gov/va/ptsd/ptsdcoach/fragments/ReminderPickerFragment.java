@@ -1,5 +1,6 @@
 package gov.va.ptsd.ptsdcoach.fragments;
 
+import gov.va.ptsd.ptsdcoach.UserDBHelper;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
 
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -21,6 +23,14 @@ import android.widget.TimePicker;
 
 public class ReminderPickerFragment extends DialogFragment implements
 		TimePickerDialog.OnTimeSetListener {
+
+	ReminderPickerListener mListener;
+
+	public interface ReminderPickerListener {
+		void onTimeSelected(ReminderPickerFragment fragment);
+
+		void onCancelled(ReminderPickerFragment fragment);
+	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -66,5 +76,29 @@ public class ReminderPickerFragment extends DialogFragment implements
 		PclReminderScheduledEvent e = new PclReminderScheduledEvent();
 		e.time = when;
 		EventLog.log(e);
+
+		UserDBHelper userDb = UserDBHelper.instance(getActivity());
+		userDb.setSetting("pclScheduled", "day");
+
+		if (mListener != null)
+			mListener.onTimeSelected(this);
+	}
+
+	@Override
+	public void onCancel(DialogInterface dialog) {
+		super.onCancel(dialog);
+		if (mListener != null)
+			mListener.onCancelled(this);
+	}
+
+	@Override
+	public void onDismiss(DialogInterface dialog) {
+		super.onDismiss(dialog);
+		if (mListener != null)
+			mListener.onCancelled(this);
+	}
+
+	public void setListener(ReminderPickerListener l) {
+		mListener = l;
 	}
 }
