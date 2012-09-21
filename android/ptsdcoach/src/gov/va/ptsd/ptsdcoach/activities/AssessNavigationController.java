@@ -56,7 +56,7 @@ public class AssessNavigationController extends NavigationController implements 
 	
 	static public void takeAssessment() {
 		if (instance != null) {
-			instance.takeAssessment(false);
+			instance.takeAssessmentImpl();
 		}
 	}
 	
@@ -66,8 +66,6 @@ public class AssessNavigationController extends NavigationController implements 
 		super.onDestroy();
 	}
 
-	public static final int BUTTON_REMIND_ME = 100;
-	public static final int BUTTON_TAKE_IT_ANYWAY = 101;
 	public static final int BUTTON_PROMPT_TO_SCHEDULE = 102;
 	public static final int BUTTON_SEE_HISTORY = 103;
 	public static final int BUTTON_RETURN_TO_ROOT = 104;
@@ -158,7 +156,7 @@ public class AssessNavigationController extends NavigationController implements 
 		popView();
 	}
 	
-	public void takeAssessment(boolean force) {
+	private void takeAssessmentImpl() {
 
 		ArrayList<String> surveys = new ArrayList<String>(3);
 		Date now = new Date();
@@ -206,12 +204,8 @@ public class AssessNavigationController extends NavigationController implements 
             surveys.add("daily");
         }
 
-		if(force) {
-			startQuestionnaire("daily","pcl","phq9");
-		} else if (surveys.isEmpty()) {
+		if (surveys.isEmpty()) {
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclTooSoon").createContentView(this);
-			cvc.addButton("Remind me after a week", BUTTON_REMIND_ME);
-			cvc.addButton("Take it now", BUTTON_TAKE_IT_ANYWAY);
 			pushView(cvc);
 		} else {
 			startQuestionnaire(surveys.toArray(new String[] {}));
@@ -263,15 +257,6 @@ public class AssessNavigationController extends NavigationController implements 
 	public void buttonTapped(int id) {
 		if (id == BUTTON_SEE_HISTORY) {
 			seeHistory();
-		} else if (id == BUTTON_TAKE_IT_ANYWAY) {
-			takeAssessment(true);
-		} else if (id == BUTTON_REMIND_ME) {
-			userDb.setSetting("pclScheduled", "week");
-			schedulePCLReminder(7*24*60*60,true,true);
-			setVariable("pclScheduledWhen","one week");
-			ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(this);
-			cvc.addButton("Ok",BUTTON_RETURN_TO_ROOT);
-			pushReplaceView(cvc);
 		} else if (id == BUTTON_PROMPT_TO_SCHEDULE) {
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclSchedulePrompt").createContentView(this);
 			cvc.addButton("No, thanks",BUTTON_SEE_HISTORY);
@@ -294,7 +279,7 @@ public class AssessNavigationController extends NavigationController implements 
 	@Override
 	public void contentSelected(Content c) {
 		if (c.getName().equals("takeAssessment")) {
-			takeAssessment(false);
+			takeAssessment();
 		} else if (c.getName().equals("trackHistory")) {
 			seeHistory();
 		} else {
