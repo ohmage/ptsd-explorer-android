@@ -69,7 +69,7 @@ public class AssessNavigationController extends NavigationController implements 
 	public static final int BUTTON_PROMPT_TO_SCHEDULE = 102;
 	public static final int BUTTON_SEE_HISTORY = 103;
 	public static final int BUTTON_RETURN_TO_ROOT = 104;
-	public static final int BUTTON_SCHEDULE_IN_MONTH = 105;
+	public static final int BUTTON_SCHEDULE_IN_DAY = 105;
 
 	static final String[] numbersToWords = {
 		null,
@@ -261,12 +261,12 @@ public class AssessNavigationController extends NavigationController implements 
 		} else if (id == BUTTON_PROMPT_TO_SCHEDULE) {
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclSchedulePrompt").createContentView(this);
 			cvc.addButton("No, thanks",BUTTON_SEE_HISTORY);
-			cvc.addButton("Schedule the reminder",BUTTON_SCHEDULE_IN_MONTH);
+			cvc.addButton("Schedule the reminder",BUTTON_SCHEDULE_IN_DAY);
 			pushReplaceView(cvc);
-		} else if (id == BUTTON_SCHEDULE_IN_MONTH) {
-			userDb.setSetting("pclScheduled", "month");
-			schedulePCLReminder(30*24*60*60,true,true);
-			setVariable("pclScheduledWhen","one month");
+		} else if (id == BUTTON_SCHEDULE_IN_DAY) {
+			userDb.setSetting("pclScheduled", "day");
+			schedulePCLReminder("day");
+			setVariable("pclScheduledWhen","day");
 			ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(this);
 			cvc.addButton("See Assessment History",BUTTON_SEE_HISTORY);
 			pushReplaceView(cvc);
@@ -353,16 +353,8 @@ public class AssessNavigationController extends NavigationController implements 
 		} else {
 			PCLScore lastScoreObj = getLastPCLScore();
 			boolean before = (lastScoreObj != null);
-			if (interval.equals("minute")) {
-				schedulePCLReminder(60, before, true);
-			} else if (interval.equals("week")) {
-				schedulePCLReminder(7*24*60*60, before, true);
-			} else if (interval.equals("month")) {
-				schedulePCLReminder(30*24*60*60, before, true);
-			} else if (interval.equals("twoweek")) {
-				schedulePCLReminder(14*24*60*60, before, true);
-			} else if (interval.equals("threemonth")) {
-				schedulePCLReminder(90*24*60*60, before, true);
+			if (interval.equals("day")) {
+				schedulePCLReminder(24*60*60, before, true);
 			}
 		}
 	}

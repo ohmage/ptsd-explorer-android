@@ -485,12 +485,9 @@
 			<Content name="trackHistory" displayName="Track History" buttongrid_image="assess_track.png">
 			</Content>
 			<Content name="scheduleAssessments" displayName="Schedule Assessments" ui="PCLSchedulerController" buttongrid_image="assess_reminder.png">
-				Select a schedule to retake the self-assessment and monitor your progress. Taking the assessment monthly is ideal.
+				Select a schedule to retake the self-assessment and monitor your progress. Taking the assessment daily is ideal.
 				<Content name="none" displayName="Never"/>
-				<Content name="week" displayName="Weekly"/>
-				<Content name="twoweek" displayName="Every two weeks"/>
-				<Content name="month" displayName="Monthly"/>
-				<Content name="threemonth" displayName="Every three months"/>
+				<Content name="day" displayName="Daily"/>
 			</Content>
 		</Content>
 		<Content name="manage" displayName="Manage Symptoms" buttonTheme="theme_big_button" ui="ButtonGridController" title="What's Wrong?" backButton="Symptoms"
