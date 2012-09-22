@@ -102,7 +102,7 @@
 		</multi>
 	</screen>
 	<screen title="Coping Tools Used">
-		<multi id="copingToolsUsed" max="none">
+		<multi id="copingToolsUsed" max="none" min="0">
 			<text>In the last 24 hours, which of the following coping tools did you use?</text>
 			<choice value="0">Practice a formal relaxation or meditation method?</choice>
 			<choice value="1">Deliberately face a situation that you have been avoiding?</choice>
