@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="gov.va.ptsd.ptsdcoach" android:versionCode="1" 	
-	android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="gov.va.ptsd.ptsdcoach" android:versionCode="2"
+	android:versionName="1.0.1" xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-sdk android:targetSdkVersion="7" android:minSdkVersion="7"/>
 
 	<uses-permission android:name="android.permission.INTERNET"/>
