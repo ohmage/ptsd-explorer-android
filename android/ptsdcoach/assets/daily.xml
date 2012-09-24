@@ -130,7 +130,7 @@
 	<screen title="Prescribed Medications">
 		<multi id="takePrescribedMedications">
 			<text>Did you take your doctor-prescribed medication(s) today?</text>
-			<choice value="0">No, my doctor has not prescribed any medications to me</choice>
+			<choice value="0">I have no prescribed medications</choice>
 			<choice value="1">No, I didn't take them</choice>
 			<choice value="2">I took some medications, but not all</choice>
 			<choice value="3">Yes, I took them</choice>
