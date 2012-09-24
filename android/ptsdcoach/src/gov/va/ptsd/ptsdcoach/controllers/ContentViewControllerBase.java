@@ -54,7 +54,7 @@ abstract public class ContentViewControllerBase extends FrameLayout implements O
 	static final Pattern VARIABLE_PATTERN = Pattern.compile("\\$\\{([a-zA-Z0-9_]*)\\}");
 	static final private String webviewFormat = 
 		"<html><head>"+
-	    "<script type=\"text/javascript\" src=\"content://gov.va.ptsd.ptsdcoach.services.localjs/ideal-loader.js\"/>"+
+	    "<script type=\"text/javascript\" src=\"content://gov.va.ptsd.ptsdcoach.services.localjs/ideal-loader.js\"></script>"+
 		"<style>body{background-color:transparent;color:#FFFFFF;font-family:\"Helvetica\";font-size:14px;}\na:link {color:#AAAAFF;}</style></head><body>%s</body></html>";
 
 	Content content;
