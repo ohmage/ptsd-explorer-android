@@ -1,36 +1,17 @@
 package gov.va.ptsd.ptsdcoach.controllers;
 
-import java.util.List;
-
 import android.content.Context;
-import android.database.DataSetObserver;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnFocusChangeListener;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
-import gov.va.ptsd.ptsdcoach.R;
+
 import gov.va.ptsd.ptsdcoach.activities.AssessNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
 import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
-import gov.va.ptsd.ptsdcoach.questionnaire.Choice;
+
+import java.util.List;
 
 public class PCLSchedulerController extends ContentViewControllerBase {
 
@@ -183,14 +164,19 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 	private void setItemChecked() {
 		AssessNavigationController nc = (AssessNavigationController)getNavigator();
 		String schedule = nc.getPCLReminderSchedule();
+		boolean checked = false;
 		if(TextUtils.isEmpty(schedule))
 			schedule="none";
 		for (int i = 0;i<tags.length;i++) {
 			if (tags[i].equals(schedule)) {
+			    checked = true;
 				radios[i].setChecked(true);
 			} else {
 				radios[i].setChecked(false);
 			}
 		}
+		// If nothing is checked, check the None
+		if(!checked)
+		    radios[0].setChecked(true);
 	}
 }
