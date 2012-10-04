@@ -65,7 +65,6 @@ public class UserDBHelper extends SQLiteOpenHelper {
 		super(ctx, DB_NAME, null, DATABASE_VERSION);
 		context = ctx;
 		contentDB = ContentDBHelper.instance(ctx);
-		createDemoData(getWritableDatabase());
 	}
 	
 	private final String[] demoFavorites = {
@@ -135,7 +134,6 @@ public class UserDBHelper extends SQLiteOpenHelper {
 		db.execSQL(EXERCISE_SCORE_TABLE_CREATE);
 		db.execSQL(EXERCISE_SCORE_INDEX1_CREATE);
 		db.execSQL(EXERCISE_SCORE_INDEX2_CREATE);
-		createDemoData(db);
 	}
 
 	@Override
