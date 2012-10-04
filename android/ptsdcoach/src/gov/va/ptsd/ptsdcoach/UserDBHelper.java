@@ -267,7 +267,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     }
 
     public long getPhq9LastTaken() {
-        Cursor c = sql().query("phq9", new String[] { "time" }, null, null, null, null, "time ASC");
+        Cursor c = sql().query("phq9", new String[] { "time" }, null, null, null, null, "time DESC");
         long time = -1;
         if (c.moveToFirst()) {
             time = c.getLong(0);
@@ -283,7 +283,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
     }
 
     public long getDailyLastTaken() {
-        Cursor c = sql().query("daily", new String[] { "time" }, null, null, null, null, "time ASC");
+        Cursor c = sql().query("daily", new String[] { "time" }, null, null, null, null, "time DESC");
         long time = -1;
         if (c.moveToFirst()) {
             time = c.getLong(0);
