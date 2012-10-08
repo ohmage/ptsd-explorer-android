@@ -1763,6 +1763,7 @@
 			]]></Content>
 		</ExerciseCategory>
 
+		<!--
 		<ExerciseCategory name="planToReduceIsolationCategory" displayName="Make a Plan to Reduce Isolation" child_variable_tooltype="making a plan to reduce isolation" 
 			child_help="reduceIsolationHelp" child_ui="SimpleExerciseController">
 			<Content name="planToReduceIsolation" helpsWithSymptoms="isolation hopeless anxiety" weight="10.0" displayName="Reduce Isolation" backButton="Intro" ui="SimpleExerciseIntroController">
@@ -1812,6 +1813,7 @@
 				</Content>
 			</Content>
 		</ExerciseCategory>
+		-->
 
 		<ExerciseCategory name="timeout" child_weight="1.0" displayName="Take a Time Out" child_helpsWithSymptoms="anger" 
 			child_variable_tooltype="taking a time out" ui="CategoryIntroController" child_ui="TimeoutController"
