@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.text.format.DateUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -169,35 +168,6 @@ public class AssessNavigationController extends NavigationController implements 
 		PCLScore lastScoreObj = userDb.getLastPCLScore();
 		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= 7) {
 			surveys.add("pcl");
-
-			String pclSince = "in the past month";
-
-			if (lastScoreObj != null) {
-				Date lastScoreTime = new Date(lastScoreObj.time);
-				long secondsSinceLastTime = (now.getTime() - lastScoreTime.getTime())/1000L;
-				long daysSinceLastTime = ((secondsSinceLastTime / 60)/60)/24;
-				if (daysSinceLastTime < 1) {
-					pclSince = "in the time since you last took this assessment";
-				} else if (daysSinceLastTime < 6) {
-					int days = (int)daysSinceLastTime;
-					pclSince = String.format("in the past %s day%s",numbersToWords[days],(days > 1) ? "s" : "");
-				} else if ((daysSinceLastTime < 27)) {
-					int weeks = (int)(daysSinceLastTime / 7);
-					if (weeks == 0) weeks = 1;
-					pclSince = String.format("in the past %s week%s",numbersToWords[weeks],(weeks > 1) ? "s" : "");
-				} else {
-					int months = (int)(daysSinceLastTime / 30);
-					if (months == 0) months = 1;
-					pclSince = String.format("in the past %s month%s",numbersToWords[months],(months > 1) ? "s" : "");
-				}
-			}
-
-			String pclSinceCap = pclSince.substring(0, 1).toUpperCase() +  pclSince.substring(1);
-
-			if(controller != null) {
-				controller.setVariable("pclSince", pclSince);
-				controller.setVariable("pclSinceCap", pclSinceCap);
-			}
 		}
 
 	    // Add the phq9 survey if its been longer than 1 week

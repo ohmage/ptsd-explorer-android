@@ -12,5 +12,3 @@ android/dbcompiler/build/
 android/ptsdcoach/assets/Content/*
 !android/ptsdcoach/assets/Content/.placeholder
 android/ptsdcoach/assets/content.db
-android/ptsdcoach/assets/pcl.xml
-
