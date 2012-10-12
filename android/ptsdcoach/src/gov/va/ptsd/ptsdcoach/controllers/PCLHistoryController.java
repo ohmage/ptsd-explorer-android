@@ -1,19 +1,16 @@
 package gov.va.ptsd.ptsdcoach.controllers;
 
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.text.format.DateFormat;
+import android.text.format.DateUtils;
+import android.view.accessibility.AccessibilityManager;
 
 import com.androidplot.Plot.BorderStyle;
-import com.androidplot.ui.layout.AnchorPosition;
-import com.androidplot.ui.layout.XLayoutStyle;
-import com.androidplot.ui.layout.YLayoutStyle;
-import com.androidplot.ui.widget.RangeLabelWidget;
-import com.androidplot.ui.widget.Widget;
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.LineAndPointRenderer;
@@ -22,24 +19,16 @@ import com.androidplot.xy.XYStepMode;
 
 import gov.va.ptsd.ptsdcoach.R;
 import gov.va.ptsd.ptsdcoach.UserDBHelper;
-import gov.va.ptsd.ptsdcoach.Util;
-import gov.va.ptsd.ptsdcoach.activities.ManageNavigationController;
 import gov.va.ptsd.ptsdcoach.content.PCLScore;
 import gov.va.ptsd.ptsdcoach.content.PCLSeries;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.format.DateFormat;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.accessibility.AccessibilityManager;
-import android.widget.Button;
+
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class PCLHistoryController extends ContentViewController {
 
@@ -138,8 +127,8 @@ public class PCLHistoryController extends ContentViewController {
 		});
 
         plot.setDomainLabel("");
-        plot.setDomainBoundaries(now.getTime() - (120*24*60*60*1000L), now.getTime(), BoundaryMode.FIXED);
-        plot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, 30*24*60*60*1000L);
+        plot.setDomainBoundaries(now.getTime() - DateUtils.DAY_IN_MILLIS * 56, now.getTime() + DateUtils.DAY_IN_MILLIS, BoundaryMode.FIXED);
+        plot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, DateUtils.DAY_IN_MILLIS * 14);
         plot.setDomainValueFormat(new Format() {
 			@Override
 			public Object parseObject(String string, ParsePosition position) {
