@@ -1,3 +1,4 @@
+
 package gov.va.ptsd.ptsdcoach.fragments;
 
 import gov.va.ptsd.ptsdcoach.UserDBHelper;
@@ -22,83 +23,82 @@ import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
 public class ReminderPickerFragment extends DialogFragment implements
-		TimePickerDialog.OnTimeSetListener {
+        TimePickerDialog.OnTimeSetListener {
 
-	ReminderPickerListener mListener;
+    ReminderPickerListener mListener;
 
-	public interface ReminderPickerListener {
-		void onTimeSelected(ReminderPickerFragment fragment);
+    public interface ReminderPickerListener {
+        void onTimeSelected(ReminderPickerFragment fragment);
 
-		void onCancelled(ReminderPickerFragment fragment);
-	}
+        void onCancelled(ReminderPickerFragment fragment);
+    }
 
-	@Override
-	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		// Use the current time as the default values for the picker
-		final Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int minute = c.get(Calendar.MINUTE);
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // Use the current time as the default values for the picker
+        final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
 
-		// Create a new instance of TimePickerDialog and return it
-		return new TimePickerDialog(getActivity(), this, hour, minute,
-				DateFormat.is24HourFormat(getActivity()));
-	}
+        // Create a new instance of TimePickerDialog and return it
+        return new TimePickerDialog(getActivity(), this, hour, minute,
+                DateFormat.is24HourFormat(getActivity()));
+    }
 
-	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) getActivity()
-				.getSystemService(ns);
-		mNotificationManager.cancel(1);
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
 
-		AlarmManager am = (AlarmManager) getActivity().getSystemService(
-				Context.ALARM_SERVICE);
-		Intent reminderIntent = new Intent(
-				"gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT");
-		PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(
-				getActivity(), 0, reminderIntent, 0);
-		am.cancel(reminderPendingIntent);
+        setReminder(getActivity(), c.getTimeInMillis());
 
-		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(System.currentTimeMillis());
-		c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-		c.set(Calendar.MINUTE, minute);
+        if (mListener != null)
+            mListener.onTimeSelected(this);
+    }
 
-		if (c.before(Calendar.getInstance())) {
-			c.add(Calendar.DATE, 1);
-		}
+    public static void setReminder(Context context, long when) {
 
-		long when = c.getTimeInMillis();
+        String ns = Context.NOTIFICATION_SERVICE;
+        NotificationManager mNotificationManager = (NotificationManager) context
+                .getSystemService(ns);
+        mNotificationManager.cancel(1);
 
-		am.setRepeating(AlarmManager.RTC, when, AlarmManager.INTERVAL_DAY,
-				reminderPendingIntent);
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent reminderIntent = new Intent("gov.va.ptsd.ptsdcoach.REMIND_ASSESSMENT");
+        PendingIntent reminderPendingIntent = PendingIntent.getBroadcast(context, 0,
+                reminderIntent, 0);
+        am.cancel(reminderPendingIntent);
 
-		PclReminderScheduledEvent e = new PclReminderScheduledEvent();
-		e.time = when;
-		EventLog.log(e);
+        am.setRepeating(AlarmManager.RTC, when, AlarmManager.INTERVAL_DAY, reminderPendingIntent);
 
-		UserDBHelper userDb = UserDBHelper.instance(getActivity());
-		userDb.setSetting("pclScheduled", "day");
+        PclReminderScheduledEvent e = new PclReminderScheduledEvent();
+        e.time = when;
+        EventLog.log(e);
 
-		if (mListener != null)
-			mListener.onTimeSelected(this);
-	}
+        UserDBHelper userDb = UserDBHelper.instance(context);
+        userDb.setSetting("pclScheduled", "day");
+        userDb.setSetting("pclTime", String.valueOf(when));
 
-	@Override
-	public void onCancel(DialogInterface dialog) {
-		super.onCancel(dialog);
-		if (mListener != null)
-			mListener.onCancelled(this);
-	}
+    }
 
-	@Override
-	public void onDismiss(DialogInterface dialog) {
-		super.onDismiss(dialog);
-		if (mListener != null)
-			mListener.onCancelled(this);
-	}
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        if (mListener != null)
+            mListener.onCancelled(this);
+    }
 
-	public void setListener(ReminderPickerListener l) {
-		mListener = l;
-	}
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (mListener != null)
+            mListener.onCancelled(this);
+    }
+
+    public void setListener(ReminderPickerListener l) {
+        mListener = l;
+    }
 }
