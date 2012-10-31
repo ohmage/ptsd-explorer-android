@@ -35,7 +35,7 @@ public class AssessmentReminder extends BroadcastReceiver {
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 		Notification notification = new Notification(icon, "PTSD Coach Assessment", when);
 		notification.setLatestEventInfo(context, "PTSD Coach Assessment", "It is time to take your periodic PTSD assessment.", contentIntent);
-		notification.defaults |= Notification.DEFAULT_SOUND;
+		notification.defaults |= Notification.DEFAULT_ALL;
 		notification.flags |= Notification.FLAG_NO_CLEAR;
 
 		try {

@@ -6,6 +6,7 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.VIBRATE"/>
 	<supports-screens android:largeScreens="false" android:anyDensity="false" android:resizeable="false" android:normalScreens="true" android:smallScreens="false"></supports-screens>
 
 	<application android:icon="@drawable/icon" android:name="PTSDApplication" android:label="@string/app_name">
