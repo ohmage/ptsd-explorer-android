@@ -34,6 +34,8 @@ import gov.va.ptsd.ptsdcoach.services.TtsContentProvider;
 
 public class PTSDCoach extends TabActivity implements OnInitListener{
 
+	public static boolean EMA = false;
+
 	ContentDBHelper db;
 	public boolean fromBackground;
 	private static final int TTS_CHECK_CODE = 4;

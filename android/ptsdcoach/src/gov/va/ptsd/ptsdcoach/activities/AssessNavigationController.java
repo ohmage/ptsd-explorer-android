@@ -164,21 +164,39 @@ public class AssessNavigationController extends NavigationController implements 
 		ArrayList<String> surveys = new ArrayList<String>(3);
 		Date now = new Date();
 
-		// Add the pcl survey if its been longer than a week
-		PCLScore lastScoreObj = userDb.getLastPCLScore();
-		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= 7) {
-			surveys.add("pcl");
+		int days = 30;
+		if(PTSDCoach.EMA) {
+		    days = 7;
 		}
 
-	    // Add the phq9 survey if its been longer than 1 week
-        if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 7) {
-            surveys.add("phq9");
+		// Add the pcl survey if its been longer than a week
+		PCLScore lastScoreObj = userDb.getLastPCLScore();
+		if(lastScoreObj == null || ((now.getTime() - lastScoreObj.time) / DateUtils.DAY_IN_MILLIS) >= days) {
+			surveys.add("pcl");
+
+            String pclSince = "month";
+            if(PTSDCoach.EMA) {
+                pclSince = "week";
+            }
+
+            if(controller != null) {
+                // BUG: For some reason, variables with certian lengths can cause the xml to fail parsing..
+                // This length seems to work
+                controller.setVariable("since", pclSince);
+            }
         }
 
-        // Add the daily survey if they haven't taken it today
-       if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
-            surveys.add("daily");
-        }
+		if(PTSDCoach.EMA) {
+		    // Add the phq9 survey if its been longer than 1 week
+		    if(((now.getTime() - userDb.getPhq9LastTaken()) / DateUtils.DAY_IN_MILLIS) >= 7) {
+		        surveys.add("phq9");
+		    }
+
+		    // Add the daily survey if they haven't taken it today
+		    if(!DateUtils.isToday(userDb.getDailyLastTaken())) {
+		        surveys.add("daily");
+		    }
+		}
        
        return surveys;
 	}
