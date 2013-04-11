@@ -381,8 +381,6 @@ public class AssessNavigationController extends NavigationController implements 
 
 			EventLog.log(new PclAssessmentEvent(player));
 
-			player = null;
-
 			String absStr = null;
 			String relStr = null;
 
