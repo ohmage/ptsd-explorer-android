@@ -1,14 +1,6 @@
 
 package gov.va.ptsd.ptsdcoach.fragments;
 
-import gov.va.ptsd.ptsdcoach.UserDBHelper;
-import gov.va.ptsd.ptsdcoach.content.PCLScore;
-
-import java.util.Calendar;
-
-import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclReminderScheduledEvent;
-import com.openmhealth.ohmage.core.EventLog;
-
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.NotificationManager;
@@ -22,8 +14,25 @@ import android.support.v4.app.DialogFragment;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
+import com.openmhealth.ohmage.campaigns.va.ptsd_explorer.PclReminderScheduledEvent;
+import com.openmhealth.ohmage.core.EventLog;
+
+import gov.va.ptsd.ptsdcoach.UserDBHelper;
+
+import java.util.Calendar;
+
 public class ReminderPickerFragment extends DialogFragment implements
         TimePickerDialog.OnTimeSetListener {
+
+    private static final String KEY_INTERVAL = "key_interval";
+
+    public static ReminderPickerFragment getInstance(String interval) {
+        ReminderPickerFragment fragment = new ReminderPickerFragment();
+        Bundle args = new Bundle();
+        args.putString(KEY_INTERVAL, interval);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     ReminderPickerListener mListener;
 
@@ -45,6 +54,7 @@ public class ReminderPickerFragment extends DialogFragment implements
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+    @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
         Calendar c = Calendar.getInstance();
@@ -53,13 +63,13 @@ public class ReminderPickerFragment extends DialogFragment implements
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
 
-        setReminder(getActivity(), c.getTimeInMillis());
+        setReminder(getActivity(), getArguments().getString(KEY_INTERVAL), c.getTimeInMillis());
 
         if (mListener != null)
             mListener.onTimeSelected(this);
     }
 
-    public static void setReminder(Context context, long when) {
+    public static void setReminder(Context context, String interval, long when) {
 
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager mNotificationManager = (NotificationManager) context
@@ -72,14 +82,30 @@ public class ReminderPickerFragment extends DialogFragment implements
                 reminderIntent, 0);
         am.cancel(reminderPendingIntent);
 
-        am.setRepeating(AlarmManager.RTC, when, AlarmManager.INTERVAL_DAY, reminderPendingIntent);
+        long time;
+        if ("day".equals(interval)) {
+            time = AlarmManager.INTERVAL_DAY;
+        } else if ("weekly".equals(interval)) {
+            time = AlarmManager.INTERVAL_DAY * 7;
+        } else if ("twoweeks".equals(interval)) {
+            time = AlarmManager.INTERVAL_DAY * 14;
+        } else if ("monthly".equals(interval)) {
+            time = AlarmManager.INTERVAL_DAY * 30;
+        } else if ("threemonths".equals(interval)) {
+            time = AlarmManager.INTERVAL_DAY * 90;
+        } else {
+            // Otherwise don't set anything
+            return;
+        }
+
+        am.setRepeating(AlarmManager.RTC, when, time, reminderPendingIntent);
 
         PclReminderScheduledEvent e = new PclReminderScheduledEvent();
         e.time = when;
         EventLog.log(e);
 
         UserDBHelper userDb = UserDBHelper.instance(context);
-        userDb.setSetting("pclScheduled", "day");
+        userDb.setSetting("pclScheduled", interval);
         userDb.setSetting("pclTime", String.valueOf(when));
 
     }

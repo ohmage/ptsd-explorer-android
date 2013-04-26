@@ -5,9 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import java.util.Calendar;
-
 import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
+
+import java.util.Calendar;
 
 public class OnBootReceiver extends BroadcastReceiver {
 
@@ -19,6 +19,8 @@ public class OnBootReceiver extends BroadcastReceiver {
         // Reset the reminder if it exists
         UserDBHelper userDb = UserDBHelper.instance(context);
         String whenStr = userDb.getSetting("pclTime");
+        String interval = userDb.getSetting("pclScheduled");
+
         if (whenStr != null) {
             long when = Long.valueOf(whenStr);
             Calendar c = Calendar.getInstance();
@@ -29,7 +31,7 @@ public class OnBootReceiver extends BroadcastReceiver {
             today.set(Calendar.MINUTE, c.get(Calendar.MINUTE));
             today.set(Calendar.SECOND, 0);
             today.set(Calendar.MILLISECOND, 0);
-            ReminderPickerFragment.setReminder(context, today.getTimeInMillis());
+            ReminderPickerFragment.setReminder(context, interval, today.getTimeInMillis());
         }
     }
 

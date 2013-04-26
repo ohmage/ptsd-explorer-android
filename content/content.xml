@@ -488,6 +488,10 @@
 				Select a schedule to retake the self-assessment and monitor your progress. Taking the assessment daily is ideal.
 				<Content name="none" displayName="Never"/>
 				<Content name="day" displayName="Daily"/>
+				<Content name="weekly" displayName="Weekly"/>
+				<Content name="twoweeks" displayName="Every two weeks"/>
+				<Content name="monthly" displayName="Monthly"/>
+				<Content name="threemonths" displayName="Every three months"/>
 			</Content>
 		</Content>
 		<Content name="manage" displayName="Manage Symptoms" buttonTheme="theme_big_button" ui="ButtonGridController" title="What's Wrong?" backButton="Symptoms"

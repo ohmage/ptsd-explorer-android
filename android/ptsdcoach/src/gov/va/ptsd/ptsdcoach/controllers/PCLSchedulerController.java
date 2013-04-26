@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import gov.va.ptsd.ptsdcoach.PTSDCoach;
 import gov.va.ptsd.ptsdcoach.activities.AssessNavigationController;
 import gov.va.ptsd.ptsdcoach.content.Content;
 import gov.va.ptsd.ptsdcoach.fragments.ReminderPickerFragment;
@@ -31,6 +32,14 @@ public class PCLSchedulerController extends ContentViewControllerBase {
 //		setBackgroundDrawable(getBackground());
 
 		children = getContent().getChildren();
+
+	    // show correct reminders for EMA
+        if(PTSDCoach.EMA) {
+            children = children.subList(0, 2);
+        } else {
+            children.remove(1);
+        }
+
 		String[] items = new String[children.size()];
 		tags = new String[children.size()];
 		radios = new RadioButton[children.size()];

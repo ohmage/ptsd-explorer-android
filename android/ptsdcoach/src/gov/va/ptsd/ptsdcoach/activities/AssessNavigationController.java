@@ -265,11 +265,11 @@ public class AssessNavigationController extends NavigationController implements 
 			cvc.addButton("Schedule the reminder",BUTTON_SCHEDULE_IN_DAY);
 			pushReplaceView(cvc);
 		} else if (id == BUTTON_SCHEDULE_IN_DAY) {
-			schedulePCLReminder("day", new ReminderPickerListener() {
+			schedulePCLReminder((PTSDCoach.EMA) ? "day" : "month", new ReminderPickerListener() {
 				
 				@Override
 				public void onTimeSelected(ReminderPickerFragment fragment) {
-					setVariable("pclScheduledWhen","day");
+					setVariable("pclScheduledWhen",(PTSDCoach.EMA) ? "day" : "month");
 					ContentViewController cvc = (ContentViewController)db.getContentForName("pclScheduled").createContentView(AssessNavigationController.this);
 					cvc.addButton("See Assessment History",BUTTON_SEE_HISTORY);
 					pushReplaceView(cvc);
@@ -347,11 +347,9 @@ public class AssessNavigationController extends NavigationController implements 
 			
 			userDb.setSetting("pclScheduled", "none");
 		} else {
-			if (interval.equals("day")) {
-				ReminderPickerFragment newFragment = new ReminderPickerFragment();
-				newFragment.setListener(listener);
-			    newFragment.show(getSupportFragmentManager(), "timePicker");
-			}
+			ReminderPickerFragment newFragment = ReminderPickerFragment.getInstance(interval);
+			newFragment.setListener(listener);
+			newFragment.show(getSupportFragmentManager(), "timePicker");
 		}
 	}
 
